@@ -3,40 +3,95 @@ package com.parsonswang.zxfootball;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.parsonswang.zxfootball.base.BaseActivity;
+import com.parsonswang.zxfootball.data.DataFragment;
+import com.parsonswang.zxfootball.matches.MatchesFragment;
+import com.parsonswang.zxfootball.price.PriceFragment;
 
-    private TextView mTextMessage;
+public class MainActivity extends BaseActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG_MATCHFRAGMENT = "match";
+    private static final String TAG_DATAFRAGMENT = "data";
+    private static final String TAG_PRICEFRAGMENT = "price";
+
+    private int mCurrMenuItemId;
+    private Fragment mCurrFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+            final int itemId = item.getItemId();
+            switch (itemId) {
+                case R.id.navigation_match:
+                    Log.i(TAG, "navigation_match click");
+                    switchFragment(itemId, TAG_MATCHFRAGMENT);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_data);
+                case R.id.navigation_data:
+                    Log.i(TAG, "navigation_data click");
+                    switchFragment(itemId, TAG_DATAFRAGMENT);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_market_values);
+                case R.id.navigation_price:
+                    Log.i(TAG, "navigation_price click");
+                    switchFragment(itemId, TAG_PRICEFRAGMENT);
                     return true;
             }
             return false;
         }
     };
 
+    private void switchFragment(int menuItemId, String tag) {
+        //如果已经是当前Fragment了也就不用添加了
+        if (mCurrMenuItemId == menuItemId) {
+            return;
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager == null) {
+            return;
+        }
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (transaction == null) {
+            return;
+        }
+
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+
+        mCurrMenuItemId = menuItemId;
+
+    }
+
+    private Fragment createFragment(int menuItemId) {
+        switch (menuItemId) {
+            case R.id.navigation_match:
+                Log.i(TAG, "navigation_match createFragment");
+                return new MatchesFragment();
+            case R.id.navigation_data:
+                Log.i(TAG, "navigation_data createFragment");
+                return new DataFragment();
+            case R.id.navigation_price:
+                Log.i(TAG, "navigation_price createFragment");
+                return new PriceFragment();
+        }
+        return null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

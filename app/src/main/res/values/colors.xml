@@ -6,5 +6,6 @@
 
     <color name="colorBottomItemBackground">#2D3238</color>
     <color name="colorBottomItemTextSelectedColor">#2E7461</color>
+    <color name="colorCommonBackground">#191F26</color>
 
 </resources>

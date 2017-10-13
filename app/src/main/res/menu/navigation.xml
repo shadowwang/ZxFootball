@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_match"
         android:icon="@drawable/ic_bottombar_item_matches"
         android:title="@string/title_home"/>
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_data"
         android:icon="@drawable/ic_bottombar_item_data"
         android:title="@string/title_data"/>
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_price"
         android:icon="@drawable/ic_bottombar_item_price"
         android:title="@string/title_market_values"/>
 
