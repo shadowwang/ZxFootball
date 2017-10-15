@@ -11,6 +11,17 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            //根据需要 自行选择添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                MTA_APPKEY:"",
+                MTA_CHANNEL:"渠道名称"
+        ]
     }
     buildTypes {
         release {
@@ -18,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -25,9 +37,18 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    //以MTA3.1.4为例
+    //MTA的jar包
+    compile 'com.qq.mta:mta:3.1.41-alpha'
+    //midjar包
+    compile 'com.tencent.mid:mid:3.73-alpha'
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

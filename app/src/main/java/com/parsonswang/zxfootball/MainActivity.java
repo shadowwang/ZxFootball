@@ -67,7 +67,19 @@ public class MainActivity extends BaseActivity {
         }
 
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        //刚开始就没有该fragment
+        if (fragment == null) {
+            fragment = createFragment(menuItemId);
+            if (fragment == null) {
+                return;
+            }
 
+            transaction.add(R.id.mFlContent, fragment, tag).commitAllowingStateLoss();
+        } else {
+            transaction.replace(R.id.mFlContent, fragment, tag).commitAllowingStateLoss();
+        }
+
+        mCurrFragment = fragment;
         mCurrMenuItemId = menuItemId;
 
     }
@@ -94,6 +106,8 @@ public class MainActivity extends BaseActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
     }
 
 }
