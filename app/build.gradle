@@ -19,7 +19,7 @@ android {
         }
 
         manifestPlaceholders = [
-                MTA_APPKEY:"",
+                MTA_APPKEY:"A2ZD2FUI18MW",
                 MTA_CHANNEL:"渠道名称"
         ]
     }

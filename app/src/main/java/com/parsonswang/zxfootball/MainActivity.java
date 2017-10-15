@@ -16,6 +16,8 @@ import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
 
+import timber.log.Timber;
+
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -34,15 +36,15 @@ public class MainActivity extends BaseActivity {
             final int itemId = item.getItemId();
             switch (itemId) {
                 case R.id.navigation_match:
-                    Log.i(TAG, "navigation_match click");
+                    Timber.i("navigation_match click");
                     switchFragment(itemId, TAG_MATCHFRAGMENT);
                     return true;
                 case R.id.navigation_data:
-                    Log.i(TAG, "navigation_data click");
+                    Timber.i("navigation_data click");
                     switchFragment(itemId, TAG_DATAFRAGMENT);
                     return true;
                 case R.id.navigation_price:
-                    Log.i(TAG, "navigation_price click");
+                    Timber.i("navigation_price click");
                     switchFragment(itemId, TAG_PRICEFRAGMENT);
                     return true;
             }
