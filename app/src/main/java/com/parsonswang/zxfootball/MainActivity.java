@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.parsonswang.zxfootball.base.BaseActivity;
+import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
@@ -109,5 +109,4 @@ public class MainActivity extends BaseActivity {
 
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
     }
-
 }

@@ -24,19 +24,21 @@ public class DnsUtil {
 
     private static String httpGet(String url) {
         String responseBody = null;
+        BufferedReader bufferedReader = null;
+        HttpURLConnection urlConnection = null;
         try {
             URL getUrl = new URL(url);
-            HttpURLConnection urlConnection = (HttpURLConnection)getUrl
+            urlConnection = (HttpURLConnection)getUrl
                     .openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             int respCode = urlConnection.getResponseCode();
             if (HttpURLConnection.HTTP_OK == respCode) {
-                BufferedReader bufferedReader = new BufferedReader(
+                bufferedReader = new BufferedReader(
                         new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-                String readLine = null;
-                StringBuffer response = new StringBuffer();
+                String readLine = "";
+                StringBuilder response = new StringBuilder();
                 while (null != (readLine = bufferedReader.readLine())) {
                     response.append(readLine);
                 }
@@ -46,6 +48,19 @@ public class DnsUtil {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                    bufferedReader = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
         return responseBody;
     }

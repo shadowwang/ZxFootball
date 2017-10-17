@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
+import com.parsonswang.zxfootball.ZxApplication;
 import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatCrashReporter;
 import com.tencent.stat.StatService;
 
 import timber.log.Timber;
@@ -14,7 +16,7 @@ import timber.log.Timber;
  * Created by parsonswang on 2017/10/16.
  */
 
-public class MtInit {
+public class MtaInit {
 
     /**
      * 初始化mta
