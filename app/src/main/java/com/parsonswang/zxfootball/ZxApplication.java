@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.parsonswang.zxfootball.core.ApplicationContextHolder;
 import com.parsonswang.zxfootball.core.CrashReportInit;
 import com.parsonswang.zxfootball.core.LogInit;
@@ -30,6 +31,8 @@ public class ZxApplication extends Application {
         MtaInit.initMta(this);
 
         CrashReportInit.initCrashReport();
+
+        Stetho.initializeWithDefaults(this);
     }
 
     @Override
