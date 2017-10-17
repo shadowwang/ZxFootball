@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.parsonswang.zxfootball.core.ApplicationContextHolder;
+import com.parsonswang.zxfootball.core.CrashReportInit;
 import com.parsonswang.zxfootball.core.LogInit;
 import com.parsonswang.zxfootball.core.MtaInit;
 
@@ -28,6 +29,7 @@ public class ZxApplication extends Application {
 
         MtaInit.initMta(this);
 
+        CrashReportInit.initCrashReport();
     }
 
     @Override
