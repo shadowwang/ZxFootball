@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
     >
 
+    <com.parsonswang.zxfootball.common.CommonActionBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-</RelativeLayout>
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        app:pstsIndicatorColor="@color/colorPrimary"
+        >
+
+    </com.astuetz.PagerSlidingTabStrip>
+
+</LinearLayout>
