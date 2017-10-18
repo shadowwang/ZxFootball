@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.parsonswang.common.base.BaseActivity;
+import com.parsonswang.common.utils.BarUtils;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
@@ -108,5 +109,7 @@ public class MainActivity extends BaseActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
+
+        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground));
     }
 }

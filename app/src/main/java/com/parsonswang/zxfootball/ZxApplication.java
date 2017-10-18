@@ -23,7 +23,6 @@ public class ZxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Timber.i("---onCreate---");
         appInstance = this;
 
         LogInit.initLog();
@@ -33,6 +32,8 @@ public class ZxApplication extends Application {
         CrashReportInit.initCrashReport();
 
         Stetho.initializeWithDefaults(this);
+
+        Timber.i("---onCreate---");
     }
 
     @Override
