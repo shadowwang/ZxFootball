@@ -1,4 +1,4 @@
-package com.parsonswang.zxfootball.network;
+package com.parsonswang.common.network;
 
 import com.parsonswang.zxfootball.utils.StringUtils;
 

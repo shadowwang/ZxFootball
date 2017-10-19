@@ -1,7 +1,8 @@
-package com.parsonswang.zxfootball.network;
+package com.parsonswang.common.network;
+
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.parsonswang.zxfootball.BuildConfig;
+import com.parsonswang.common.BuildConfig;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -11,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Dns;
 import okhttp3.OkHttpClient;
-import okhttp3.internal.connection.ConnectInterceptor;
 
 /**
  * okhttp工具类

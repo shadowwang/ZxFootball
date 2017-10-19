@@ -11,7 +11,7 @@
         <item name="android:windowActionBar">false</item>
         <!--slider-->
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/colorCommonContentBackground</item>
     </style>
 
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">

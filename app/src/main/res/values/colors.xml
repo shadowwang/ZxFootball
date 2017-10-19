@@ -8,4 +8,6 @@
     <color name="colorBottomItemTextSelectedColor">#2E7461</color>
     <color name="colorCommonBackground">#191F26</color>
 
+    <color name="colorCommonContentBackground">#252E34</color>
+    <color name="colorCommonLine">#64696B</color>
 </resources>

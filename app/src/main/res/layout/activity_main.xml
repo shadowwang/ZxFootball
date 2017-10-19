@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     >
 
     <!-- 内容-->
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
 
     <!-- bottom bar-->
     <android.support.design.widget.BottomNavigationView
@@ -24,5 +26,11 @@
         app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/navigation"
         />
-
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorCommonLine"
+        android:layout_above="@id/navigation"
+        />
 </RelativeLayout>

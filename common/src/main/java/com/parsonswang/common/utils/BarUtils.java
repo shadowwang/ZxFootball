@@ -25,6 +25,10 @@ public class BarUtils {
         setStatusBarColor(activity, color, DEFAULT_ALPHA, false);
     }
 
+    public static void setStatusBarColor(Activity activity, int color, int alpha) {
+        setStatusBarColor(activity, color, alpha, false);
+    }
+
     public static void setStatusBarColor(Activity activity, int color,
                                          int alpha, boolean isDector) {
         //4.4以上版本忽略

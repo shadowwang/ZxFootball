@@ -110,6 +110,6 @@ public class MainActivity extends BaseActivity {
 
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
 
-        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground));
+        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground), 255);
     }
 }
