@@ -10,11 +10,15 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.parsonswang.common.base.BaseActivity;
+import com.parsonswang.common.network.JsonCallback;
+import com.parsonswang.common.network.OkHttpUtil;
 import com.parsonswang.common.utils.BarUtils;
+import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
 
+import okhttp3.Call;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
@@ -111,5 +115,20 @@ public class MainActivity extends BaseActivity {
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
 
         BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground), 255);
+
+        OkHttpUtil.get().url("http://www.tzuqiu.cc/matches/queryFixture.json")
+                .addParams("comeptitionId", "3")
+                .addParams("date", "2017.08.01+至+2017.08.31")
+                .build().execute(new JsonCallback<MatchesBean>() {
+            @Override
+            protected void onSucess(MatchesBean matchBean) {
+                Timber.i(matchBean.toString());
+            }
+
+            @Override
+            protected void onFail(Call call, String reson) {
+                Timber.e(reson);
+            }
+        });
     }
 }

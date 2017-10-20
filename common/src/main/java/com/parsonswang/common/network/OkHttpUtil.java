@@ -48,12 +48,15 @@ public class OkHttpUtil {
         return builder.build();
     }
 
-    public OkHttpClient getInstance() {
+    public static OkHttpClient getInstance() {
         if (mOkHttpClient == null) {
             mOkHttpClient = initOkHttpClient();
         }
         return mOkHttpClient;
     }
 
+    public static HttpGetBuilder get() {
+        return new HttpGetBuilder();
+    }
 
 }
