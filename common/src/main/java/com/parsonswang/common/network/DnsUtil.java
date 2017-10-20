@@ -1,6 +1,7 @@
 package com.parsonswang.common.network;
 
-import com.parsonswang.zxfootball.utils.StringUtils;
+
+import com.parsonswang.common.utils.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

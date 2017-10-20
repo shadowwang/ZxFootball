@@ -1,4 +1,4 @@
-package com.parsonswang.zxfootball.utils;
+package com.parsonswang.common.utils;
 
 /**
  * Created by parsonswang on 2017/10/16.

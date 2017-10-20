@@ -9,21 +9,17 @@ import android.util.Log;
 
 import com.parsonswang.zxfootball.BuildConfig;
 import com.parsonswang.zxfootball.ZxApplication;
-import com.parsonswang.zxfootball.utils.StringUtils;
+import com.parsonswang.common.utils.StringUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Logger;
 
 import timber.log.Timber;
 
