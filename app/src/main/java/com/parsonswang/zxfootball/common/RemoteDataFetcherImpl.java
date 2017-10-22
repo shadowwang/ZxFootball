@@ -13,14 +13,13 @@ import java.util.Map;
  * Created by parsonswang on 2017/10/20.
  */
 
-public class RemoteDataFetcher implements IDataFetcher<JsonCallback>{
+public class RemoteDataFetcherImpl implements IDataFetcher<JsonCallback>{
 
     private String mUrl;
 
-    public RemoteDataFetcher(String url) {
+    public RemoteDataFetcherImpl(String url) {
         this.mUrl = url;
     }
-
 
     @Override
     public void fetchData(JsonCallback callback, LinkedHashTreeMap<String, String> params) {
