@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.common;
 
+import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.common.network.ResonseCallback;
 
 /**
@@ -9,5 +10,5 @@ import com.parsonswang.common.network.ResonseCallback;
 
 public interface IDataFetcher<T extends ResonseCallback> {
 
-    void fetchData(T callback, Object... params);
+    void fetchData(T callback, LinkedHashTreeMap<String, String> params);
 }

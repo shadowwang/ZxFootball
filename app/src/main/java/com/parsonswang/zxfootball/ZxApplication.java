@@ -8,6 +8,7 @@ import com.parsonswang.zxfootball.core.ApplicationContextHolder;
 import com.parsonswang.zxfootball.core.CrashReportInit;
 import com.parsonswang.zxfootball.core.LogInit;
 import com.parsonswang.zxfootball.core.MtaInit;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import timber.log.Timber;
 
@@ -32,6 +33,8 @@ public class ZxApplication extends Application {
         CrashReportInit.initCrashReport();
 
         Stetho.initializeWithDefaults(this);
+
+        CrashReport.initCrashReport(getApplicationContext(), "ce5d70e35c", false);
 
         Timber.i("---onCreate---");
     }

@@ -17,6 +17,7 @@ import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import okhttp3.Call;
 import timber.log.Timber;
