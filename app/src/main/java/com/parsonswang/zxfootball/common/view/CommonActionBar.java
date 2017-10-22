@@ -1,4 +1,4 @@
-package com.parsonswang.zxfootball.common;
+package com.parsonswang.zxfootball.common.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

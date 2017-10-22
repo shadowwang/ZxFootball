@@ -6,7 +6,7 @@
               android:orientation="vertical"
     >
 
-    <com.parsonswang.zxfootball.common.CommonActionBar
+    <com.parsonswang.zxfootball.common.view.CommonActionBar
         android:layout_width="match_parent"
         android:layout_height="56dp"
         />

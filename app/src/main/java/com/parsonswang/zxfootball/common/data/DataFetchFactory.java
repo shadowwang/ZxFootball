@@ -1,4 +1,4 @@
-package com.parsonswang.zxfootball.common;
+package com.parsonswang.zxfootball.common.data;
 
 import com.parsonswang.common.utils.StringUtils;
 

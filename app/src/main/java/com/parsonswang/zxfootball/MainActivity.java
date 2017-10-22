@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity {
 
         OkHttpUtil.get().url("http://www.tzuqiu.cc/matches/queryFixture.json")
                 .addParams("comeptitionId", "3")
-                .addParams("date", "2017.08.01+至+2017.08.31")
+                .addParams("date", "2017.10.01+至+2017.10.31")
                 .build().execute(new JsonCallback<MatchesBean>() {
             @Override
             protected void onSucess(MatchesBean matchBean) {
