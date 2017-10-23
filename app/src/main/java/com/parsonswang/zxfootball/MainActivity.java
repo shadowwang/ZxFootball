@@ -75,13 +75,24 @@ public class MainActivity extends BaseActivity {
         //刚开始就没有该fragment
         if (fragment == null) {
             fragment = createFragment(menuItemId);
-            if (fragment == null) {
+            if (fragment == null && !isFinishing()) {
+                transaction.commitAllowingStateLoss();
                 return;
             }
 
-            transaction.add(R.id.mFlContent, fragment, tag).commitAllowingStateLoss();
+            transaction.add(R.id.mFlContent, fragment, tag);
         } else {
-            transaction.replace(R.id.mFlContent, fragment, tag).commitAllowingStateLoss();
+            transaction.replace(R.id.mFlContent, fragment, tag);
+        }
+
+        //隐藏当前fragment
+        if (mCurrFragment != null) {
+            transaction.hide(mCurrFragment);
+        }
+
+        transaction.show(fragment);
+        if (!isFinishing()) {
+            transaction.commitAllowingStateLoss();
         }
 
         mCurrFragment = fragment;
