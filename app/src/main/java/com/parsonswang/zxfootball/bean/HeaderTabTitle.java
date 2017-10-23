@@ -8,17 +8,17 @@ import java.util.List;
 
 public class HeaderTabTitle {
 
-    private List<DataBean> data;
+    private List<TabInfo> data;
 
-    public List<DataBean> getData() {
+    public List<TabInfo> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<TabInfo> data) {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class TabInfo {
         /**
          * name : 中超
          * id : 3

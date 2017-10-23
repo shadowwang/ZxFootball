@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 
 /**
  * Created by wangchun on 2017/10/23.
@@ -15,7 +16,7 @@ import com.parsonswang.zxfootball.R;
 
 public class MatchInfoListFragment extends Fragment {
 
-    public static MatchInfoListFragment newInstance(int postion) {
+    public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
         return new MatchInfoListFragment();
     }
 

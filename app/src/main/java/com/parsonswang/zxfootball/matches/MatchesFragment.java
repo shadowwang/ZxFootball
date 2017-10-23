@@ -52,7 +52,7 @@ public class MatchesFragment extends Fragment implements MatchContract.IMatchVie
     @Override
     public void showHeaderTabTitle(HeaderTabTitle headerTabTitle) {
         Timber.i("headerTabTitle|: " + headerTabTitle);
-        List<HeaderTabTitle.DataBean> dataBeanList = headerTabTitle.getData();
+        List<HeaderTabTitle.TabInfo> dataBeanList = headerTabTitle.getData();
         mCommonHeaderTabAdapter.setDataBeanList(dataBeanList);
         mTabs.setViewPager(mVpPager);
     }

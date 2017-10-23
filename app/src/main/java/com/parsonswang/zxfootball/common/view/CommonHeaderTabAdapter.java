@@ -17,10 +17,10 @@ import java.util.List;
 
 public class CommonHeaderTabAdapter extends FragmentPagerAdapter {
 
-    private List<HeaderTabTitle.DataBean> mDataBeanList;
+    private List<HeaderTabTitle.TabInfo> mDataBeanList;
 
 
-    public void setDataBeanList(List<HeaderTabTitle.DataBean> dataBeens) {
+    public void setDataBeanList(List<HeaderTabTitle.TabInfo> dataBeens) {
         mDataBeanList = dataBeens;
         notifyDataSetChanged();
     }
@@ -31,7 +31,7 @@ public class CommonHeaderTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return MatchInfoListFragment.newInstance(position);
+        return MatchInfoListFragment.newInstance(mDataBeanList.get(position));
     }
 
     @Override
