@@ -42,5 +42,20 @@ public class HeaderTabTitle {
         public void setId(int id) {
             this.id = id;
         }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "name='" + name + '\'' +
+                    ", id=" + id +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "HeaderTabTitle{" +
+                "data=" + data +
+                '}';
     }
 }
