@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parsonswang.common.utils.DateUtils;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
+
+import java.util.Date;
 
 import timber.log.Timber;
 
@@ -39,14 +42,32 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
         View view = inflater.inflate(R.layout.fragment_matchinfo_list, container, false);
         mMatchPresenter = new MatchPresenter(this);
         String competionId = getArguments().getString(ARGUMENT_COMPETIONID);
-        Timber.i("competionId: " + competionId);
+        String date = getDateParams();
+
+        mMatchPresenter.getMatchInfos(competionId, date);
+        Timber.i("competionId: " + competionId + " date: " + getDateParams());
         return view;
     }
 
+    private String getCurrentTimeStr() {
+        Date date = new Date();
+        int year = DateUtils.getYear(date);
+        int month = DateUtils.getMonth(date) + 1;
+        String dateStr = year + "." + month + ".01";
+        return dateStr;
+    }
+
+    private String getDateParams() {
+        String currTimeString = getCurrentTimeStr();
+        String params = currTimeString;
+        params += "+至+";
+        params += DateUtils.date2String(new Date());
+        return params;
+    }
 
 
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
-
+        Timber.i("matchesBean: " + matchesBean);
     }
 }

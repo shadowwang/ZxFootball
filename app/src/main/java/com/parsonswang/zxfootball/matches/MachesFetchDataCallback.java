@@ -11,17 +11,17 @@ import okhttp3.Call;
 
 public class MachesFetchDataCallback extends JsonCallback<MatchesBean> {
 
-    private MatchContract.IMatchView matchView;
+    private MatchContract.IMatchInfoView matchView;
 
     public MachesFetchDataCallback() {}
 
-    public MachesFetchDataCallback(MatchContract.IMatchView matchView) {
+    public MachesFetchDataCallback(MatchContract.IMatchInfoView matchView) {
         this.matchView = matchView;
     }
 
     @Override
     protected void onSucess(MatchesBean matchesBean) {
-
+        matchView.showMatchInfoList(matchesBean);
     }
 
     @Override

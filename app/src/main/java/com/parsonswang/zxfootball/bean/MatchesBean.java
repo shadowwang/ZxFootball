@@ -3,7 +3,7 @@ package com.parsonswang.zxfootball.bean;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/10/20.
+ * Created by parsonswang on 2017/10/20.
  */
 
 public class MatchesBean {

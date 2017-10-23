@@ -12,7 +12,7 @@ import java.util.Locale;
 
 public class DateUtils {
 
-    private static final DateFormat DEFAULT_MATCH_TIME_FORMAT = new SimpleDateFormat("yyyy.mm.dd", Locale.getDefault());
+    private static final DateFormat DEFAULT_MATCH_TIME_FORMAT = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
 
     public static String date2String(Date date, DateFormat dateFormat) {
         return dateFormat.format(date);

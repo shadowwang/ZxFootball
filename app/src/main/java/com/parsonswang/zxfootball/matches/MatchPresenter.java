@@ -12,7 +12,7 @@ import timber.log.Timber;
  * Created by wangchun on 2017/10/22.
  */
 
-public class MatchPresenter extends AbsPresenter implements MatchContract.IMatchPresenter{
+public class MatchPresenter extends AbsPresenter implements MatchContract.IMatchPresenter {
 
     private MatchContract.IMatchView matchView;
     private MatchContract.IMatchInfoView matchInfoView;
@@ -46,11 +46,11 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
      */
     @Override
     public void getMatchInfos(String comeptitionId, String dataBetween) {
-        matchModel.getMatchInfoDatas(comeptitionId, dataBetween, new MachesFetchDataCallback(matchView));
+        matchModel.getMatchInfoDatas(comeptitionId, dataBetween, new MachesFetchDataCallback(matchInfoView));
     }
 
     private void getHeaderTabTitle() {
-        String leagueConfig = ConfigUtil.getOnlineConfig("league_config");
+        String leagueConfig = ConfigUtil.getOnlineConfig("league_config", "{\"data\":[{ \"name\":\"中超\", \"id\": 3 },{ \"name\":\"西甲\", \"id\": 2 },{ \"name\":\"英超\", \"id\": 1 },{ \"name\":\"意甲\", \"id\": 5 },{ \"name\":\"德甲\", \"id\": 4 },{ \"name\":\"法甲\", \"id\": 6 }]}");
 
         Timber.i("leagueConfig|: " + leagueConfig);
 
