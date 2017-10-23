@@ -13,8 +13,10 @@ public class MatchContract {
 
         public void showHeaderTabTitle(HeaderTabTitle headerTabTitle);
 
-        public void showMatchInfoList(MatchesBean matchesBean);
+    }
 
+    public interface IMatchInfoView {
+        public void showMatchInfoList(MatchesBean matchesBean);
     }
 
     public interface IMatchPresenter {

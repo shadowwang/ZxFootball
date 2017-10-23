@@ -15,10 +15,16 @@ import timber.log.Timber;
 public class MatchPresenter extends AbsPresenter implements MatchContract.IMatchPresenter{
 
     private MatchContract.IMatchView matchView;
+    private MatchContract.IMatchInfoView matchInfoView;
     private MatchModel matchModel;
 
     public MatchPresenter(MatchContract.IMatchView matchView) {
         this.matchView = matchView;
+        matchModel = new MatchModel(this);
+    }
+
+    public MatchPresenter(MatchContract.IMatchInfoView matchInfoView) {
+        this.matchInfoView = matchInfoView;
         matchModel = new MatchModel(this);
     }
 

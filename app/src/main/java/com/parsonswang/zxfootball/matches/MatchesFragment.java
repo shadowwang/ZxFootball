@@ -28,6 +28,7 @@ public class MatchesFragment extends Fragment implements MatchContract.IMatchVie
     private PagerSlidingTabStrip mTabs;
     private ViewPager mVpPager;
     private CommonHeaderTabAdapter mCommonHeaderTabAdapter;
+    private MatchPresenter mMatchPresenter;
 
     @Nullable
     @Override
@@ -39,7 +40,8 @@ public class MatchesFragment extends Fragment implements MatchContract.IMatchVie
         mCommonHeaderTabAdapter = new CommonHeaderTabAdapter(getFragmentManager());
         mVpPager.setAdapter(mCommonHeaderTabAdapter);
 
-        new MatchPresenter(this).start();
+        mMatchPresenter = new MatchPresenter(this);
+        mMatchPresenter.start();
         return view;
     }
 
@@ -55,10 +57,5 @@ public class MatchesFragment extends Fragment implements MatchContract.IMatchVie
         List<HeaderTabTitle.TabInfo> dataBeanList = headerTabTitle.getData();
         mCommonHeaderTabAdapter.setDataBeanList(dataBeanList);
         mTabs.setViewPager(mVpPager);
-    }
-
-    @Override
-    public void showMatchInfoList(MatchesBean matchesBean) {
-
     }
 }
