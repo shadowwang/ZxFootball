@@ -24,6 +24,7 @@ public class MtaInit {
      * @param c 上下文相关对象
      */
     public static void initMta(Context c) {
+        Timber.i("initMta: ");
         try {
 
             final ApplicationInfo applicationInfo = c.getPackageManager()

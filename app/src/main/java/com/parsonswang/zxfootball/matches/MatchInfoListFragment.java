@@ -25,6 +25,8 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
     private static final String ARGUMENT_COMPETIONID = "competion";
 
     private MatchPresenter mMatchPresenter;
+    private String mCompetionId;
+    private boolean isVisible;
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
         MatchInfoListFragment matchInfoListFragment = new MatchInfoListFragment();
@@ -41,12 +43,31 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matchinfo_list, container, false);
         mMatchPresenter = new MatchPresenter(this);
-        String competionId = getArguments().getString(ARGUMENT_COMPETIONID);
-        String date = getDateParams();
-
-        mMatchPresenter.getMatchInfos(competionId, date);
-        Timber.i("competionId: " + competionId + " date: " + getDateParams());
+        mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (isVisible) {
+            String date = getDateParams();
+            Timber.i("competionId: " + mCompetionId + " date: " + getDateParams());
+            mMatchPresenter.getMatchInfos(mCompetionId, date);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        isVisible = isVisibleToUser;
+        Timber.i("setUserVisibleHint|isVisibleToUser: " + isVisibleToUser);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Timber.i("onHiddenChanged|hidden: " + hidden);
     }
 
     private String getCurrentTimeStr() {

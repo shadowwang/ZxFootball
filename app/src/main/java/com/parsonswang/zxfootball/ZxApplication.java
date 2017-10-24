@@ -28,7 +28,7 @@ public class ZxApplication extends Application {
 
         LogInit.initLog();
 
-        MtaInit.initMta(this);
+        MtaInit.initMta(appInstance);
 
         CrashReportInit.initCrashReport();
 

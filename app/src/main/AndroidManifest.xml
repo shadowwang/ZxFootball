@@ -29,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <meta-data android:name="TA_APPKEY" android:value="${MTA_APPKEY}"/>
+        <!-- 请将value改为app发布对应的渠道，不同的发布渠道使用不同的名字 < -->
+        <meta-data android:name="InstallChannel" android:value="${MTA_CHANNEL}"/>
+        <!-- 注意：若填写的渠道为纯数字字符串类型，请不要超过int表示的范围！ < -->
     </application>
 
     <!-- MID3.5(mid-sdk-3.5.jar) 以上版本请务必增加此配置-->
@@ -37,9 +42,4 @@
         android:authorities="com.parsonswang.zxfootball.TENCENT.MID.V3"
         android:exported="true" >
     </provider>
-
-    <meta-data android:name="TA_APPKEY" android:value="${MTA_APPKEY}"/>
-    <!-- 请将value改为app发布对应的渠道，不同的发布渠道使用不同的名字 < -->
-    <meta-data android:name="InstallChannel" android:value="${MTA_CHANNEL}"/>
-    <!-- 注意：若填写的渠道为纯数字字符串类型，请不要超过int表示的范围！ < -->
 </manifest>
