@@ -42,19 +42,17 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matchinfo_list, container, false);
+
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
-        return view;
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
         if (isVisible) {
             String date = getDateParams();
-            Timber.i("competionId: " + mCompetionId + " date: " + getDateParams());
+//            Timber.i("competionId: " + mCompetionId + " date: " + getDateParams());
             mMatchPresenter.getMatchInfos(mCompetionId, date);
         }
+
+        return view;
     }
 
     @Override
@@ -62,12 +60,6 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
         super.setUserVisibleHint(isVisibleToUser);
         isVisible = isVisibleToUser;
         Timber.i("setUserVisibleHint|isVisibleToUser: " + isVisibleToUser);
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        Timber.i("onHiddenChanged|hidden: " + hidden);
     }
 
     private String getCurrentTimeStr() {
@@ -86,9 +78,8 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
         return params;
     }
 
-
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
-        Timber.i("matchesBean: " + matchesBean);
+        Timber.i("---showMatchInfoList---");
     }
 }
