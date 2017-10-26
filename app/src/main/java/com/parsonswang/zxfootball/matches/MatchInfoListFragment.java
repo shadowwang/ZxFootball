@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.utils.DateUtils;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
@@ -20,7 +21,7 @@ import timber.log.Timber;
  * Created by wangchun on 2017/10/23.
  */
 
-public class MatchInfoListFragment extends Fragment implements MatchContract.IMatchInfoView {
+public class MatchInfoListFragment extends BaseFragment implements MatchContract.IMatchInfoView {
 
     private static final String ARGUMENT_COMPETIONID = "competion";
 
@@ -46,21 +47,9 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
 
-        if (isVisible) {
-            String date = getDateParams();
-//            Timber.i("competionId: " + mCompetionId + " date: " + getDateParams());
-            mMatchPresenter.getMatchInfos(mCompetionId, date);
-        }
-
         return view;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        isVisible = isVisibleToUser;
-        Timber.i("setUserVisibleHint|isVisibleToUser: " + isVisibleToUser);
-    }
 
     private String getCurrentTimeStr() {
         Date date = new Date();
@@ -81,5 +70,10 @@ public class MatchInfoListFragment extends Fragment implements MatchContract.IMa
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
         Timber.i("---showMatchInfoList---");
+    }
+
+    @Override
+    protected void onFragmentFirstVisible(boolean isVisible) {
+
     }
 }
