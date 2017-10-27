@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import timber.log.Timber;
+
 /**
  * Created by parsonswang on 2017/10/26.
  */
@@ -18,6 +20,7 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewCreate = true;
+        Timber.i("----onViewCreated----");
     }
 
     @Override
@@ -27,6 +30,7 @@ public abstract class BaseFragment extends Fragment {
             isFirstVisible = false;
             onFragmentFirstVisible(true);
         }
+        Timber.i("----onViewCreated----" + isVisibleToUser);
     }
 
     @Override
@@ -34,6 +38,7 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         isFirstVisible = true;
         isViewCreate = false;
+        Timber.i("----onDestroyView----");
     }
 
     protected abstract void onFragmentFirstVisible(boolean isVisible);
