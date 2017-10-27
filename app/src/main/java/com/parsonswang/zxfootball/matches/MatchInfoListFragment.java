@@ -23,11 +23,12 @@ import timber.log.Timber;
 
 public class MatchInfoListFragment extends BaseFragment implements MatchContract.IMatchInfoView {
 
+    private static final String TAG = MatchInfoListFragment.class.getSimpleName();
+
     private static final String ARGUMENT_COMPETIONID = "competion";
 
     private MatchPresenter mMatchPresenter;
     private String mCompetionId;
-    private boolean isVisible;
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
         MatchInfoListFragment matchInfoListFragment = new MatchInfoListFragment();
@@ -69,11 +70,13 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
-        Timber.i("---showMatchInfoList---");
+        Timber.i("---showMatchInfoList---" + matchesBean);
     }
 
-    @Override
-    protected void onFragmentFirstVisible(boolean isVisible) {
 
+    @Override
+    protected void loadData() {
+        Timber.i("---loadData---" + mCompetionId);
+        mMatchPresenter.getMatchInfos(mCompetionId, getDateParams());
     }
 }

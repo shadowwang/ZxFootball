@@ -13,33 +13,35 @@ import timber.log.Timber;
 
 public abstract class BaseFragment extends Fragment {
 
-    private boolean isViewCreate;
-    private boolean isFirstVisible = true;
+    private boolean isViewCreate = false;
+    private boolean isDataLoaded = false;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewCreate = true;
-        Timber.i("----onViewCreated----");
+        if (getUserVisibleHint() && !isDataLoaded) {
+            loadData();
+            isDataLoaded = true;
+        }
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && isViewCreate && isFirstVisible) {
-            isFirstVisible = false;
-            onFragmentFirstVisible(true);
+        if (isVisibleToUser && isViewCreate && !isDataLoaded) {
+            loadData();
+            isDataLoaded = true;
         }
-        Timber.i("----onViewCreated----" + isVisibleToUser);
+        Timber.i("setUserVisibleHint|isVisibleToUser: " + isVisibleToUser + " |isViewCreate: " + isViewCreate + " |isDataLoaded: " + isDataLoaded);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        isFirstVisible = true;
         isViewCreate = false;
-        Timber.i("----onDestroyView----");
+        isDataLoaded = false;
     }
 
-    protected abstract void onFragmentFirstVisible(boolean isVisible);
+    protected abstract void loadData();
 }
