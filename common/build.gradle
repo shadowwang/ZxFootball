@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
@@ -33,6 +33,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.android.support:recyclerview-v7:26.+'
 
     testCompile 'junit:junit:4.12'
     compile files('libs/mid-sdk-3.73.jar')
