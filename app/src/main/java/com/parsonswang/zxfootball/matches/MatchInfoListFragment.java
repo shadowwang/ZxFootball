@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball.matches;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,10 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     private MatchPresenter mMatchPresenter;
     private String mCompetionId;
+    private int mCurrMonth;//当前查询的月份
+
+    private RecyclerView mRvMatchInfoList;
+
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
         MatchInfoListFragment matchInfoListFragment = new MatchInfoListFragment();
@@ -48,6 +53,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
 
+        mRvMatchInfoList = view.findViewById(R.id.mRvMatchInfoList);
         return view;
     }
 
