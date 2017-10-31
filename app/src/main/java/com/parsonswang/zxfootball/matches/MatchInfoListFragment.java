@@ -62,6 +62,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         Date date = new Date();
         int year = DateUtils.getYear(date);
         int month = DateUtils.getMonth(date) + 1;
+        mCurrMonth = month;
         String dateStr = year + "." + month + ".01";
         return dateStr;
     }
