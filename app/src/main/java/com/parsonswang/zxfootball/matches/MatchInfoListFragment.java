@@ -107,18 +107,10 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
      * @return
      */
     private String getDateParams() {
-        String currTimeString = getCurrentTimeMothFirstDayStr();
+        String currTimeString = DateUtils.date2String(DateUtils.getFirstDayOfMonth(new Date()));
         String params = currTimeString;
         params += "+至+";
-        int currDay = getCurrTimeDay();
-        Timber.i(currDay + "");
-
-
-        if (currDay == 1) {
-            params += DateUtils.date2String(DateUtils.getLastDayOfMonth(new Date()));
-        } else {
-            params += DateUtils.date2String(new Date());
-        }
+        params += DateUtils.date2String(DateUtils.getLastDayOfMonth(new Date()));
         return params;
     }
 
