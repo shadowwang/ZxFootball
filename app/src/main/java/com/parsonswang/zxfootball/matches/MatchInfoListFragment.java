@@ -13,6 +13,10 @@ import com.parsonswang.common.utils.DateUtils;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.Date;
 
@@ -30,9 +34,11 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     private MatchPresenter mMatchPresenter;
     private String mCompetionId;
+    private int mCurrYear;
     private int mCurrMonth;//当前查询的月份
 
     private RecyclerView mRvMatchInfoList;
+    private SmartRefreshLayout mRefreshLayout;
 
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
@@ -53,25 +59,66 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
 
+        mRefreshLayout = view.findViewById(R.id.mRefreshLayout);
+        //刷新
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+
+            }
+        });
+        //加载更多
+        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+
+            }
+        });
+
         mRvMatchInfoList = view.findViewById(R.id.mRvMatchInfoList);
         return view;
     }
 
 
-    private String getCurrentTimeStr() {
+    /**
+     * 得到当前月份的第一天
+     * @return
+     */
+    private String getCurrentTimeMothFirstDayStr() {
         Date date = new Date();
         int year = DateUtils.getYear(date);
         int month = DateUtils.getMonth(date) + 1;
+        mCurrYear = year;
         mCurrMonth = month;
         String dateStr = year + "." + month + ".01";
         return dateStr;
     }
 
+    /**
+     * 得到当前日
+     * @return
+     */
+    private int getCurrTimeDay() {
+        return DateUtils.getDay(new Date());
+    }
+
+    /**
+     * 得到请求的时间区间
+     * @return
+     */
     private String getDateParams() {
-        String currTimeString = getCurrentTimeStr();
+        String currTimeString = getCurrentTimeMothFirstDayStr();
         String params = currTimeString;
         params += "+至+";
-        params += DateUtils.date2String(new Date());
+        int currDay = getCurrTimeDay();
+        Timber.i(currDay + "");
+
+
+        if (currDay == 1) {
+            params += DateUtils.date2String(DateUtils.getLastDayOfMonth(new Date()));
+        } else {
+            params += DateUtils.date2String(new Date());
+        }
         return params;
     }
 

@@ -33,4 +33,33 @@ public class DateUtils {
         cal.setTime(date);
         return cal.get(Calendar.MONTH);
     }
+
+    public static int getDay(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    /**
+     * 得到本月的第一天
+     * @param date
+     * @return
+     */
+    public static Date getFirstDayOfMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        Date firstDayOfMonth = calendar.getTime();
+        return firstDayOfMonth;
+    }
+
+    public static Date getLastDayOfMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        Date lastDayOfMonth = calendar.getTime();
+        return lastDayOfMonth;
+    }
+
 }
