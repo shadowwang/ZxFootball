@@ -81,28 +81,6 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
 
     /**
-     * 得到当前月份的第一天
-     * @return
-     */
-    private String getCurrentTimeMothFirstDayStr() {
-        Date date = new Date();
-        int year = DateUtils.getYear(date);
-        int month = DateUtils.getMonth(date) + 1;
-        mCurrYear = year;
-        mCurrMonth = month;
-        String dateStr = year + "." + month + ".01";
-        return dateStr;
-    }
-
-    /**
-     * 得到当前日
-     * @return
-     */
-    private int getCurrTimeDay() {
-        return DateUtils.getDay(new Date());
-    }
-
-    /**
      * 得到请求的时间区间
      * @return
      */
