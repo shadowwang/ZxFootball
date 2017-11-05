@@ -5,17 +5,14 @@
     android:layout_height="110dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/common_team_info_view"
-        />
-
     <LinearLayout
         android:id="@+id/mLlMatchScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         >
         <TextView
@@ -35,5 +32,26 @@
             android:layout_gravity="center_horizontal"
             />
     </LinearLayout>
+
+    <include
+        android:id="@+id/mLlHomeTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/common_team_info_view"
+        app:layout_constraintRight_toLeftOf="@id/mLlMatchScore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="60dp"
+       />
+    <include
+        android:id="@+id/mLlAwayTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/common_team_info_view"
+        app:layout_constraintLeft_toRightOf="@id/mLlMatchScore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="60dp"
+        />
 
 </android.support.constraint.ConstraintLayout>
