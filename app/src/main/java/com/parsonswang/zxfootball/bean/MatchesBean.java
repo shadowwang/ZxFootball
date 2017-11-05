@@ -15,7 +15,7 @@ public class MatchesBean {
 
     private String startDate;
     private String endDate;
-    private List<DatasBean> datas;
+    private List<MatchInfo> datas;
 
     public String getStartDate() {
         return startDate;
@@ -33,15 +33,15 @@ public class MatchesBean {
         this.endDate = endDate;
     }
 
-    public List<DatasBean> getDatas() {
+    public List<MatchInfo> getDatas() {
         return datas;
     }
 
-    public void setDatas(List<DatasBean> datas) {
+    public void setDatas(List<MatchInfo> datas) {
         this.datas = datas;
     }
 
-    public static class DatasBean {
+    public static class MatchInfo {
         /**
          * stageName : 第20轮
          * competitionPositiion : 6
@@ -218,7 +218,7 @@ public class MatchesBean {
 
         @Override
         public String toString() {
-            return "DatasBean{" +
+            return "MatchInfo{" +
                     "stageName='" + stageName + '\'' +
                     ", competitionPositiion=" + competitionPositiion +
                     ", score='" + score + '\'' +
