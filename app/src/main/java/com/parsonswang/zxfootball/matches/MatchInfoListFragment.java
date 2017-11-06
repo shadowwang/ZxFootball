@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball.matches;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     private RecyclerView mRvMatchInfoList;
     private SmartRefreshLayout mRefreshLayout;
+    private MatchInfoAdapter mMatchInfoAdapter;
 
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
@@ -76,6 +78,8 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         });
 
         mRvMatchInfoList = view.findViewById(R.id.mRvMatchInfoList);
+        mRvMatchInfoList.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        mMatchInfoAdapter = new MatchInfoAdapter();
         return view;
     }
 
@@ -95,6 +99,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
         Timber.i("---showMatchInfoList---" + matchesBean);
+        mMatchInfoAdapter.addAll(matchesBean.getDatas());
     }
 
 
