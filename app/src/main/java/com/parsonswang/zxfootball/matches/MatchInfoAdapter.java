@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchesBean;
-import com.parsonswang.zxfootball.common.view.TeanImfoView;
+import com.parsonswang.zxfootball.common.view.TeamInfoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,15 @@ public class MatchInfoAdapter extends RecyclerView.Adapter {
         if (holder instanceof MathInfoListItemVH) {
             MathInfoListItemVH mathInfoListItemVH = (MathInfoListItemVH) holder;
             mathInfoListItemVH.mTvScore.setText(matchInfo.getScore());
-            mathInfoListItemVH.mTvMatchStatus.setText(matchInfo.isIsFinish() ? "已结束" : "未开始");
+            if (matchInfo.isIsFinish()) {
+                mathInfoListItemVH.mTvScore.setVisibility(View.VISIBLE);
+                mathInfoListItemVH.mTvMatchStatus.setText("已结束");
+            } else {
+                mathInfoListItemVH.mTvScore.setVisibility(View.GONE);
+                mathInfoListItemVH.mTvMatchStatus.setText("未开始");
+            }
+            mathInfoListItemVH.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
+            mathInfoListItemVH.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
         }
     }
 
@@ -55,7 +63,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter {
     private class MathInfoListItemVH  extends RecyclerView.ViewHolder {
 
         TextView mTvScore, mTvMatchStatus;
-        TeanImfoView mHomeTeam, mAwayTeam;
+        TeamInfoView mHomeTeam, mAwayTeam;
 
         public MathInfoListItemVH(View itemView) {
             super(itemView);

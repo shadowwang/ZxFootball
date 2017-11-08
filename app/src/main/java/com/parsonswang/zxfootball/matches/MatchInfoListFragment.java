@@ -66,9 +66,10 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-
+                mMatchPresenter.getMatchInfos(mCompetionId, getDateParams());
             }
         });
+
         //加载更多
         mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
@@ -80,6 +81,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mRvMatchInfoList = view.findViewById(R.id.mRvMatchInfoList);
         mRvMatchInfoList.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
         mMatchInfoAdapter = new MatchInfoAdapter();
+        mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
         return view;
     }
 
@@ -100,12 +102,13 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
     public void showMatchInfoList(MatchesBean matchesBean) {
         Timber.i("---showMatchInfoList---" + matchesBean);
         mMatchInfoAdapter.addAll(matchesBean.getDatas());
+        mRefreshLayout.finishRefresh();
     }
 
 
     @Override
     protected void loadData() {
         Timber.i("---loadData---" + mCompetionId);
-        mMatchPresenter.getMatchInfos(mCompetionId, getDateParams());
+        mRefreshLayout.autoRefresh();
     }
 }

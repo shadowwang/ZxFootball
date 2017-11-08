@@ -38,7 +38,7 @@
         <!-- 注意：若填写的渠道为纯数字字符串类型，请不要超过int表示的范围！ < -->
 
         <meta-data
-            android:name=" com.parsonswang.common.image.GlideConfiguration"
+            android:name="com.parsonswang.common.image.GlideConfiguration"
             android:value="GlideModule"/>
     </application>
 

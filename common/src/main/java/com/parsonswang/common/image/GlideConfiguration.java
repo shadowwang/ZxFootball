@@ -8,10 +8,7 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
-import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
-
-import java.io.InputStream;
 
 /**
  * Created by parsonswang on 2017/11/7.
