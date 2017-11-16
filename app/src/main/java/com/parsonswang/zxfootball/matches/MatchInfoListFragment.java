@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.matches;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.ViewGroup;
 
 import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.utils.DateUtils;
+import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
+import com.parsonswang.zxfootball.common.view.CommonRecyclerViewDivider;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -80,6 +83,12 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
         mRvMatchInfoList = view.findViewById(R.id.mRvMatchInfoList);
         mRvMatchInfoList.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        mRvMatchInfoList.addItemDecoration(new CommonRecyclerViewDivider(
+                getContext(),
+                LinearLayoutManager.VERTICAL,
+                UIUtils.dip2px(getContext(), 14.4F),
+                Color.parseColor("#232C30")));
+
         mMatchInfoAdapter = new MatchInfoAdapter();
         mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
         return view;

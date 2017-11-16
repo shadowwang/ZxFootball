@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- solid指定形状的填充色，只有android:color一个属性 -->
+    <solid android:color="@color/colorCommonBackground" />
+
+
+    <!-- android:radius 圆角的半径 -->
+    <corners
+
+        android:radius="5.76dp" />
+
+</shape>
