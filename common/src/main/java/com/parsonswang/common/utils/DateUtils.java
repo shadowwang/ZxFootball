@@ -14,6 +14,8 @@ public class DateUtils {
 
     private static final DateFormat DEFAULT_MATCH_TIME_FORMAT = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
 
+    private static final DateFormat MATCH_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
     public static String date2String(Date date, DateFormat dateFormat) {
         return dateFormat.format(date);
     }
@@ -22,22 +24,22 @@ public class DateUtils {
         return date2String(date, DEFAULT_MATCH_TIME_FORMAT);
     }
 
-    public static int getYear(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal.get(Calendar.YEAR);
-    }
-
-    public static int getMonth(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal.get(Calendar.MONTH);
-    }
-
-    public static int getDay(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal.get(Calendar.DAY_OF_MONTH);
+    public static int compareDate(String DATE1, String DATE2) {
+        DateFormat df = MATCH_TIME_FORMAT;
+        try {
+            Date dt1 = df.parse(DATE1);
+            Date dt2 = df.parse(DATE2);
+            if (dt1.getTime() > dt2.getTime()) {
+                return 1;
+            } else if (dt1.getTime() < dt2.getTime()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -56,10 +58,10 @@ public class DateUtils {
     public static Date getLastDayOfMonth(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.MONTH, 1);
-        calendar.add(Calendar.DAY_OF_MONTH, -1);
-        Date lastDayOfMonth = calendar.getTime();
-        return lastDayOfMonth;
+        calendar.set(Calendar.DAY_OF_MONTH, 1);// 设定当前时间为每月一号
+        // 当前日历的天数上-1变成最大值 , 此方法不会改变指定字段之外的字段
+        calendar.roll(Calendar.DAY_OF_MONTH, -1);
+        return calendar.getTime();
     }
 
 }

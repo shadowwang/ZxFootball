@@ -22,7 +22,11 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -109,8 +113,38 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
-        Timber.i("---showMatchInfoList---" + matchesBean);
-        mMatchInfoAdapter.addAll(matchesBean.getDatas());
+
+        final List<MatchesBean.MatchInfo> matchInfos = matchesBean.getDatas();
+        //先分为已比赛和未比赛的
+        List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
+//        List<MatchesBean.MatchInfo> noMatchedList = new ArrayList<>();
+
+        for (MatchesBean.MatchInfo matchInfo : matchInfos) {
+            if (matchInfo.isIsFinish()) {
+                hasMatchedList.add(matchInfo);
+            }
+        }
+
+
+        Collections.sort(hasMatchedList, new Comparator<MatchesBean.MatchInfo>() {
+            @Override
+            public int compare(MatchesBean.MatchInfo matchInfo1, MatchesBean.MatchInfo matchInfo2) {
+                return DateUtils.compareDate(matchInfo2.getMatchDate(), matchInfo1.getMatchDate());
+            }
+        });
+
+//        Collections.sort(noMatchedList, new Comparator<MatchesBean.MatchInfo>() {
+//            @Override
+//            public int compare(MatchesBean.MatchInfo matchInfo1, MatchesBean.MatchInfo matchInfo2) {
+//                return DateUtils.compareDate(matchInfo2.getMatchDate(), matchInfo1.getMatchDate());
+//            }
+//        });
+
+        matchInfos.clear();
+        matchInfos.addAll(hasMatchedList);
+//        matchInfos.addAll(noMatchedList);
+        Timber.i("---showMatchInfoList---" + matchInfos);
+        mMatchInfoAdapter.addAll(matchInfos);
         mRefreshLayout.finishRefresh();
     }
 
