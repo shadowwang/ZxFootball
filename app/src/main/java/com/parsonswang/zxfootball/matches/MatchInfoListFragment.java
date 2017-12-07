@@ -60,14 +60,9 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         return matchInfoListFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_matchinfo_list, container, false);
-
-        mMatchPresenter = new MatchPresenter(this);
-        mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Timber.i("--onViewCreated--");
         mRefreshLayout = view.findViewById(R.id.mRefreshLayout);
         //刷新
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -95,7 +90,18 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
         mMatchInfoAdapter = new MatchInfoAdapter();
         mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
-        return view;
+
+        mMatchPresenter = new MatchPresenter(this);
+        mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Timber.i("--onCreateView--");
+        return inflater.inflate(R.layout.fragment_matchinfo_list, container, false);
     }
 
 
@@ -129,6 +135,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         Collections.sort(hasMatchedList, new Comparator<MatchesBean.MatchInfo>() {
             @Override
             public int compare(MatchesBean.MatchInfo matchInfo1, MatchesBean.MatchInfo matchInfo2) {
+                //降序排列
                 return DateUtils.compareDate(matchInfo2.getMatchDate(), matchInfo1.getMatchDate());
             }
         });
