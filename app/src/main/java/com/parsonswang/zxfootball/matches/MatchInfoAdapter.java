@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.parsonswang.common.view.pinheader.AdapterStick;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.view.TeamInfoView;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by wangchun on 2017/11/6.
  */
 
-public class MatchInfoAdapter extends RecyclerView.Adapter {
+public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterStick {
 
     private List<MatchesBean.MatchInfo> matchInfoList = new ArrayList<>();
 
@@ -58,6 +59,16 @@ public class MatchInfoAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return matchInfoList == null || matchInfoList.isEmpty() ? 0 : matchInfoList.size();
+    }
+
+    @Override
+    public int getHeaderCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isPinnedViewType(int viewType) {
+        return false;
     }
 
     private class MathInfoListItemVH  extends RecyclerView.ViewHolder {
