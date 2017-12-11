@@ -43,6 +43,35 @@ public class DateUtils {
     }
 
     /**
+     * 得到距离当前n月之前的第一天
+     * @param date
+     * @param rollBackMonth
+     * @return
+     */
+    public static Date getSomeMonthOfFirstDay(Date date, int rollBackMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MONTH, -rollBackMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        return calendar.getTime();
+    }
+
+    /**
+     * 得到距离当前n月之前的最后一天
+     * @param date
+     * @param rollBackMonth
+     * @return
+     */
+    public static Date getSomeMonthOfLastDay(Date date, int rollBackMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MONTH, -rollBackMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.roll(Calendar.DAY_OF_MONTH, -1);
+        return calendar.getTime();
+    }
+
+    /**
      * 得到本月的第一天
      * @param date
      * @return
