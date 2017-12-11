@@ -42,8 +42,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
     private MatchPresenter mMatchPresenter;
     private String mCompetionId;
-    private int mCurrYear;
-    private int mCurrMonth;//当前查询的月份
+    private int mRollbackMonth;//回退到前多少月
 
     private RecyclerView mRvMatchInfoList;
     private SmartRefreshLayout mRefreshLayout;
@@ -76,7 +75,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-
+                mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
             }
         });
 
@@ -117,10 +116,28 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         return params;
     }
 
+    private String getSpecifyDateParams() {
+        String str = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), 1));
+        Timber.e(str);
+
+        String str1 = DateUtils.date2String(DateUtils.getSomeMonthOfLastDay(new Date(), 1));
+        Timber.e(str1);
+
+        return  str + "+至+" + str1;
+    }
+
+
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
 
         final List<MatchesBean.MatchInfo> matchInfos = matchesBean.getDatas();
+        if (matchInfos.isEmpty()) {
+            mRollbackMonth ++;
+
+            mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
+            return;
+        }
+
         //先分为已比赛和未比赛的
         List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
 //        List<MatchesBean.MatchInfo> noMatchedList = new ArrayList<>();
