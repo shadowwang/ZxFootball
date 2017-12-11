@@ -67,6 +67,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
+                mRollbackMonth = 0;
                 mMatchPresenter.getMatchInfos(mCompetionId, getDateParams());
             }
         });
@@ -75,6 +76,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
+                mRollbackMonth ++;
                 mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
             }
         });
@@ -117,10 +119,10 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
     }
 
     private String getSpecifyDateParams() {
-        String str = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), 1));
+        String str = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), mRollbackMonth));
         Timber.e(str);
 
-        String str1 = DateUtils.date2String(DateUtils.getSomeMonthOfLastDay(new Date(), 1));
+        String str1 = DateUtils.date2String(DateUtils.getSomeMonthOfLastDay(new Date(), mRollbackMonth));
         Timber.e(str1);
 
         return  str + "+至+" + str1;
