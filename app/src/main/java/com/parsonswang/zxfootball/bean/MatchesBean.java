@@ -62,6 +62,8 @@ public class MatchesBean {
          * homeTeamName : 贵州恒丰智诚
          */
 
+        public int type;
+
         private String stageName;
         private int competitionPositiion;
         private String score;
