@@ -42,6 +42,9 @@ public class MatchesBean {
     }
 
     public static class MatchInfo {
+
+        public static final int TYPE_TITLE = 0x01;
+        public static final int TYPE_NORMAL = 0x02;
         /**
          * stageName : 第20轮
          * competitionPositiion : 6
@@ -62,7 +65,7 @@ public class MatchesBean {
          * homeTeamName : 贵州恒丰智诚
          */
 
-        public int type;
+        public int type = TYPE_NORMAL;
 
         private String stageName;
         private int competitionPositiion;

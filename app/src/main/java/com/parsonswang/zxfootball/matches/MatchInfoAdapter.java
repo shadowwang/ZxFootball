@@ -30,8 +30,18 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return this.matchInfoList.get(position).type;
+    }
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MathInfoListItemVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_match_score, parent, false));
+        if (viewType == MatchesBean.MatchInfo.TYPE_TITLE) {
+            return new MatchInfoDateItemVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_match_score_pinned_header, parent, false));
+        } else if (viewType == MatchesBean.MatchInfo.TYPE_NORMAL) {
+            return new MathInfoListItemVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_match_score, parent, false));
+        }
+        return null;
     }
 
     @Override
@@ -53,6 +63,9 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             }
             mathInfoListItemVH.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
             mathInfoListItemVH.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
+        } else if (holder instanceof MatchInfoDateItemVH) {
+            MatchInfoDateItemVH matchInfoDateItemVH = (MatchInfoDateItemVH) holder;
+            matchInfoDateItemVH.mTvMatchDate.setText(matchInfo.getMatchDate());
         }
     }
 
@@ -68,7 +81,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
 
     @Override
     public boolean isPinnedViewType(int viewType) {
-        return false;
+        return viewType == MatchesBean.MatchInfo.TYPE_TITLE;
     }
 
     private class MathInfoListItemVH  extends RecyclerView.ViewHolder {
@@ -82,6 +95,16 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             mTvMatchStatus = itemView.findViewById(R.id.mTvMatchStatus);
             mHomeTeam = itemView.findViewById(R.id.mLlHomeTeam);
             mAwayTeam = itemView.findViewById(R.id.mLlAwayTeam);
+        }
+    }
+
+    private class MatchInfoDateItemVH extends RecyclerView.ViewHolder {
+
+        TextView mTvMatchDate;
+
+        public MatchInfoDateItemVH(View itemView) {
+            super(itemView);
+            mTvMatchDate = itemView.findViewById(R.id.mTvMatchDate);
         }
     }
 }

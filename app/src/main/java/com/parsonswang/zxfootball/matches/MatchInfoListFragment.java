@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.utils.DateUtils;
 import com.parsonswang.common.utils.UIUtils;
+import com.parsonswang.common.view.pinheader.PinnedHeaderItemDecoration;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
@@ -68,7 +69,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 mRollbackMonth = 0;
-                mMatchPresenter.getMatchInfos(mCompetionId, getDateParams());
+                mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
             }
         });
 
@@ -92,6 +93,9 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         mMatchInfoAdapter = new MatchInfoAdapter();
         mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
 
+        mRvMatchInfoList.addItemDecoration(PinnedHeaderItemDecoration.builder().adapterProvider(mMatchInfoAdapter).build());
+
+
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
         super.onViewCreated(view, savedInstanceState);
@@ -110,11 +114,11 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
      * 得到请求的时间区间
      * @return
      */
-    private String getDateParams() {
-        String currTimeString = DateUtils.date2String(DateUtils.getFirstDayOfMonth(new Date()));
+    private String getHeaderDateStr() {
+        String currTimeString = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), mRollbackMonth));
         String params = currTimeString;
-        params += "+至+";
-        params += DateUtils.date2String(DateUtils.getLastDayOfMonth(new Date()));
+        params += "——";
+        params += DateUtils.date2String(DateUtils.getSomeMonthOfLastDay(new Date(), mRollbackMonth));
         return params;
     }
 
@@ -140,9 +144,18 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             return;
         }
 
+        if (matchInfos.isEmpty()) {
+            return;
+        }
         //先分为已比赛和未比赛的
         List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
 //        List<MatchesBean.MatchInfo> noMatchedList = new ArrayList<>();
+
+        //增加比赛日期头部
+        MatchesBean.MatchInfo matchInfoHeader = new MatchesBean.MatchInfo();
+        matchInfoHeader.type = MatchesBean.MatchInfo.TYPE_TITLE;
+        matchInfoHeader.setMatchDate(getHeaderDateStr());
+        hasMatchedList.add(matchInfoHeader);
 
         for (MatchesBean.MatchInfo matchInfo : matchInfos) {
             if (matchInfo.isIsFinish()) {
