@@ -49,6 +49,8 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
     private SmartRefreshLayout mRefreshLayout;
     private MatchInfoAdapter mMatchInfoAdapter;
 
+    private int mOffset;
+
 
     public static MatchInfoListFragment newInstance(HeaderTabTitle.TabInfo tabInfo) {
         MatchInfoListFragment matchInfoListFragment = new MatchInfoListFragment();
@@ -69,6 +71,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 mRollbackMonth = 0;
+                mOffset = 0;
                 mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
             }
         });
@@ -78,6 +81,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 mRollbackMonth ++;
+                mOffset ++;
                 mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
             }
         });
@@ -184,13 +188,18 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 //        matchInfos.addAll(noMatchedList);
         Timber.i("---showMatchInfoList---" + matchInfos);
         mMatchInfoAdapter.addAll(matchInfos);
-        mRefreshLayout.finishRefresh();
+        if (mOffset == 0) {
+            mRefreshLayout.finishRefresh();
+        } else {
+            mRefreshLayout.finishLoadmore();
+        }
     }
 
 
     @Override
     protected void loadData() {
         Timber.i("---loadData---" + mCompetionId);
+        mOffset = 0;
         mRefreshLayout.autoRefresh();
     }
 }
