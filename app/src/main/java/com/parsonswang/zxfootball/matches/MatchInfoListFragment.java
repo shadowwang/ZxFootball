@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -119,11 +120,9 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
      * @return
      */
     private String getHeaderDateStr() {
-        String currTimeString = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), mRollbackMonth));
-        String params = currTimeString;
-        params += "——";
-        params += DateUtils.date2String(DateUtils.getSomeMonthOfLastDay(new Date(), mRollbackMonth));
-        return params;
+        String currTimeString = DateUtils.date2String(DateUtils.getSomeMonthOfFirstDay(new Date(), mRollbackMonth), new SimpleDateFormat("yyyy-MM"));
+
+        return currTimeString;
     }
 
     private String getSpecifyDateParams() {
@@ -152,7 +151,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             return;
         }
         //先分为已比赛和未比赛的
-        List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
+        final List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
 //        List<MatchesBean.MatchInfo> noMatchedList = new ArrayList<>();
 
         //增加比赛日期头部
@@ -185,7 +184,6 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
         matchInfos.clear();
         matchInfos.addAll(hasMatchedList);
-//        matchInfos.addAll(noMatchedList);
         Timber.i("---showMatchInfoList---" + matchInfos);
         mMatchInfoAdapter.addAll(matchInfos);
         if (mOffset == 0) {
