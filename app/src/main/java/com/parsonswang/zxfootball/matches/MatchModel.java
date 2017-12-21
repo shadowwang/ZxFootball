@@ -13,17 +13,7 @@ import timber.log.Timber;
 
 public class MatchModel {
 
-    private MatchContract.IMatchPresenter matchPresenter;
-
-    public MatchModel(MatchContract.IMatchPresenter matchPresenter) {
-        this.matchPresenter = matchPresenter;
-    }
-
     public void getMatchInfoDatas(String competionId, String dateBetween, MachesFetchDataCallback machesFetchDataCallback) {
-        if (matchPresenter == null) {
-            Timber.e("getMatchInfoDatas fail because matchPresenter init fail!!!");
-            return;
-        }
 
         LinkedHashTreeMap<String, String> paramsMap = new LinkedHashTreeMap<>();
         paramsMap.put("comeptitionId", competionId);

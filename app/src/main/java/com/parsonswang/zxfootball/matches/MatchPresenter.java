@@ -20,12 +20,12 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
 
     public MatchPresenter(MatchContract.IMatchView matchView) {
         this.matchView = matchView;
-        matchModel = new MatchModel(this);
+        matchModel = new MatchModel();
     }
 
     public MatchPresenter(MatchContract.IMatchInfoView matchInfoView) {
         this.matchInfoView = matchInfoView;
-        matchModel = new MatchModel(this);
+        matchModel = new MatchModel();
     }
 
     @Override
