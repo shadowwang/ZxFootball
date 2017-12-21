@@ -44,6 +44,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         return null;
     }
 
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (matchInfoList == null || matchInfoList.isEmpty()) {
@@ -61,6 +62,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
                 mathInfoListItemVH.mTvScore.setVisibility(View.GONE);
                 mathInfoListItemVH.mTvMatchStatus.setText("未开始");
             }
+            mathInfoListItemVH.mTvStage.setText(matchInfo.getStageName());
             mathInfoListItemVH.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
             mathInfoListItemVH.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
         } else if (holder instanceof MatchInfoDateItemVH) {
@@ -86,7 +88,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
 
     private class MathInfoListItemVH  extends RecyclerView.ViewHolder {
 
-        TextView mTvScore, mTvMatchStatus;
+        TextView mTvScore, mTvMatchStatus, mTvStage;
         TeamInfoView mHomeTeam, mAwayTeam;
 
         public MathInfoListItemVH(View itemView) {
@@ -95,6 +97,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             mTvMatchStatus = itemView.findViewById(R.id.mTvMatchStatus);
             mHomeTeam = itemView.findViewById(R.id.mLlHomeTeam);
             mAwayTeam = itemView.findViewById(R.id.mLlAwayTeam);
+            mTvStage = itemView.findViewById(R.id.mTvStage);
         }
     }
 
