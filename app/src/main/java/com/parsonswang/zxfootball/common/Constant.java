@@ -13,6 +13,8 @@ public class Constant {
         public static final String HTTP_REQUEST_URL = ConfigUtil.getOnlineConfig("server_host", "http://www.tzuqiu.cc/");
 
         public static final String MATCH_QUERY_URL = HTTP_REQUEST_URL + "matches/queryFixture.json";
+
+        public static final String MATCH_DETAIL_URL = HTTP_REQUEST_URL + "matches/%1$s/report.do";
     }
 
 

@@ -42,7 +42,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.parsonswang.common.R;
 
 import java.util.List;

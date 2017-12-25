@@ -5,7 +5,6 @@ import com.parsonswang.common.utils.JsonBinder;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 
-import okhttp3.Call;
 import okhttp3.Response;
 
 /**

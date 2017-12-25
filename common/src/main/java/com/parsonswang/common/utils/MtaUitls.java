@@ -2,7 +2,6 @@ package com.parsonswang.common.utils;
 
 import android.content.Context;
 
-import com.tencent.stat.StatConfig;
 import com.tencent.stat.StatCrashReporter;
 
 /**

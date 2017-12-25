@@ -8,6 +8,9 @@ import com.parsonswang.common.utils.StringUtils;
 
 public class DataFetchFactory {
 
+    public static final int DATA_FETCH_TYPE_JSON = 1001;
+    public static final int DATA_FETCH_TYPE_HTML = 1002;
+
     private DataFetchFactory() {}
 
     private static class InstanceInnerHolder {
@@ -18,10 +21,16 @@ public class DataFetchFactory {
         return InstanceInnerHolder.instance;
     }
 
-    public IDataFetcher getDataFetcher(String url) {
+    public IDataFetcher getDataFetcher(String url, int type) {
         if (StringUtils.isEmptyString(url)) {
             return new LocalDataFetcherImpl();
         }
-        return new RemoteDataFetcherImpl(url);
+        switch (type) {
+            case DATA_FETCH_TYPE_JSON:
+                return new RemoteJsonDataFetcherImpl(url);
+            case DATA_FETCH_TYPE_HTML:
+            default:
+                return new RemoteRawDataFetcherImpl(url);
+        }
     }
 }

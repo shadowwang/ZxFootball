@@ -3,8 +3,10 @@ package com.parsonswang.zxfootball.matches;
 import com.parsonswang.common.utils.JsonBinder;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
+import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.mvp.AbsPresenter;
 import com.parsonswang.zxfootball.common.utils.ConfigUtil;
+import com.parsonswang.zxfootball.matches.detail.MatchDetailsFetchDataCallback;
 
 import timber.log.Timber;
 
@@ -46,7 +48,12 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
      */
     @Override
     public void getMatchInfos(String comeptitionId, String dataBetween) {
-        matchModel.getMatchInfoDatas(comeptitionId, dataBetween, new MachesFetchDataCallback(matchInfoView));
+        matchModel.getMatchInfoDatas(comeptitionId, dataBetween, new MachesFetchDataCallback<MatchesBean>(matchInfoView));
+    }
+
+    @Override
+    public void getMatchDetail(String matchId) {
+        matchModel.getMatchDetailInfo(matchId, new MatchDetailsFetchDataCallback());
     }
 
     private void getHeaderTabTitle() {

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import com.parsonswang.common.view.PagerSlidingTabStrip;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
-import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.view.CommonHeaderTabAdapter;
 
 import java.util.List;

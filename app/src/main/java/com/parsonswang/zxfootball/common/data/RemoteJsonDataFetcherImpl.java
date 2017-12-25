@@ -12,20 +12,24 @@ import java.util.Map;
  * Created by parsonswang on 2017/10/20.
  */
 
-public class RemoteDataFetcherImpl implements IDataFetcher<JsonCallback>{
+public class RemoteJsonDataFetcherImpl implements IDataFetcher<JsonCallback>{
 
     private String mUrl;
 
-    public RemoteDataFetcherImpl(String url) {
+    public RemoteJsonDataFetcherImpl(String url) {
         this.mUrl = url;
     }
 
     @Override
     public void fetchData(JsonCallback callback, LinkedHashTreeMap<String, String> params) {
         HttpGetBuilder httpGetBuilder = OkHttpUtil.get().url(mUrl);
-        for (Map.Entry<String, String> entry :params.entrySet()) {
-            httpGetBuilder.addParams(entry.getKey(), entry.getValue());
+
+        if (params != null) {
+            for (Map.Entry<String, String> entry :params.entrySet()) {
+                httpGetBuilder.addParams(entry.getKey(), entry.getValue());
+            }
         }
+
         httpGetBuilder.build().execute(callback);
     }
 }

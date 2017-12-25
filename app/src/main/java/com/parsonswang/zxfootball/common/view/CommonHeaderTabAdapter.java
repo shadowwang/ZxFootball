@@ -3,7 +3,6 @@ package com.parsonswang.zxfootball.common.view;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;

@@ -2,15 +2,10 @@ package com.parsonswang.common.network;
 
 import android.net.Uri;
 
-import com.facebook.stetho.common.StringUtil;
 import com.parsonswang.common.utils.StringUtils;
 
-import java.net.URL;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
-import okhttp3.Call;
 import okhttp3.Request;
 
 /**

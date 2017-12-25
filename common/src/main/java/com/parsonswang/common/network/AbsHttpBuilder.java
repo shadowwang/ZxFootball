@@ -2,10 +2,8 @@ package com.parsonswang.common.network;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 
-import okhttp3.Call;
 import okhttp3.Request;
 
 /**

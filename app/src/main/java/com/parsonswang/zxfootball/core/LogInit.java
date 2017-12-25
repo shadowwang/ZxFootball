@@ -7,9 +7,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
+import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.BuildConfig;
 import com.parsonswang.zxfootball.ZxApplication;
-import com.parsonswang.common.utils.StringUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;

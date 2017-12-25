@@ -19,8 +19,17 @@ public class MatchContract {
         public void showMatchInfoList(MatchesBean matchesBean);
     }
 
+
     public interface IMatchPresenter {
 
         void getMatchInfos(String comeptitionId, String dataBetween);
+
+        void getMatchDetail(String matchId);
+    }
+
+
+    public interface IMatchDetailView {
+        //展示比赛进程
+        void showMatchProcess();
     }
 }

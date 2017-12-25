@@ -1,9 +1,9 @@
 package com.parsonswang.zxfootball.matches;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -166,7 +166,6 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
             }
         }
 
-
         Collections.sort(hasMatchedList, new Comparator<MatchesBean.MatchInfo>() {
             @Override
             public int compare(MatchesBean.MatchInfo matchInfo1, MatchesBean.MatchInfo matchInfo2) {
@@ -186,6 +185,7 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         matchInfos.addAll(hasMatchedList);
         Timber.i("---showMatchInfoList---" + matchInfos);
         mMatchInfoAdapter.addAll(matchInfos);
+        mMatchPresenter.getMatchDetail(matchInfos.get(1).getId() + "");
         if (mOffset == 0) {
             mRefreshLayout.finishRefresh();
         } else {

@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.parsonswang.zxfootball.ZxApplication;
 import com.tencent.stat.StatConfig;
-import com.tencent.stat.StatCrashReporter;
 import com.tencent.stat.StatService;
 
 import timber.log.Timber;
