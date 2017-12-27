@@ -18,6 +18,7 @@ import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.view.CommonRecyclerViewDivider;
+import com.parsonswang.zxfootball.matches.detail.MatchDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -36,7 +37,7 @@ import timber.log.Timber;
  * Created by wangchun on 2017/10/23.
  */
 
-public class MatchInfoListFragment extends BaseFragment implements MatchContract.IMatchInfoView {
+public class MatchInfoListFragment extends BaseFragment implements MatchContract.IMatchInfoView, MatchInfoAdapter.OnItemClickListener {
 
     private static final String TAG = MatchInfoListFragment.class.getSimpleName();
 
@@ -97,9 +98,9 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
 
         mMatchInfoAdapter = new MatchInfoAdapter();
         mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
+        mMatchInfoAdapter.setOnItemClickListener(this);
 
         mRvMatchInfoList.addItemDecoration(PinnedHeaderItemDecoration.builder().adapterProvider(mMatchInfoAdapter).build());
-
 
         mMatchPresenter = new MatchPresenter(this);
         mCompetionId = getArguments().getString(ARGUMENT_COMPETIONID);
@@ -185,7 +186,6 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         matchInfos.addAll(hasMatchedList);
         Timber.i("---showMatchInfoList---" + matchInfos);
         mMatchInfoAdapter.addAll(matchInfos);
-        mMatchPresenter.getMatchDetail(matchInfos.get(1).getId() + "");
         if (mOffset == 0) {
             mRefreshLayout.finishRefresh();
         } else {
@@ -199,5 +199,10 @@ public class MatchInfoListFragment extends BaseFragment implements MatchContract
         Timber.i("---loadData---" + mCompetionId);
         mOffset = 0;
         mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onItemClick(MatchesBean.MatchInfo matchInfo) {
+        MatchDetailActivity.actionStart(getActivity(), String.valueOf(matchInfo.getId()));
     }
 }

@@ -30,6 +30,6 @@ public class MatchContract {
 
     public interface IMatchDetailView {
         //展示比赛进程
-        void showMatchProcess();
+        void showMatchProcess(String s);
     }
 }

@@ -2,6 +2,7 @@ package com.parsonswang.zxfootball.matches.detail;
 
 
 import com.parsonswang.common.network.HtmlCallback;
+import com.parsonswang.zxfootball.matches.MatchContract;
 
 import okhttp3.Call;
 import timber.log.Timber;
@@ -12,9 +13,15 @@ import timber.log.Timber;
 
 public class MatchDetailsFetchDataCallback extends HtmlCallback{
 
+    private MatchContract.IMatchDetailView matchDetailView;
+
+    public MatchDetailsFetchDataCallback(MatchContract.IMatchDetailView matchDetailView) {
+        this.matchDetailView = matchDetailView;
+    }
+
     @Override
     protected void onSucess(String s) {
-        Timber.i(s);
+        matchDetailView.showMatchProcess(s);
     }
 
     @Override

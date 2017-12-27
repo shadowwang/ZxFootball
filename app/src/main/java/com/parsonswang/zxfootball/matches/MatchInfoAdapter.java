@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.matches;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,12 +68,6 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             mathInfoListItemVH.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
             mathInfoListItemVH.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
 
-            mathInfoListItemVH.mLlMatchScore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         } else if (holder instanceof MatchInfoDateItemVH) {
             MatchInfoDateItemVH matchInfoDateItemVH = (MatchInfoDateItemVH) holder;
             matchInfoDateItemVH.mTvMatchDate.setText(matchInfo.getMatchDate());
@@ -96,6 +91,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
 
     private class MathInfoListItemVH extends RecyclerView.ViewHolder {
 
+        ConstraintLayout mRootLayput;
         LinearLayout mLlMatchScore;
         TextView mTvScore, mTvMatchStatus, mTvStage;
         TeamInfoView mHomeTeam, mAwayTeam;
@@ -103,6 +99,14 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         public MathInfoListItemVH(View itemView) {
             super(itemView);
             mLlMatchScore = itemView.findViewById(R.id.mLlMatchScore);
+            mRootLayput = itemView.findViewById(R.id.mRootLayput);
+            mRootLayput.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickListener.onItemClick(matchInfoList.get(getAdapterPosition()));
+                }
+            });
+
             mTvScore = itemView.findViewById(R.id.mTvScore);
             mTvMatchStatus = itemView.findViewById(R.id.mTvMatchStatus);
             mHomeTeam = itemView.findViewById(R.id.mLlHomeTeam);
@@ -119,5 +123,15 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             super(itemView);
             mTvMatchDate = itemView.findViewById(R.id.mTvMatchDate);
         }
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(MatchesBean.MatchInfo matchInfo);
     }
 }
