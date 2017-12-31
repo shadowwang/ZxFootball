@@ -21,7 +21,7 @@ public class MachesFetchDataCallback<T> extends JsonCallback<MatchesBean> {
     }
 
     @Override
-    protected void onSucess(MatchesBean matchesBean) {
+    protected void onSuccess(MatchesBean matchesBean) {
         matchView.showMatchInfoList(matchesBean);
     }
 

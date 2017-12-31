@@ -51,7 +51,7 @@ public class RequestCall {
                 RequestCall.this.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        callback.onSucess(o);
+                        callback.onSuccess(o);
                         RequestCall.this.mHandler.removeCallbacksAndMessages(null);
                     }
                 });

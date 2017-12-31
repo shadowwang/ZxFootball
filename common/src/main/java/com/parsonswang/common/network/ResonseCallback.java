@@ -13,7 +13,7 @@ public abstract class ResonseCallback<T> {
 
     protected abstract T parseResponse(Response response) throws IOException;
 
-    protected abstract void onSucess(T t);
+    protected abstract void onSuccess(T t);
 
     protected abstract void onFail(Call call, String reson);
 

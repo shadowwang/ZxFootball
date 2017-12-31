@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
                 .addParams("date", "2017.9.1+至+2017.10.31")
                 .build().execute(new JsonCallback<MatchesBean>() {
             @Override
-            protected void onSucess(MatchesBean matchBean) {
+            protected void onSuccess(MatchesBean matchBean) {
                 Timber.i(matchBean.toString());
             }
 

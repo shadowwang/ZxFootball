@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
@@ -16,7 +17,7 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
  * Created by wangchun on 2017/12/23.
  */
 
-public class MatchDetailActivity extends BaseActivity implements MatchContract.IMatchDetailView{
+public class MatchDetailActivity extends BaseActivity implements MatchContract.IMatchDetailView {
 
     private MatchPresenter mMatchPresenter;
 
@@ -39,7 +40,17 @@ public class MatchDetailActivity extends BaseActivity implements MatchContract.I
     }
 
     @Override
+    public void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean) {
+
+    }
+
+    @Override
     public void showMatchProcess(String s) {
         mTextView.setText(s);
+    }
+
+    @Override
+    public void showExceptionView() {
+
     }
 }
