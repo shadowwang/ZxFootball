@@ -34,8 +34,11 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback{
         if (matchDetailHeaderInfoBean == null) {
             matchDetailView.showExceptionView();
         } else {
-            matchDetailView.showMatchInfoHeader(getMatchHeaderBean(document));
+            matchDetailView.showMatchInfoHeader(matchDetailHeaderInfoBean);
         }
+
+        //得到比赛总结
+
     }
 
     @Override
