@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
+import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
@@ -45,8 +46,8 @@ public class MatchDetailActivity extends BaseActivity implements MatchContract.I
     }
 
     @Override
-    public void showMatchProcess(String s) {
-        mTextView.setText(s);
+    public void showMatchProcess(MatchSummary s) {
+
     }
 
     @Override

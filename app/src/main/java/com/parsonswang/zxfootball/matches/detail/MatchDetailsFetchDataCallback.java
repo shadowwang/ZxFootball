@@ -3,11 +3,11 @@ package com.parsonswang.zxfootball.matches.detail;
 
 import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
+import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.matches.MatchContract;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import okhttp3.Call;
@@ -38,12 +38,21 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback{
         }
 
         //得到比赛总结
-
+        MatchSummary matchSummary = getMatchSumary(document);
     }
 
     @Override
     protected void onFail(Call call, String reson) {
         matchDetailView.showExceptionView();
+    }
+
+    private MatchSummary getMatchSumary(Document document) {
+        MatchSummary matchSummary = new MatchSummary();
+
+        final Elements tables = document.select("div.match-character").select("table");
+        final Elements types = tables.select("tr.match-character-type");
+
+        return matchSummary;
     }
 
     private MatchDetailHeaderInfoBean getMatchHeaderBean(Document document) {
