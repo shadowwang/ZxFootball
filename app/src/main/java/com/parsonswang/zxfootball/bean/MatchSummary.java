@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,13 +10,24 @@ import java.util.List;
 
 public class MatchSummary {
 
-    public List<String> homeStronger;
-    public List<String> awayStronger;
+    public List<String> homeStronger = new ArrayList<>();
+    public List<String> awayStronger = new ArrayList<>();
 
-    public List<String> homeWeaker;
-    public List<String> awayWeaker;
+    public List<String> homeWeaker = new ArrayList<>();
+    public List<String> awayWeaker = new ArrayList<>();
 
-    public List<String> homeMatchStyle;
-    public List<String> awayMatchStyle;
+    public List<String> homeMatchStyle = new ArrayList<>();
+    public List<String> awayMatchStyle = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "MatchSummary{" +
+                "homeStronger=" + homeStronger +
+                ", awayStronger=" + awayStronger +
+                ", homeWeaker=" + homeWeaker +
+                ", awayWeaker=" + awayWeaker +
+                ", homeMatchStyle=" + homeMatchStyle +
+                ", awayMatchStyle=" + awayMatchStyle +
+                '}';
+    }
 }
