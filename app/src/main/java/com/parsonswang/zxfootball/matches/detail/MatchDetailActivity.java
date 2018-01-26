@@ -46,7 +46,7 @@ public class MatchDetailActivity extends BaseActivity implements MatchContract.I
     }
 
     @Override
-    public void showMatchProcess(MatchSummary s) {
+    public void showMatchSummary(MatchSummary s) {
 
     }
 

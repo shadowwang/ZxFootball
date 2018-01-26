@@ -1,11 +1,10 @@
 package com.parsonswang.zxfootball.matches.detail;
 
 
-import android.util.SparseIntArray;
-
 import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
+import com.parsonswang.zxfootball.bean.MatchShortBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.matches.MatchContract;
 
@@ -14,7 +13,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,14 +37,23 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
 
         //得到比赛头部信息
         MatchDetailHeaderInfoBean matchDetailHeaderInfoBean = getMatchHeaderBean(document);
+
         if (matchDetailHeaderInfoBean == null) {
             matchDetailView.showExceptionView();
         } else {
+            Timber.i(matchDetailHeaderInfoBean.toString());
             matchDetailView.showMatchInfoHeader(matchDetailHeaderInfoBean);
         }
 
         //得到比赛总结
         MatchSummary matchSummary = getMatchSumary(document);
+        matchDetailView.showMatchSummary(matchSummary);
+        Timber.i(matchSummary.toString());
+
+        //得到射门数据
+        getMatchShortBean(document);
+
+        //得到传球数据
 
 
     }
@@ -56,6 +63,16 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
         matchDetailView.showExceptionView();
     }
 
+
+    private MatchShortBean getMatchShortBean(Document document) {
+        MatchShortBean matchShortBean = new MatchShortBean();
+        final Element matchShortRoot = document.getElementById("shotsTab");
+        final Elements matchShortElements = matchShortRoot.getElementsByClass(".team-stats-group");
+        for (Element element : matchShortElements) {
+            Timber.d(element.attr("data-type"));
+        }
+        return matchShortBean;
+    }
     /**
      * 得到比赛总结
      * @param document

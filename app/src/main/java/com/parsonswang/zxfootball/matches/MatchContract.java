@@ -13,13 +13,11 @@ import com.parsonswang.zxfootball.common.mvp.IBaseView;
 public class MatchContract {
 
     public interface IMatchView {
-
-        public void showHeaderTabTitle(HeaderTabTitle headerTabTitle);
-
+         void showHeaderTabTitle(HeaderTabTitle headerTabTitle);
     }
 
     public interface IMatchInfoView {
-        public void showMatchInfoList(MatchesBean matchesBean);
+         void showMatchInfoList(MatchesBean matchesBean);
     }
 
 
@@ -34,7 +32,7 @@ public class MatchContract {
     public interface IMatchDetailView extends IBaseView{
         //展示比赛信息头部
         void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean);
-        //展示比赛进程
-        void showMatchProcess(MatchSummary matchSummary);
+        //展示比赛总结
+        void showMatchSummary(MatchSummary matchSummary);
     }
 }
