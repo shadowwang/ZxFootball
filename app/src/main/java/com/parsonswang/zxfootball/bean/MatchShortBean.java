@@ -14,6 +14,18 @@ public class MatchShortBean {
     public String awayTotalShort;
 
     /**
+     * 总进球数
+     */
+    public String homeTotalGoal;
+    public String awayTotalGoal;
+
+    /**
+     * 总进球率
+     */
+    public String homeGoalRate;
+    public String awayGoalRate;
+
+    /**
      * 阵地战
      */
     public String homeOpenPlay;
@@ -48,6 +60,10 @@ public class MatchShortBean {
         return "MatchShortBean{" +
                 "homeTotalShort='" + homeTotalShort + '\'' +
                 ", awayTotalShort='" + awayTotalShort + '\'' +
+                ", homeTotalGoal='" + homeTotalGoal + '\'' +
+                ", awayTotalGoal='" + awayTotalGoal + '\'' +
+                ", homeGoalRate='" + homeGoalRate + '\'' +
+                ", awayGoalRate='" + awayGoalRate + '\'' +
                 ", homeOpenPlay='" + homeOpenPlay + '\'' +
                 ", awayOpenPlay='" + awayOpenPlay + '\'' +
                 ", homeSetPiece='" + homeSetPiece + '\'' +

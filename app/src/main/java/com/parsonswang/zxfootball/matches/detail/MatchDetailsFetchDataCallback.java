@@ -4,6 +4,7 @@ package com.parsonswang.zxfootball.matches.detail;
 import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
+import com.parsonswang.zxfootball.bean.MatchPassBean;
 import com.parsonswang.zxfootball.bean.MatchShortBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.matches.MatchContract;
@@ -55,6 +56,8 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
         Timber.i(matchShortBean.toString());
 
         //得到传球数据
+        MatchPassBean matchPassBean = getMatchPassBean(document);
+        Timber.i(matchPassBean.toString());
 
 
     }
@@ -65,6 +68,53 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
     }
 
 
+    private MatchPassBean getMatchPassBean(Document document) {
+        MatchPassBean matchPassBean = new MatchPassBean();
+
+        final Element matchShortRoot = document.getElementById("passesTab");
+        final Elements matchShortElements = matchShortRoot.select("div.team-stats-group");
+        final Element matchShortDataRoot = matchShortElements.get(0);
+        final Elements matchShortDatas = matchShortDataRoot.select("div.team-stat");
+        for (Element element : matchShortDatas) {
+            String attr = element.attr("data-type");
+            final Elements statDataElement = element.select("span.team-stat-data");
+            final String homeData = statDataElement.get(0).text();
+            final String awayData = statDataElement.get(1).text();
+
+            if ("total".equals(attr)) {
+                matchPassBean.homePassTotal = homeData;
+                matchPassBean.awayPassTotal = awayData;
+            } else if ("short".equals(attr)) {
+                matchPassBean.homeShortPass = homeData;
+                matchPassBean.awayShortPass = awayData;
+            } else if ("long".equals(attr)) {
+                matchPassBean.homeLongPass = homeData;
+                matchPassBean.awayLongPass = awayData;
+            } else if ("cross".equals(attr)) {
+                matchPassBean.homeCrossPass = homeData;
+                matchPassBean.awayCrossPass = awayData;
+            } else if ("through".equals(attr)) {
+                matchPassBean.homeThroughPass = homeData;
+                matchPassBean.awayThroughPass = awayData;
+            }
+        }
+
+        final Elements matchTotalShortRoot = matchShortRoot.select("div.team-stats-table");
+        final Elements matchTotalDataRoot = matchTotalShortRoot.select("div.team-stat");
+
+        final Elements matchGoalDataTotalRoot = matchTotalDataRoot.get(1).select("span.stat-compare-block").get(0).select("span.stat-compare-data");
+        matchPassBean.homeTotalPer = matchGoalDataTotalRoot.get(0).text();
+        matchPassBean.awayTotalPer = matchGoalDataTotalRoot.get(1).text();
+
+        return matchPassBean;
+
+    }
+
+    /**
+     * 比赛射门数据
+     * @param document
+     * @return
+     */
     private MatchShortBean getMatchShortBean(Document document) {
         MatchShortBean matchShortBean = new MatchShortBean();
         final Element matchShortRoot = document.getElementById("shotsTab");
@@ -98,11 +148,23 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
             }
         }
 
-        final Elements matchTotalShortRoot = matchShortRoot.select("div.team-stats team-stats-table");
+        final Elements matchTotalShortRoot = matchShortRoot.select("div.team-stats-table");
         final Elements matchTotalDataRoot = matchTotalShortRoot.select("div.team-stat");
-        for (Element matchTotalElement : matchTotalDataRoot) {
 
-        }
+        final Elements matchShortDataTotalRoot = matchTotalDataRoot.get(0).select("span.stat-compare-block").get(0).select("span.stat-compare-data");
+        matchShortBean.homeTotalShort = matchShortDataTotalRoot.get(0).text();
+        matchShortBean.awayTotalShort = matchShortDataTotalRoot.get(1).text();
+
+        final Elements matchGoalDataTotalRoot = matchTotalDataRoot.get(1).select("span.stat-compare-block").get(0).select("span.stat-compare-data");
+        matchShortBean.homeTotalGoal = matchGoalDataTotalRoot.get(0).text();
+        matchShortBean.awayTotalGoal = matchGoalDataTotalRoot.get(1).text();
+
+        final Elements matchGoalRateDataTotalRoot = matchTotalDataRoot.get(2).select("span.stat-compare-block").get(0).select("span.stat-compare-data");
+        matchShortBean.homeGoalRate = matchGoalRateDataTotalRoot.get(0).text();
+        matchShortBean.awayGoalRate = matchGoalRateDataTotalRoot.get(1).text();
+
+        Timber.i(matchGoalDataTotalRoot.toString());
+
         return matchShortBean;
     }
     /**
