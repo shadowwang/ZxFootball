@@ -51,7 +51,8 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
         Timber.i(matchSummary.toString());
 
         //得到射门数据
-        getMatchShortBean(document);
+        MatchShortBean matchShortBean = getMatchShortBean(document);
+        Timber.i(matchShortBean.toString());
 
         //得到传球数据
 
@@ -67,9 +68,40 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
     private MatchShortBean getMatchShortBean(Document document) {
         MatchShortBean matchShortBean = new MatchShortBean();
         final Element matchShortRoot = document.getElementById("shotsTab");
-        final Elements matchShortElements = matchShortRoot.getElementsByClass(".team-stats-group");
-        for (Element element : matchShortElements) {
-            Timber.d(element.attr("data-type"));
+        final Elements matchShortElements = matchShortRoot.select("div.team-stats-group");
+        final Element matchShortDataRoot = matchShortElements.get(0);
+        final Elements matchShortDatas = matchShortDataRoot.select("div.team-stat");
+        for (Element element : matchShortDatas) {
+            String attr = element.attr("data-type");
+            final Elements statDataElement = element.select("span.team-stat-data");
+            final String homeData = statDataElement.get(0).text();
+            final String awayData = statDataElement.get(1).text();
+
+            if ("total".equals(attr)) {
+                matchShortBean.homeTotalShort = homeData;
+                matchShortBean.awayTotalShort = awayData;
+            } else if ("openPlay".equals(attr)) {
+                matchShortBean.homeOpenPlay = homeData;
+                matchShortBean.awayOpenPlay = awayData;
+            } else if ("setPiece".equals(attr)) {
+                matchShortBean.homeSetPiece = homeData;
+                matchShortBean.awaySetPiece = awayData;
+            } else if ("fastBrk".equals(attr)) {
+                matchShortBean.homeFastBrk = homeData;
+                matchShortBean.awayFastBrk = awayData;
+            } else if ("penalty".equals(attr)) {
+                matchShortBean.homePenalty = homeData;
+                matchShortBean.awayPenalty = awayData;
+            } else if ("ownGoal".equals(attr)) {
+                matchShortBean.homeOwnGoal = homeData;
+                matchShortBean.awayOwnGoal = awayData;
+            }
+        }
+
+        final Elements matchTotalShortRoot = matchShortRoot.select("div.team-stats team-stats-table");
+        final Elements matchTotalDataRoot = matchTotalShortRoot.select("div.team-stat");
+        for (Element matchTotalElement : matchTotalDataRoot) {
+
         }
         return matchShortBean;
     }

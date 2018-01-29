@@ -10,30 +10,54 @@ public class MatchShortBean {
     /**
      * 总数
      */
-    public int homeTotalShort;
-    public int awayTotalShort;
+    public String homeTotalShort;
+    public String awayTotalShort;
 
     /**
      * 阵地战
      */
-    public int homeOpenPlay;
-    public int awayOpenPlay;
+    public String homeOpenPlay;
+    public String awayOpenPlay;
 
     /**
      * 定位球
      */
-    public int homeSetPiece;
-    public int awaySetPiece;
+    public String homeSetPiece;
+    public String awaySetPiece;
+
+    /**
+     * 反击
+     */
+    public String homeFastBrk;
+    public String awayFastBrk;
 
     /**
      * 点球
      */
-    public int homePenalty;
-    public int awayPenalty;
+    public String homePenalty;
+    public String awayPenalty;
 
     /**
      * 乌龙
      */
-    public int homeOwnGoal;
-    public int awayOwnGoal;
+    public String homeOwnGoal;
+    public String awayOwnGoal;
+
+    @Override
+    public String toString() {
+        return "MatchShortBean{" +
+                "homeTotalShort='" + homeTotalShort + '\'' +
+                ", awayTotalShort='" + awayTotalShort + '\'' +
+                ", homeOpenPlay='" + homeOpenPlay + '\'' +
+                ", awayOpenPlay='" + awayOpenPlay + '\'' +
+                ", homeSetPiece='" + homeSetPiece + '\'' +
+                ", awaySetPiece='" + awaySetPiece + '\'' +
+                ", homeFastBrk='" + homeFastBrk + '\'' +
+                ", awayFastBrk='" + awayFastBrk + '\'' +
+                ", homePenalty='" + homePenalty + '\'' +
+                ", awayPenalty='" + awayPenalty + '\'' +
+                ", homeOwnGoal='" + homeOwnGoal + '\'' +
+                ", awayOwnGoal='" + awayOwnGoal + '\'' +
+                '}';
+    }
 }
