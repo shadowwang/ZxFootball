@@ -59,7 +59,6 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
         MatchPassBean matchPassBean = getMatchPassBean(document);
         Timber.i(matchPassBean.toString());
 
-
     }
 
     @Override

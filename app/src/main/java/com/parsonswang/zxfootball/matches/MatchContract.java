@@ -26,6 +26,8 @@ public class MatchContract {
         void getMatchInfos(String comeptitionId, String dataBetween);
 
         void getMatchDetail(String matchId);
+
+        void getMatchStat(String matchId);
     }
 
 

@@ -7,6 +7,7 @@ import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.mvp.AbsPresenter;
 import com.parsonswang.zxfootball.common.utils.ConfigUtil;
 import com.parsonswang.zxfootball.matches.detail.MatchDetailsFetchDataCallback;
+import com.parsonswang.zxfootball.matches.detail.MatchStatFetchDataCallback;
 
 import timber.log.Timber;
 
@@ -60,6 +61,11 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
     @Override
     public void getMatchDetail(String matchId) {
         matchModel.getMatchDetailInfo(matchId, new MatchDetailsFetchDataCallback(mIMatchDetailView));
+    }
+
+    @Override
+    public void getMatchStat(String matchId) {
+        matchModel.getMatchStatInfo(matchId, new MatchStatFetchDataCallback(mIMatchDetailView));
     }
 
     private void getHeaderTabTitle() {

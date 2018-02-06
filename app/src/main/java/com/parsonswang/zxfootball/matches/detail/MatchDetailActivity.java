@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseActivity;
@@ -20,9 +21,10 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
 
 public class MatchDetailActivity extends BaseActivity implements MatchContract.IMatchDetailView {
 
-    private MatchPresenter mMatchPresenter;
+//    private MatchPresenter mMatchPresenter;
 
-    private TextView mTextView;
+    private ViewPager mViewPager;
+    private MatchDetailPageAdapter mMatchDetailPageAdapter;
 
     public static void actionStart(Activity activity, String matchId) {
         Intent intent = new Intent(activity, MatchDetailActivity.class);
@@ -34,10 +36,13 @@ public class MatchDetailActivity extends BaseActivity implements MatchContract.I
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_detail);
+        mViewPager = findViewById(R.id.vp_detail);
+        mMatchDetailPageAdapter = new MatchDetailPageAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mMatchDetailPageAdapter);
 
-        mMatchPresenter = new MatchPresenter(this);
-        mMatchPresenter.getMatchDetail(getIntent().getStringExtra("matchId"));
-        mTextView = findViewById(R.id.mTvTest);
+
+//        mMatchPresenter = new MatchPresenter(this);
+//        mMatchPresenter.getMatchDetail(getIntent().getStringExtra("matchId"));
     }
 
     @Override

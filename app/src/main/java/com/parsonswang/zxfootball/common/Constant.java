@@ -15,6 +15,9 @@ public class Constant {
         public static final String MATCH_QUERY_URL = HTTP_REQUEST_URL + "matches/queryFixture.json";
 
         public static final String MATCH_DETAIL_URL = HTTP_REQUEST_URL + "matches/%1$s/report.do";
+
+        public static final String MATCH_STAT_URL = HTTP_REQUEST_URL + "matches/%1$s/stat.do";
+
     }
 
 

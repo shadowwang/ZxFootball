@@ -1,7 +1,6 @@
 package com.parsonswang.zxfootball.matches;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.parsonswang.common.base.BaseFragment;
+import com.parsonswang.common.base.BaseLazyLoadFragment;
 import com.parsonswang.common.utils.DateUtils;
 import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.common.view.pinheader.PinnedHeaderItemDecoration;
@@ -37,7 +36,7 @@ import timber.log.Timber;
  * Created by wangchun on 2017/10/23.
  */
 
-public class MatchInfoListFragment extends BaseFragment implements MatchContract.IMatchInfoView, MatchInfoAdapter.OnItemClickListener {
+public class MatchInfoListFragment extends BaseLazyLoadFragment implements MatchContract.IMatchInfoView, MatchInfoAdapter.OnItemClickListener {
 
     private static final String TAG = MatchInfoListFragment.class.getSimpleName();
 
