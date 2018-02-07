@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorCommonBackground"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/ll_home_team_info"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/common_margin_left_right"
+        android:layout_marginLeft="@dimen/common_margin_left_right"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/iv_home_team_logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="53dp"
+            android:layout_height="65dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.2dp"
+            android:layout_gravity="center_horizontal"
+            android:text="主队名称"
+            android:textColor="@color/colorCommonTextDefault"
+            />
+        <TextView
+            android:id="@+id/tv_home_team_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4.8dp"
+            android:textColor="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_match_score_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/common_margin_left_right"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_all_time_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全场  2:2"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_lun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="第2轮"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/tv_half_time_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="半场  2:2"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/tv_match_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="2017.12.24"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_away_team_info"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin_left_right"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/common_margin_left_right"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/iv_away_team_logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="53dp"
+            android:layout_height="65dp"/>
+
+        <TextView
+            android:id="@+id/tv_away_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.2dp"
+            android:layout_gravity="center_horizontal"
+            android:text="客队名称"
+            android:textColor="@color/colorCommonTextDefault"
+            />
+        <TextView
+            android:id="@+id/tv_away_team_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4.8dp"
+            android:textColor="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
