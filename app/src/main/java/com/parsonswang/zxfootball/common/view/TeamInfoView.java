@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parsonswang.common.image.ImageLoaderFactory;
+import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.common.Constant;
 
@@ -46,7 +47,7 @@ public class TeamInfoView extends FrameLayout {
 
     public void setInfo(int teamId, String teamName) {
         String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + teamId + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
-        ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadImage(mContext, mIvHomeTeam, url, 0);
+        Imageloaders.loadImage(mContext, url, mIvHomeTeam, 0);
         mTvHomeTeam.setText(teamName);
     }
 }

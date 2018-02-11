@@ -7,7 +7,7 @@ package com.parsonswang.common.image;
 public enum ImageLoaderFactory {
     INSTANCE;
 
-    public ImageLoader getImageLoaderFactory() {
+    public IImageLoader getImageLoaderFactory() {
         return new GlideImageLoader();
     }
 }

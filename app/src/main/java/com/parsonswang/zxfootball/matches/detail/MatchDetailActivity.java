@@ -19,10 +19,11 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
  * Created by wangchun on 2017/12/23.
  */
 
-public class MatchDetailActivity extends BaseActivity implements MatchContract.IMatchDetailView {
+public class MatchDetailActivity extends BaseActivity {
 
 //    private MatchPresenter mMatchPresenter;
 
+    private MatchDetailHerderFragment mMatchDetailHerderFragment;
     private ViewPager mViewPager;
     private MatchDetailPageAdapter mMatchDetailPageAdapter;
 
@@ -40,23 +41,20 @@ public class MatchDetailActivity extends BaseActivity implements MatchContract.I
         mMatchDetailPageAdapter = new MatchDetailPageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mMatchDetailPageAdapter);
 
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("matchId")) {
+            final String matchId = getIntent().getStringExtra("matchId");
+            mMatchDetailHerderFragment = MatchDetailHerderFragment.newInstance(matchId);
+
+            getSupportFragmentManager().
+                    beginTransaction().
+                    add(R.id.fl_matchinfo_header, mMatchDetailHerderFragment).
+                    commitAllowingStateLoss();
+        }
 
 //        mMatchPresenter = new MatchPresenter(this);
 //        mMatchPresenter.getMatchDetail(getIntent().getStringExtra("matchId"));
     }
 
-    @Override
-    public void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean) {
 
-    }
-
-    @Override
-    public void showMatchSummary(MatchSummary s) {
-
-    }
-
-    @Override
-    public void showExceptionView() {
-
-    }
 }

@@ -9,7 +9,7 @@ import timber.log.Timber;
  * Created by parsonswang on 2017/11/7.
  */
 
-public class GlideImageLoader implements ImageLoader {
+public class GlideImageLoader implements IImageLoader {
 
     @Override
     public void loadImage(Context context, ImageView imageView, String url, int defaultResId) {
