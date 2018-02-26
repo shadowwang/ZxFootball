@@ -67,6 +67,11 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
     }
 
 
+    /**
+     * 得到传球数据
+     * @param document
+     * @return
+     */
     private MatchPassBean getMatchPassBean(Document document) {
         MatchPassBean matchPassBean = new MatchPassBean();
 

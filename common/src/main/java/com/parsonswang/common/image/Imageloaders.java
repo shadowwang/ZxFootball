@@ -8,7 +8,7 @@ import android.widget.ImageView;
  */
 
 public class Imageloaders {
-    public static void loadImage(Context context, String url, ImageView iv, int defaulId) {
-        ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadImage(context, iv, url, 0);
+    public static void loadImage(Context context, String url, ImageView iv, int defaultId) {
+        ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadImage(context, iv, url, defaultId);
     }
 }

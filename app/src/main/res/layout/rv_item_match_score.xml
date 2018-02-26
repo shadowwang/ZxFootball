@@ -6,7 +6,9 @@
  android:layout_height="110dp"
  android:layout_marginLeft="14.4dp"
  android:layout_marginRight="14.4dp"
- android:background="@drawable/border_corner_common_bg">
+    android:paddingTop="14.4dp"
+    android:paddingBottom="14.4dp"
+ >
 
     <LinearLayout
         android:id="@+id/mLlMatchScore"

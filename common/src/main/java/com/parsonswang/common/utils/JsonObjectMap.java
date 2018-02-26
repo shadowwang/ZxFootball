@@ -14,15 +14,15 @@ import timber.log.Timber;
  * 利用 Gson 来完成 json 和 POJO 之间的转换工作, 采取 data binder 的模式.
  *
  */
-public class JsonBinder {
+public class JsonObjectMap {
 
-    private static final String TAG = JsonBinder.class.getName();
+    private static final String TAG = JsonObjectMap.class.getName();
 
-    private static JsonBinder jsonBinder;
+    private static JsonObjectMap jsonBinder;
 
     private Gson gson;
 
-    private JsonBinder() {
+    private JsonObjectMap() {
         gson = new Gson();
     }
 
@@ -31,9 +31,9 @@ public class JsonBinder {
      *
      * @return
      */
-    public static JsonBinder getInstance() {
+    public static JsonObjectMap getInstance() {
         if (jsonBinder == null) {
-            jsonBinder = new JsonBinder();
+            jsonBinder = new JsonObjectMap();
         }
         return jsonBinder;
     }

@@ -19,49 +19,44 @@ public class MatchSummary {
     public List<String> homeMatchStyle = new ArrayList<>();
     public List<String> awayMatchStyle = new ArrayList<>();
 
+    private String listToString(List<String> list) {
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+
+        final StringBuilder stringBuffer = new StringBuilder();
+        for (String str : list) {
+            stringBuffer.append(str).append("\r\n");
+        }
+
+        return stringBuffer.toString();
+    }
+
     public String getHomeMatchSummary() {
         String result = "强点:\r\n";
 
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String str : homeStronger) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+        result += listToString(homeStronger);
 
         result += "弱点:\r\n";
-        for (String str : homeWeaker) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+
+        result += listToString(homeWeaker);
 
         result += "比赛风格:\r\n";
-        for (String str : homeMatchStyle) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+
+        result += listToString(homeMatchStyle);
+
         return result;
     }
 
     public String getAwayMatchSummary() {
         String result = "强点:\r\n";
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String str : awayStronger) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+        result += listToString(awayStronger);
 
         result += "弱点:\r\n";
-        for (String str : awayWeaker) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+        result += listToString(awayWeaker);
 
         result += "比赛风格:\r\n";
-        for (String str : awayMatchStyle) {
-            stringBuilder.append(str).append("\r\n");
-        }
-        result += stringBuilder.toString();
+        result += listToString(awayMatchStyle);
         return result;
     }
 

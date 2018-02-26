@@ -1,6 +1,6 @@
 package com.parsonswang.zxfootball.matches;
 
-import com.parsonswang.common.utils.JsonBinder;
+import com.parsonswang.common.utils.JsonObjectMap;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
@@ -76,7 +76,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
         if (StringUtils.isEmptyString(leagueConfig)) {
             matchView.showHeaderTabTitle(null);
         } else {
-            HeaderTabTitle headerTabTitle = JsonBinder.getInstance().fromJson(leagueConfig, HeaderTabTitle.class);
+            HeaderTabTitle headerTabTitle = JsonObjectMap.getInstance().fromJson(leagueConfig, HeaderTabTitle.class);
             matchView.showHeaderTabTitle(headerTabTitle);
         }
     }

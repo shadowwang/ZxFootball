@@ -17,6 +17,7 @@ import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.view.CommonRecyclerViewDivider;
+import com.parsonswang.zxfootball.common.view.MatchScoreInfoView;
 import com.parsonswang.zxfootball.matches.detail.MatchDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -36,7 +37,8 @@ import timber.log.Timber;
  * Created by wangchun on 2017/10/23.
  */
 
-public class MatchInfoListFragment extends BaseLazyLoadFragment implements MatchContract.IMatchInfoView, MatchInfoAdapter.OnItemClickListener {
+public class MatchInfoListFragment extends BaseLazyLoadFragment implements MatchContract.IMatchInfoView,
+        MatchScoreInfoView.OnItemClickListener<MatchesBean.MatchInfo> {
 
     private static final String TAG = MatchInfoListFragment.class.getSimpleName();
 
@@ -95,7 +97,7 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
                 UIUtils.dip2px(getContext(), 14.4F),
                 Color.parseColor("#232C30")));
 
-        mMatchInfoAdapter = new MatchInfoAdapter();
+        mMatchInfoAdapter = new MatchInfoAdapter(getContext());
         mRvMatchInfoList.setAdapter(mMatchInfoAdapter);
         mMatchInfoAdapter.setOnItemClickListener(this);
 
@@ -204,4 +206,5 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
     public void onItemClick(MatchesBean.MatchInfo matchInfo) {
         MatchDetailActivity.actionStart(getActivity(), String.valueOf(matchInfo.getId()));
     }
+
 }

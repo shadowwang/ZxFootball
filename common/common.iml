@@ -96,6 +96,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="com.amitshekhar.android:glide-bitmap-pool-0.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="com.android.support.test:exposed-instrumentation-api-publish-0.5" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-media-compat-26.0.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-26.0.1" level="project" />
@@ -135,5 +136,6 @@
     <orderEntry type="library" exported="" scope="TEST" name="javax.annotation:javax.annotation-api:1.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.okhttp3:okhttp:3.9.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.github.bumptech.glide:annotations:4.3.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.11.2@jar" level="project" />
   </component>
 </module>

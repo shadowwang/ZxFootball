@@ -1,6 +1,6 @@
 package com.parsonswang.common.network;
 
-import com.parsonswang.common.utils.JsonBinder;
+import com.parsonswang.common.utils.JsonObjectMap;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -23,6 +23,6 @@ public abstract class JsonCallback<T> extends ResonseCallback<T> {
             return (T) string;
         }
 
-        return JsonBinder.getInstance().fromJson(string, entityClass);
+        return JsonObjectMap.getInstance().fromJson(string, entityClass);
     }
 }

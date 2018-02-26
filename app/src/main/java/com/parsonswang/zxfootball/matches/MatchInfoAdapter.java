@@ -1,17 +1,16 @@
 package com.parsonswang.zxfootball.matches;
 
-import android.support.constraint.ConstraintLayout;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parsonswang.common.view.pinheader.AdapterStick;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchesBean;
-import com.parsonswang.zxfootball.common.view.TeamInfoView;
+import com.parsonswang.zxfootball.common.view.MatchScoreInfoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,14 @@ import java.util.List;
 
 public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterStick {
 
+
     private List<MatchesBean.MatchInfo> matchInfoList = new ArrayList<>();
+
+    private Context mContext;
+
+    public MatchInfoAdapter(Context context) {
+        this.mContext = context;
+    }
 
     public void addAll(List<MatchesBean.MatchInfo> matchInfoList) {
         if (matchInfoList != null && !matchInfoList.isEmpty()) {
@@ -41,7 +47,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         if (viewType == MatchesBean.MatchInfo.TYPE_TITLE) {
             return new MatchInfoDateItemVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_match_score_pinned_header, parent, false));
         } else if (viewType == MatchesBean.MatchInfo.TYPE_NORMAL) {
-            return new MathInfoListItemVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_match_score, parent, false));
+            return new MathInfoListItemVH(new MatchScoreInfoView<MatchesBean.MatchInfo>(mContext));
         }
         return null;
     }
@@ -56,17 +62,17 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         final MatchesBean.MatchInfo matchInfo = matchInfoList.get(position);
         if (holder instanceof MathInfoListItemVH) {
             MathInfoListItemVH mathInfoListItemVH = (MathInfoListItemVH) holder;
-            mathInfoListItemVH.mTvScore.setText(matchInfo.getScore());
+            mathInfoListItemVH.matchScoreInfoView.mTvScore.setText(matchInfo.getScore());
             if (matchInfo.isIsFinish()) {
-                mathInfoListItemVH.mTvScore.setVisibility(View.VISIBLE);
-                mathInfoListItemVH.mTvMatchStatus.setText("已结束");
+                mathInfoListItemVH.matchScoreInfoView.mTvScore.setVisibility(View.VISIBLE);
+                mathInfoListItemVH.matchScoreInfoView.mTvMatchStatus.setText("已结束");
             } else {
-                mathInfoListItemVH.mTvScore.setVisibility(View.GONE);
-                mathInfoListItemVH.mTvMatchStatus.setText("未开始");
+                mathInfoListItemVH.matchScoreInfoView.mTvScore.setVisibility(View.GONE);
+                mathInfoListItemVH.matchScoreInfoView.mTvMatchStatus.setText("未开始");
             }
-            mathInfoListItemVH.mTvStage.setText(matchInfo.getStageName());
-            mathInfoListItemVH.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
-            mathInfoListItemVH.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
+            mathInfoListItemVH.matchScoreInfoView.mTvStage.setText(matchInfo.getStageName());
+            mathInfoListItemVH.matchScoreInfoView.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
+            mathInfoListItemVH.matchScoreInfoView.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
 
         } else if (holder instanceof MatchInfoDateItemVH) {
             MatchInfoDateItemVH matchInfoDateItemVH = (MatchInfoDateItemVH) holder;
@@ -91,27 +97,14 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
 
     private class MathInfoListItemVH extends RecyclerView.ViewHolder {
 
-        ConstraintLayout mRootLayput;
-        LinearLayout mLlMatchScore;
-        TextView mTvScore, mTvMatchStatus, mTvStage;
-        TeamInfoView mHomeTeam, mAwayTeam;
+        MatchScoreInfoView<MatchesBean.MatchInfo> matchScoreInfoView;
 
         public MathInfoListItemVH(View itemView) {
             super(itemView);
-            mLlMatchScore = itemView.findViewById(R.id.mLlMatchScore);
-            mRootLayput = itemView.findViewById(R.id.mRootLayput);
-            mRootLayput.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mOnItemClickListener.onItemClick(matchInfoList.get(getAdapterPosition()));
-                }
-            });
-
-            mTvScore = itemView.findViewById(R.id.mTvScore);
-            mTvMatchStatus = itemView.findViewById(R.id.mTvMatchStatus);
-            mHomeTeam = itemView.findViewById(R.id.mLlHomeTeam);
-            mAwayTeam = itemView.findViewById(R.id.mLlAwayTeam);
-            mTvStage = itemView.findViewById(R.id.mTvStage);
+            matchScoreInfoView = (MatchScoreInfoView<MatchesBean.MatchInfo>) itemView;
+            matchScoreInfoView.setCorner();
+            matchScoreInfoView.setMarginLeftAndRight(30, 30);
+            matchScoreInfoView.setOnItemClickListener(mOnItemClickListener);
         }
     }
 
@@ -125,13 +118,10 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         }
     }
 
-    private OnItemClickListener mOnItemClickListener;
+    private MatchScoreInfoView.OnItemClickListener mOnItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(MatchScoreInfoView.OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(MatchesBean.MatchInfo matchInfo);
-    }
 }

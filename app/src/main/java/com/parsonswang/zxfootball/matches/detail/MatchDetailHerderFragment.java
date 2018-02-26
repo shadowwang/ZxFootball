@@ -29,10 +29,10 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
     private ImageView mAwayTeamLogo;
     private TextView mAwayTeamName, mAwayTeamSummary;
 
-    public static MatchDetailHerderFragment newInstance(String messageId) {
+    public static MatchDetailHerderFragment newInstance(String matchId) {
         MatchDetailHerderFragment matchDetailHerderFragment = new  MatchDetailHerderFragment();
         Bundle data = new Bundle();
-        data.putString("messageId", messageId);
+        data.putString("matchId", matchId);
         matchDetailHerderFragment.setArguments(data);
         return matchDetailHerderFragment;
     }
@@ -41,18 +41,6 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matchdetail_header, container, false);
-        mHomeTeamLogo = view.findViewById(R.id.iv_home_team_logo);
-        mHomeTeamName = view.findViewById(R.id.tv_home_team_name);
-        mHomeTeamSummary = view.findViewById(R.id.tv_home_team_summary);
-
-        mAllTimeScore = view.findViewById(R.id.tv_all_time_score);
-        mLun = view.findViewById(R.id.tv_lun);
-        mHalfTimeScore = view.findViewById(R.id.tv_half_time_score);
-        mMatchTime = view.findViewById(R.id.tv_match_time);
-
-        mAwayTeamLogo = view.findViewById(R.id.iv_away_team_logo);
-        mAwayTeamName = view.findViewById(R.id.tv_away_team_name);
-        mAwayTeamSummary = view.findViewById(R.id.tv_away_team_summary);
 
         new MatchPresenter(this).getMatchDetail(getArguments().getString("matchId"));
         return view;
@@ -69,7 +57,7 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
         mHomeTeamName.setText(matchDetailHeaderInfoBean.homeTeamName);
 
         Imageloaders.loadImage(mContext, matchDetailHeaderInfoBean.awayTeamLogo, mAwayTeamLogo, 0);
-        mHomeTeamName.setText(matchDetailHeaderInfoBean.awayTeamName);
+        mAwayTeamName.setText(matchDetailHeaderInfoBean.awayTeamName);
     }
 
     @Override
