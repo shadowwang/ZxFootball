@@ -26,38 +26,20 @@ public class MatchSummary {
 
         final StringBuilder stringBuffer = new StringBuilder();
         for (String str : list) {
-            stringBuffer.append(str).append("\r\n");
+            stringBuffer.append(str).append(";");
         }
 
         return stringBuffer.toString();
     }
 
     public String getHomeMatchSummary() {
-        String result = "强点:\r\n";
 
-        result += listToString(homeStronger);
-
-        result += "弱点:\r\n";
-
-        result += listToString(homeWeaker);
-
-        result += "比赛风格:\r\n";
-
-        result += listToString(homeMatchStyle);
-
-        return result;
+        return listToString(homeStronger) + " " + listToString(homeWeaker) + " " + listToString(homeMatchStyle);
     }
 
     public String getAwayMatchSummary() {
-        String result = "强点:\r\n";
-        result += listToString(awayStronger);
 
-        result += "弱点:\r\n";
-        result += listToString(awayWeaker);
-
-        result += "比赛风格:\r\n";
-        result += listToString(awayMatchStyle);
-        return result;
+        return listToString(awayStronger) + " " + listToString(awayWeaker) + " " + listToString(awayMatchStyle);
     }
 
     @Override

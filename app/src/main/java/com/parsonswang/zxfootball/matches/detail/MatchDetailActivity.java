@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseActivity;
+import com.parsonswang.common.utils.StringUtils;
+import com.parsonswang.common.view.PagerSlidingTabStrip;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
@@ -21,8 +24,7 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
 
 public class MatchDetailActivity extends BaseActivity {
 
-//    private MatchPresenter mMatchPresenter;
-
+    private PagerSlidingTabStrip mTabs;
     private MatchDetailHerderFragment mMatchDetailHerderFragment;
     private ViewPager mViewPager;
     private MatchDetailPageAdapter mMatchDetailPageAdapter;
@@ -38,23 +40,28 @@ public class MatchDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_detail);
         mViewPager = findViewById(R.id.vp_detail);
-        mMatchDetailPageAdapter = new MatchDetailPageAdapter(getSupportFragmentManager());
+        mTabs = findViewById(R.id.tabs);
+
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+
+        mMatchDetailPageAdapter = new MatchDetailPageAdapter(fragmentManager);
         mViewPager.setAdapter(mMatchDetailPageAdapter);
+        mTabs.setViewPager(mViewPager);
+        mTabs.setSelectedTextColor(getResources().getColor(R.color.colorPrimary));
 
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("matchId")) {
+        if (intent != null && intent.hasExtra("matchId") && fragmentManager != null) {
             final String matchId = getIntent().getStringExtra("matchId");
-            mMatchDetailHerderFragment = MatchDetailHerderFragment.newInstance(matchId);
+            if (!StringUtils.isEmptyString(matchId)) {
+                mMatchDetailHerderFragment = MatchDetailHerderFragment.newInstance(matchId);
+            }
 
-            getSupportFragmentManager().
-                    beginTransaction().
-                    add(R.id.fl_matchinfo_header, mMatchDetailHerderFragment).
-                    commitAllowingStateLoss();
+            if (mMatchDetailHerderFragment != null) {
+                fragmentManager.beginTransaction().
+                        add(R.id.fl_matchinfo_header, mMatchDetailHerderFragment).
+                        commitAllowingStateLoss();
+            }
         }
-
-//        mMatchPresenter = new MatchPresenter(this);
-//        mMatchPresenter.getMatchDetail(getIntent().getStringExtra("matchId"));
     }
-
 
 }

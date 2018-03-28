@@ -8,11 +8,14 @@
         android:id="@+id/iv_match_summary"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textColor="@color/colorBottomItemTextSelectedColor"
         android:background="@color/colorCommonBackground"
         />
 
-    <include
-        layout="@layout/rv_item_match_score"
+    <com.parsonswang.zxfootball.common.view.MatchScoreInfoView
+        android:id="@+id/match_score_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/iv_match_summary"

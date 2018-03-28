@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.parsonswang.common.image.ImageLoaderFactory;
 import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.common.Constant;
@@ -21,9 +20,9 @@ import com.parsonswang.zxfootball.common.Constant;
 
 public class TeamInfoView extends FrameLayout {
 
-    private ImageView mIvHomeTeam;
-    private TextView mTvHomeTeam;
-    private Context mContext;
+    public ImageView mIvTeam;
+    public TextView mTvTeam;
+    public Context mContext;
 
     public TeamInfoView(@NonNull Context context) {
         super(context);
@@ -39,15 +38,15 @@ public class TeamInfoView extends FrameLayout {
         this.mContext = context;
 
         View view = LayoutInflater.from(context).inflate(R.layout.common_team_info_view, null, false);
-        mIvHomeTeam = view.findViewById(R.id.mIvHomeTeam);
-        mTvHomeTeam = view.findViewById(R.id.mTvHomeTeam);
+        mIvTeam = view.findViewById(R.id.mIvHomeTeam);
+        mTvTeam = view.findViewById(R.id.mTvHomeTeam);
 
         addView(view);
     }
 
     public void setInfo(int teamId, String teamName) {
         String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + teamId + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
-        Imageloaders.loadImage(mContext, url, mIvHomeTeam, 0);
-        mTvHomeTeam.setText(teamName);
+        Imageloaders.loadImage(mContext, url, mIvTeam, 0);
+        mTvTeam.setText(teamName);
     }
 }

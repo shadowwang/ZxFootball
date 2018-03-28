@@ -79,10 +79,25 @@ public class MatchScoreInfoView<T> extends FrameLayout {
     }
 
     public void setCorner() {
+        if (mRootLayput == null) {
+            return;
+        }
+
         mRootLayput.setBackgroundResource(R.drawable.border_corner_common_bg);
     }
 
-    public void setMarginLeftAndRight(int leftPixel, int rightPixel) {
-        mRootLayput.setPadding(UIUtils.dip2px(mContext, leftPixel), 0, UIUtils.dip2px(mContext, rightPixel), 0);
+    public void setMarginLeftAndRight(float leftDp, float rightDp) {
+        if (mRootLayput == null) {
+            return;
+        }
+
+        FrameLayout.LayoutParams params = (LayoutParams) mRootLayput.getLayoutParams();
+        if (params == null) {
+            return;
+        }
+
+        params.leftMargin = UIUtils.dip2px(mContext, leftDp);
+        params.rightMargin = UIUtils.dip2px(mContext, rightDp);
+        mRootLayput.setLayoutParams(params);
     }
 }

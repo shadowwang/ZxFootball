@@ -62,6 +62,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         final MatchesBean.MatchInfo matchInfo = matchInfoList.get(position);
         if (holder instanceof MathInfoListItemVH) {
             MathInfoListItemVH mathInfoListItemVH = (MathInfoListItemVH) holder;
+            mathInfoListItemVH.matchScoreInfoView.setData(matchInfo);
             mathInfoListItemVH.matchScoreInfoView.mTvScore.setText(matchInfo.getScore());
             if (matchInfo.isIsFinish()) {
                 mathInfoListItemVH.matchScoreInfoView.mTvScore.setVisibility(View.VISIBLE);
@@ -103,7 +104,7 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
             super(itemView);
             matchScoreInfoView = (MatchScoreInfoView<MatchesBean.MatchInfo>) itemView;
             matchScoreInfoView.setCorner();
-            matchScoreInfoView.setMarginLeftAndRight(30, 30);
+            matchScoreInfoView.setMarginLeftAndRight(14.4F, 14.4F);
             matchScoreInfoView.setOnItemClickListener(mOnItemClickListener);
         }
     }

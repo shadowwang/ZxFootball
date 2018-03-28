@@ -5,14 +5,15 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.image.Imageloaders;
+import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
+import com.parsonswang.zxfootball.bean.MatchesBean;
+import com.parsonswang.zxfootball.common.view.MatchScoreInfoView;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
@@ -21,13 +22,9 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
  */
 public class MatchDetailHerderFragment extends BaseFragment implements MatchContract.IMatchDetailView {
 
-    private ImageView mHomeTeamLogo;
-    private TextView mHomeTeamName, mHomeTeamSummary;
-
-    private TextView mAllTimeScore, mLun, mHalfTimeScore, mMatchTime;
-
-    private ImageView mAwayTeamLogo;
-    private TextView mAwayTeamName, mAwayTeamSummary;
+    private MatchScoreInfoView<MatchesBean.MatchInfo> matchInfoMatchScoreInfoView;
+    private MarqueTextView mMarqueTextView;
+    private MatchDetailHeaderInfoBean matchDetailHeaderInfoBean;
 
     public static MatchDetailHerderFragment newInstance(String matchId) {
         MatchDetailHerderFragment matchDetailHerderFragment = new  MatchDetailHerderFragment();
@@ -42,7 +39,12 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matchdetail_header, container, false);
 
+        matchInfoMatchScoreInfoView = view.findViewById(R.id.match_score_view);
+        matchInfoMatchScoreInfoView.mRootLayput.setBackgroundResource(R.color.colorCommonBackground);
+        mMarqueTextView = view.findViewById(R.id.iv_match_summary);
+
         new MatchPresenter(this).getMatchDetail(getArguments().getString("matchId"));
+
         return view;
     }
 
@@ -53,16 +55,18 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
 
     @Override
     public void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean) {
-        Imageloaders.loadImage(mContext, matchDetailHeaderInfoBean.homeTeamLogo, mHomeTeamLogo, 0);
-        mHomeTeamName.setText(matchDetailHeaderInfoBean.homeTeamName);
+        this.matchDetailHeaderInfoBean = matchDetailHeaderInfoBean;
 
-        Imageloaders.loadImage(mContext, matchDetailHeaderInfoBean.awayTeamLogo, mAwayTeamLogo, 0);
-        mAwayTeamName.setText(matchDetailHeaderInfoBean.awayTeamName);
+        Imageloaders.loadImage(mContext, matchDetailHeaderInfoBean.homeTeamLogo, matchInfoMatchScoreInfoView.mHomeTeam.mIvTeam, 0);
+        matchInfoMatchScoreInfoView.mHomeTeam.mTvTeam.setText(matchDetailHeaderInfoBean.homeTeamName);
+
+        Imageloaders.loadImage(mContext, matchDetailHeaderInfoBean.awayTeamLogo, matchInfoMatchScoreInfoView.mAwayTeam.mIvTeam, 0);
+        matchInfoMatchScoreInfoView.mAwayTeam.mTvTeam.setText(matchDetailHeaderInfoBean.awayTeamName);
+        matchInfoMatchScoreInfoView.mTvScore.setText(matchDetailHeaderInfoBean.endTimeScore);
     }
 
     @Override
     public void showMatchSummary(MatchSummary matchSummary) {
-        mHomeTeamSummary.setText(matchSummary.getHomeMatchSummary());
-        mAwayTeamSummary.setText(matchSummary.getAwayMatchSummary());
+        mMarqueTextView.setText(matchDetailHeaderInfoBean.homeTeamName + ":" + matchSummary.getHomeMatchSummary() + " " + matchDetailHeaderInfoBean.awayTeamName + ":"  + matchSummary.getAwayMatchSummary());
     }
 }
