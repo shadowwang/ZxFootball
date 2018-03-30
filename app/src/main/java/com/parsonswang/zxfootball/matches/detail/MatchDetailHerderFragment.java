@@ -10,6 +10,7 @@ import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.bean.MatchesBean;
@@ -20,11 +21,12 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
 /**比赛头部信息Fragment
  * Created by parsonswang on 2018/2/6.
  */
-public class MatchDetailHerderFragment extends BaseFragment implements MatchContract.IMatchDetailView {
+public class MatchDetailHerderFragment extends BaseFragment implements MatchContract.IMatchDetailView, MatchContract.IMatchStatView {
 
     private MatchScoreInfoView<MatchesBean.MatchInfo> matchInfoMatchScoreInfoView;
     private MarqueTextView mMarqueTextView;
     private MatchDetailHeaderInfoBean matchDetailHeaderInfoBean;
+    private MatchPresenter mMatchPresenter;
 
     public static MatchDetailHerderFragment newInstance(String matchId) {
         MatchDetailHerderFragment matchDetailHerderFragment = new  MatchDetailHerderFragment();
@@ -43,7 +45,10 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
         matchInfoMatchScoreInfoView.mRootLayput.setBackgroundResource(R.color.colorCommonBackground);
         mMarqueTextView = view.findViewById(R.id.iv_match_summary);
 
-        new MatchPresenter(this).getMatchDetail(getArguments().getString("matchId"));
+        mMatchPresenter = new MatchPresenter(this, this);
+        final String matchId = getArguments().getString("matchId");
+        mMatchPresenter.getMatchDetail(matchId);
+        mMatchPresenter.getMatchStat(matchId);
 
         return view;
     }
@@ -68,5 +73,10 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
     @Override
     public void showMatchSummary(MatchSummary matchSummary) {
         mMarqueTextView.setText(matchDetailHeaderInfoBean.homeTeamName + ":" + matchSummary.getHomeMatchSummary() + " " + matchDetailHeaderInfoBean.awayTeamName + ":"  + matchSummary.getAwayMatchSummary());
+    }
+
+    @Override
+    public void getGoalPlayersInfo(GoalPlayers goalPlayers) {
+
     }
 }

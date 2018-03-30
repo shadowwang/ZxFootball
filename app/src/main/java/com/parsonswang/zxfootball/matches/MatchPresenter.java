@@ -20,6 +20,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
     private MatchContract.IMatchView matchView;
     private MatchContract.IMatchInfoView matchInfoView;
     private MatchContract.IMatchDetailView mIMatchDetailView;
+    private MatchContract.IMatchStatView mIMatchStatView;
     private MatchModel matchModel;
 
     public MatchPresenter(MatchContract.IMatchView matchView) {
@@ -32,8 +33,9 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
         matchModel = new MatchModel();
     }
 
-    public MatchPresenter(MatchContract.IMatchDetailView iMatchDetailView) {
+    public MatchPresenter(MatchContract.IMatchDetailView iMatchDetailView, MatchContract.IMatchStatView iMatchStatView) {
         this.mIMatchDetailView = iMatchDetailView;
+        this.mIMatchStatView = iMatchStatView;
         matchModel = new MatchModel();
     }
 
@@ -65,7 +67,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
 
     @Override
     public void getMatchStat(String matchId) {
-        matchModel.getMatchStatInfo(matchId, new MatchStatFetchDataCallback(mIMatchDetailView));
+        matchModel.getMatchStatInfo(matchId, new MatchStatFetchDataCallback(mIMatchStatView));
     }
 
     private void getHeaderTabTitle() {

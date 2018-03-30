@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.matches;
 
+import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
@@ -31,10 +32,21 @@ public class MatchContract {
     }
 
 
+    /**
+     *  比赛详情view
+     */
     public interface IMatchDetailView extends IBaseView{
         //展示比赛信息头部
         void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean);
         //展示比赛总结
         void showMatchSummary(MatchSummary matchSummary);
+    }
+
+    /**
+     * 比赛统计view
+     */
+    public interface IMatchStatView extends IBaseView {
+
+         void getGoalPlayersInfo(GoalPlayers goalPlayers);
     }
 }

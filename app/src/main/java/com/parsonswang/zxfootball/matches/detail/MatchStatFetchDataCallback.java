@@ -11,10 +11,10 @@ import okhttp3.Call;
 
 public class MatchStatFetchDataCallback extends HtmlCallback {
 
-    private MatchContract.IMatchDetailView matchDetailView;
+    private MatchContract.IMatchStatView mMatchStatView;
 
-    public MatchStatFetchDataCallback(MatchContract.IMatchDetailView matchDetailView) {
-        this.matchDetailView = matchDetailView;
+    public MatchStatFetchDataCallback(MatchContract.IMatchStatView matchStatView) {
+        this.mMatchStatView = matchStatView;
     }
 
     @Override
