@@ -1,6 +1,7 @@
 package com.parsonswang.common.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -23,7 +24,9 @@ public class JsonObjectMap {
     private Gson gson;
 
     private JsonObjectMap() {
-        gson = new Gson();
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
     }
 
     /**

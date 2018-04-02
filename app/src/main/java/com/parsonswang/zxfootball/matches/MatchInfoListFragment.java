@@ -188,7 +188,7 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
             mRefreshLayout.finishLoadmore();
         }
 
-        //fix:每月初赛事很少情况下做个补偿处理
+        //fix:每月初赛事很少情况下做个补偿处理,以免体验不好
         if (hasMatchedList.size() < 10) {
             mRollbackMonth ++;
             mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());

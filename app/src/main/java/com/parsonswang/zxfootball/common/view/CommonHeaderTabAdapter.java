@@ -1,10 +1,8 @@
 package com.parsonswang.zxfootball.common.view;
 
-import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.ViewGroup;
 
 import com.parsonswang.zxfootball.bean.HeaderTabTitle;

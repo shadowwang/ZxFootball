@@ -27,7 +27,7 @@
             <com.parsonswang.common.view.PagerSlidingTabStrip
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="30dip"
+                android:layout_height="40dip"
                 android:background="@color/colorCommonBackground"
                 app:pstsIndicatorColor="@color/colorPrimary"
                 app:pstsIndicatorHeight="2dp"

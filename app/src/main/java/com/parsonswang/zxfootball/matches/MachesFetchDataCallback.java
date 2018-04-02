@@ -2,7 +2,6 @@ package com.parsonswang.zxfootball.matches;
 
 import com.parsonswang.common.network.JsonCallback;
 import com.parsonswang.zxfootball.bean.MatchesBean;
-import com.parsonswang.zxfootball.matches.MatchContract;
 
 import okhttp3.Call;
 

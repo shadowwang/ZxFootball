@@ -1,22 +1,16 @@
 package com.parsonswang.zxfootball.matches.detail;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.view.PagerSlidingTabStrip;
 import com.parsonswang.zxfootball.R;
-import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
-import com.parsonswang.zxfootball.bean.MatchSummary;
-import com.parsonswang.zxfootball.matches.MatchContract;
-import com.parsonswang.zxfootball.matches.MatchPresenter;
 
 /**
  * Created by wangchun on 2017/12/23.

@@ -470,6 +470,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
+    private Paint roundRecPaint = new Paint();
+
     @SuppressLint("NewApi")
     @Override
     protected void onDraw(Canvas canvas) {
@@ -517,7 +519,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         //canvas.drawRect(lineLeft+tabPadding, height - indicatorHeight, lineRight-tabPadding, height, rectPaint);
 
         //画圆角矩形
-        Paint roundRecPaint = new Paint();
+
         roundRecPaint.setColor(indicatorColor);
 
         int paddingLeft, paddingRight;

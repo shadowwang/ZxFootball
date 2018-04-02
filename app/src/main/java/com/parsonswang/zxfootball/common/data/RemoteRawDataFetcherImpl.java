@@ -3,7 +3,6 @@ package com.parsonswang.zxfootball.common.data;
 import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.common.network.HttpGetBuilder;
-import com.parsonswang.common.network.JsonCallback;
 import com.parsonswang.common.network.OkHttpUtil;
 
 import java.util.Map;
