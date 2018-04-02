@@ -176,12 +176,7 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
             }
         });
 
-//        Collections.sort(noMatchedList, new Comparator<MatchesBean.MatchInfo>() {
-//            @Override
-//            public int compare(MatchesBean.MatchInfo matchInfo1, MatchesBean.MatchInfo matchInfo2) {
-//                return DateUtils.compareDate(matchInfo2.getMatchDate(), matchInfo1.getMatchDate());
-//            }
-//        });
+
 
         matchInfos.clear();
         matchInfos.addAll(hasMatchedList);
@@ -191,6 +186,12 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
             mRefreshLayout.finishRefresh();
         } else {
             mRefreshLayout.finishLoadmore();
+        }
+
+        //fix:每月初赛事很少情况下做个补偿处理
+        if (hasMatchedList.size() < 10) {
+            mRollbackMonth ++;
+            mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
         }
     }
 
