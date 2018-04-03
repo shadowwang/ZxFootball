@@ -8,4 +8,12 @@ package com.parsonswang.zxfootball.bean;
 public class GoalPlayers {
     public String homeGoalPlayers;
     public String awayGoalPlayers;
+
+    @Override
+    public String toString() {
+        return "GoalPlayers{" +
+                "homeGoalPlayers='" + homeGoalPlayers + '\'' +
+                ", awayGoalPlayers='" + awayGoalPlayers + '\'' +
+                '}';
+    }
 }

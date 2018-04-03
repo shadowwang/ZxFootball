@@ -77,6 +77,7 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
 
     @Override
     public void getGoalPlayersInfo(GoalPlayers goalPlayers) {
-
+        matchInfoMatchScoreInfoView.setHomeTeamGoalInfo(goalPlayers.homeGoalPlayers);
+        matchInfoMatchScoreInfoView.setAwayTeamGoalInfo(goalPlayers.awayGoalPlayers);
     }
 }

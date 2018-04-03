@@ -30,4 +30,11 @@ public class Constant {
 
         public static final int IMAGE_SIZE_ORIGNAL = 100;
     }
+
+    public static class MatchTimelineEventType {
+        public static final int EVENTTYPE_GOAL= 0;
+        public static final int EVENTTYPE_ASSIST= 1;
+        public static final int EVENTTYPE_SUBSTITUTES_DOWN = 11;
+        public static final int EVENTTYPE_SUBSTITUTES_UP = 12;
+    }
 }

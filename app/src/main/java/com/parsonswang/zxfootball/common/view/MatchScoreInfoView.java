@@ -100,4 +100,12 @@ public class MatchScoreInfoView<T> extends FrameLayout {
         params.rightMargin = UIUtils.dip2px(mContext, rightDp);
         mRootLayput.setLayoutParams(params);
     }
+
+    public void setHomeTeamGoalInfo(String homeTeamGoalInfo) {
+        mHomeTeam.setGoalPlayers(homeTeamGoalInfo);
+    }
+
+    public void setAwayTeamGoalInfo(String awayTeamGoalInfo) {
+        mAwayTeam.setGoalPlayers(awayTeamGoalInfo);
+    }
 }

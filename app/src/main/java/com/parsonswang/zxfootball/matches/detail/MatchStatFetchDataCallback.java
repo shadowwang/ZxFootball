@@ -6,7 +6,9 @@ import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.common.utils.JsonObjectMap;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
+import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
+import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.matches.MatchContract;
 
 import org.jsoup.Jsoup;
@@ -37,10 +39,9 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
     protected void onSuccess(String s) {
         Document document = Jsoup.parse(s);
 
-        final List<MatchTimelines> matchTimelines = getMatchTimelines(document);
-        Timber.d(matchTimelines.toString());
+        final MatchStatBean matchStatBean = getMatchTimelines(document);
 
-        final GoalPlayers goalPlayers = getGoalPlayers(document);
+        final GoalPlayers goalPlayers = getGoalPlayers(matchStatBean);
         mMatchStatView.getGoalPlayersInfo(goalPlayers);
     }
 
@@ -49,8 +50,8 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
 
     }
 
-    private List<MatchTimelines> getMatchTimelines(Document document) {
-        List<MatchTimelines> matchTimelinesList = new ArrayList<>();
+    private MatchStatBean getMatchTimelines(Document document) {
+        MatchStatBean matchStatBean = new MatchStatBean();
 
         Elements jsValElements = document.getElementsByTag("script").eq(16);
 
@@ -58,20 +59,63 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
             //var表达式：var keyName = values;
             final String[] jsVarExps = element.data().split("var");
             final Map<String, String> kvMap = StringUtils.kvToKeyString(jsVarExps, "=");
-            final String timelinsJsonArrayStr = kvMap.get("timelines");
+
+            //==========time lines===========================
+            String timelinsJsonArrayStr = kvMap.get("timelines");
             if (!StringUtils.isEmptyString(timelinsJsonArrayStr)) {
-                matchTimelinesList = JsonObjectMap.getInstance().fromJson(timelinsJsonArrayStr,  new TypeToken<List<MatchTimelines>>(){}.getType());
-                break;
+                if (timelinsJsonArrayStr.lastIndexOf(";") != -1) {
+                    timelinsJsonArrayStr = timelinsJsonArrayStr.substring(0, timelinsJsonArrayStr.length() - 1);
+                }
+                matchStatBean.matchTimelinesList = JsonObjectMap.getInstance().fromJson(timelinsJsonArrayStr,  new TypeToken<List<MatchTimelines>>(){}.getType());
+            }
+
+            //==========主队id===========================
+            String homeTeamId = kvMap.get("homeTeamId");
+            if (!StringUtils.isEmptyString(homeTeamId)) {
+                if (homeTeamId.startsWith("'") && homeTeamId.endsWith("';")) {
+                    homeTeamId = homeTeamId.substring(1, homeTeamId.length() - 2);
+                    matchStatBean.homeTeamId = homeTeamId;
+                }
+            }
+
+            //==========客队id===========================
+            String awayTeamId = kvMap.get("awayTeamId");
+            if (!StringUtils.isEmptyString(awayTeamId)) {
+                if (awayTeamId.startsWith("'") && awayTeamId.endsWith("';")) {
+                    awayTeamId = awayTeamId.substring(1, awayTeamId.length() - 2);
+                    matchStatBean.awayTeamId = awayTeamId;
+                }
             }
         }
 
-        return matchTimelinesList;
+        return matchStatBean;
     }
 
-    private GoalPlayers getGoalPlayers(Document document) {
+    private GoalPlayers getGoalPlayers(MatchStatBean matchStatBean) {
         GoalPlayers goalPlayers = new GoalPlayers();
 
+        final String homeTeamId = matchStatBean.homeTeamId;
+        final String awayTeamId = matchStatBean.awayTeamId;
 
+        StringBuilder homeTeamGoalPlayers = new StringBuilder();
+        StringBuilder awayTeamGoalPlayers = new StringBuilder();
+
+        for (MatchTimelines matchTimeline : matchStatBean.matchTimelinesList) {
+            if (matchTimeline.teamId.equals(homeTeamId)
+                    && matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL) {
+
+                homeTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
+            }
+
+            if (matchTimeline.teamId.equals(awayTeamId)
+                    && matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL) {
+
+                awayTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
+            }
+        }
+
+        goalPlayers.homeGoalPlayers = homeTeamGoalPlayers.toString();
+        goalPlayers.awayGoalPlayers = awayTeamGoalPlayers.toString();
 
         return goalPlayers;
     }

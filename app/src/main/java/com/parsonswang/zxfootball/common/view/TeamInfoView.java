@@ -21,7 +21,7 @@ import com.parsonswang.zxfootball.common.Constant;
 public class TeamInfoView extends FrameLayout {
 
     public ImageView mIvTeam;
-    public TextView mTvTeam;
+    public TextView mTvTeam, mTvGoalPlayers;
     public Context mContext;
 
     public TeamInfoView(@NonNull Context context) {
@@ -40,6 +40,7 @@ public class TeamInfoView extends FrameLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.common_team_info_view, null, false);
         mIvTeam = view.findViewById(R.id.mIvHomeTeam);
         mTvTeam = view.findViewById(R.id.mTvHomeTeam);
+        mTvGoalPlayers = view.findViewById(R.id.mTvGoalPlayers);
 
         addView(view);
     }
@@ -48,5 +49,10 @@ public class TeamInfoView extends FrameLayout {
         String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + teamId + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
         Imageloaders.loadImage(mContext, url, mIvTeam, 0);
         mTvTeam.setText(teamName);
+    }
+
+    public void setGoalPlayers(String goalPlayers) {
+        mTvGoalPlayers.setVisibility(VISIBLE);
+        mTvGoalPlayers.setText(goalPlayers);
     }
 }
