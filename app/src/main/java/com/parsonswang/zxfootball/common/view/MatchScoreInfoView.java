@@ -102,10 +102,10 @@ public class MatchScoreInfoView<T> extends FrameLayout {
     }
 
     public void setHomeTeamGoalInfo(String homeTeamGoalInfo) {
-        mHomeTeam.setGoalPlayers(homeTeamGoalInfo);
+        mHomeTeam.setHomeTeamGoalInfo(homeTeamGoalInfo);
     }
 
     public void setAwayTeamGoalInfo(String awayTeamGoalInfo) {
-        mAwayTeam.setGoalPlayers(awayTeamGoalInfo);
+        mAwayTeam.setAwayTeamGoalInfo(awayTeamGoalInfo);
     }
 }
