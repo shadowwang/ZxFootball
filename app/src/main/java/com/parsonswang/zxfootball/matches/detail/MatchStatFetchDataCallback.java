@@ -102,13 +102,15 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
 
         for (MatchTimelines matchTimeline : matchStatBean.matchTimelinesList) {
             if (matchTimeline.teamId.equals(homeTeamId)
-                    && matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL) {
+                    && (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN)) {
 
                 homeTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
             }
 
             if (matchTimeline.teamId.equals(awayTeamId)
-                    && matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL) {
+                    && (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN)) {
 
                 awayTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
             }

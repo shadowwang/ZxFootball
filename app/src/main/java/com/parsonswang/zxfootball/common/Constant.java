@@ -34,6 +34,7 @@ public class Constant {
     public static class MatchTimelineEventType {
         public static final int EVENTTYPE_GOAL= 0;
         public static final int EVENTTYPE_ASSIST= 1;
+        public static final int EVENTTYPE_GOAL_DIAN= 4;
         public static final int EVENTTYPE_SUBSTITUTES_DOWN = 11;
         public static final int EVENTTYPE_SUBSTITUTES_UP = 12;
     }
