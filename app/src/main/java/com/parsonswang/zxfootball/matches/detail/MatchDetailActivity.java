@@ -29,8 +29,9 @@ public class MatchDetailActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_detail);
         mViewPager = findViewById(R.id.vp_detail);
