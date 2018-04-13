@@ -41,6 +41,22 @@ public class MatchDetailActivity extends BaseActivity {
 
         mMatchDetailPageAdapter = new MatchDetailPageAdapter(fragmentManager);
         mViewPager.setAdapter(mMatchDetailPageAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                swipeLayoutHelper.getSwipeBackLayout().setEnable(position == 0);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mTabs.setViewPager(mViewPager);
         mTabs.setSelectedTextColor(getResources().getColor(R.color.colorPrimary));
 

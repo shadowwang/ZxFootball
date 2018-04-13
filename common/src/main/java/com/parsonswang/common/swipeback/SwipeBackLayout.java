@@ -3,6 +3,9 @@ package com.parsonswang.common.swipeback;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -13,12 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.parsonswang.common.R;
+
 public class SwipeBackLayout extends FrameLayout {
 
     private ViewDragHelper mViewDragHelper;
     private View mContentView;
     private int mLeftMoveDistance;
     private boolean mIsClose;
+    private Drawable mShadowDrawable;
+
+    private static final int DEFAULT_SCRIM_COLOR = 0x99000000;
+    private int mScrimColor = DEFAULT_SCRIM_COLOR;
 
     public SwipeBackLayout(@NonNull Context context) {
         super(context);
@@ -39,6 +48,9 @@ public class SwipeBackLayout extends FrameLayout {
 
             @Override
             public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+                mScrollPercent = Math.abs((float) left
+                        / (mContentView.getWidth() + mShadowDrawable.getIntrinsicWidth()));
+
                 SwipeBackLayout.this.mLeftMoveDistance = left;
                 if (mIsClose && mLeftMoveDistance == mContentWidth && mCallback != null) {
                     mCallback.onSwipeFinish();
@@ -86,6 +98,8 @@ public class SwipeBackLayout extends FrameLayout {
 
         //右滑，左边
         mViewDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
+
+        mShadowDrawable = getResources().getDrawable(R.drawable.shadow_left);
     }
 
     private int mContentWidth;
@@ -102,10 +116,14 @@ public class SwipeBackLayout extends FrameLayout {
         this.mEnable = enable;
     }
 
+    private float mScrimOpacity;
+    private float mScrollPercent;
 
     @Override
     public void computeScroll() {
         super.computeScroll();
+
+        mScrimOpacity = 1 - mScrollPercent;
 
         if (mViewDragHelper != null && mViewDragHelper.continueSettling(true)) {
             ViewCompat.postInvalidateOnAnimation(this);
@@ -139,12 +157,54 @@ public class SwipeBackLayout extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!mEnable) {
+            return false;
+        }
+
         if (mViewDragHelper != null) {
             mViewDragHelper.processTouchEvent(event);
-            invalidate();
+            ViewCompat.postInvalidateOnAnimation(this);
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
+        boolean ret = super.drawChild(canvas, child, drawingTime);
+
+        if (child == mContentView && mViewDragHelper.getViewDragState() != ViewDragHelper.STATE_IDLE) {
+            drawShadow(canvas, child);
+            drawScrim(canvas, child);
+        }
+
+        return ret;
+    }
+
+    /**
+     * 滑动后子view左边的阴影
+     * @param canvas
+     * @param child
+     */
+    private void drawShadow(Canvas canvas, View child) {
+        final Rect drawRect = new Rect();
+        child.getHitRect(drawRect);
+        mShadowDrawable.setBounds(drawRect.left - mShadowDrawable.getIntrinsicWidth(),
+                drawRect.top, drawRect.left, drawRect.bottom);
+        mShadowDrawable.draw(canvas);
+    }
+
+    /**
+     * 绘制剩余的透明度
+     * @param canvas
+     * @param child
+     */
+    private void drawScrim(Canvas canvas, View child) {
+        final int baseAlpha = (mScrimColor & 0xff000000) >>> 24;
+        final int alpha = (int) (baseAlpha * mScrimOpacity);
+        final int color = alpha << 24 | (mScrimColor & 0xffffff);
+        canvas.clipRect(0, 0, child.getLeft(), getHeight());
+        canvas.drawColor(color);
     }
 
     private Callback mCallback;
