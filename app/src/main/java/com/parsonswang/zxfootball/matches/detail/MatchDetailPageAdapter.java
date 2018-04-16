@@ -26,7 +26,7 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MatchProcessFragment();
+                return new MatchTimeLineFragment();
             case 1:
                 return new MatchLineupFragment();
             case 2:

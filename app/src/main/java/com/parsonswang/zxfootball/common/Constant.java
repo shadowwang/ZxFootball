@@ -38,8 +38,8 @@ public class Constant {
         public static final int EVENTTYPE_YELLOW_CARD = 7;
         public static final int EVENTTYPE_2YELLOW_TO_RED = 9;//两黄被罚下
         public static final int EVENTTYPE_TO_RED = 10;//红牌直接被罚下
-        public static final int EVENTTYPE_SUBSTITUTES_DOWN = 11;
-        public static final int EVENTTYPE_SUBSTITUTES_UP = 12;
+        public static final int EVENTTYPE_SUBSTITUTES_DOWN = 11;//被换下
+        public static final int EVENTTYPE_SUBSTITUTES_UP = 12;//被换上
         public static final int EVENTTYPE_DEADLINESS = 16;//致命失误导致失球
     }
 }
