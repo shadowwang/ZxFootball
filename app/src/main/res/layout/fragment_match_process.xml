@@ -2,7 +2,83 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
     >
+
+    <LinearLayout
+        android:id="@+id/mTimelineFirstLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="14.4dp"
+        android:paddingRight="14.4dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="助攻"
+            android:drawableLeft="@drawable/ic_assist"
+            />
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="进球"
+            android:drawableLeft="@drawable/ic_goal"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="点球"
+            android:drawableLeft="@drawable/ic_goal_dian"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="乌龙球"
+            android:drawableLeft="@drawable/ic_goal_own"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="两黄变红"
+            android:drawableLeft="@drawable/ic_2yellow_red"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="点球不进"
+            android:drawableLeft="@drawable/ic_dian_not_goal"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="替换下场"
+            android:drawableLeft="@drawable/ic_player_down"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            style="@style/MatchTimelineItemExplnation"
+            android:text="替补上场"
+            android:drawableLeft="@drawable/ic_player_up"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="14.4dp"
+        android:paddingRight="14.4dp"
+        android:layout_below="@id/mTimelineFirstLine"
+        >
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mMatchTimelines"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        />
 
 </RelativeLayout>

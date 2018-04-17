@@ -2,7 +2,6 @@ package com.parsonswang.zxfootball.matches.detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.util.SparseArrayCompat;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.parsonswang.common.base.BaseLazyLoadFragment;
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.common.Constant;
 
 /**
@@ -19,6 +19,7 @@ import com.parsonswang.zxfootball.common.Constant;
 
 public class MatchTimeLineFragment extends BaseLazyLoadFragment {
 
+    private static final String BUNDKE_KEY_MATCHSTAT = "match_stat";
     private SparseIntArray mTimeLineEventResMap = new SparseIntArray();
 
     @Override
@@ -33,8 +34,11 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment {
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_SUBSTITUTES_UP, R.drawable.ic_player_up);
     }
 
-    public static MatchTimeLineFragment newInstance() {
+    public static MatchTimeLineFragment newInstance(MatchStatBean matchStatBean) {
         MatchTimeLineFragment matchTimeLineFragment = new MatchTimeLineFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(BUNDKE_KEY_MATCHSTAT, matchStatBean);
+        matchTimeLineFragment.setArguments(bundle);
         return matchTimeLineFragment;
     }
 
