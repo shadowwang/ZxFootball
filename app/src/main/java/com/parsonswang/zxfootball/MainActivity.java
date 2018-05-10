@@ -127,8 +127,6 @@ public class MainActivity extends BaseActivity {
 
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
 
-        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground));
-
         OkHttpUtil.get().url("http://www.tzuqiu.cc/matches/queryFixture.json")
                 .addParams("comeptitionId", "3")
                 .addParams("date", "2017.9.1+至+2017.10.31")

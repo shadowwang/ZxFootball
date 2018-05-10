@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.view.Window;
 
+import com.parsonswang.common.R;
 import com.parsonswang.common.swipeback.SwipeLayoutHelper;
+import com.parsonswang.common.utils.BarUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -34,6 +36,8 @@ public class BaseActivity extends AppCompatActivity {
 
         swipeLayoutHelper = new SwipeLayoutHelper(new WeakReference<Activity>(this));
         swipeLayoutHelper.onActivityCreated();
+
+        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.colorCommonBackground));
     }
 
     @Override
