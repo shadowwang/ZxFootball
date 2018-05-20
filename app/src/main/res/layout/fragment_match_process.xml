@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:paddingLeft="14.4dp"
         android:paddingRight="14.4dp"
-        android:gravity="center_horizontal"
+        android:weightSum="4"
         android:layout_marginTop="20dp"
         >
         <TextView
@@ -38,6 +38,19 @@
             android:layout_marginLeft="5dp"
             />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="14.4dp"
+        android:paddingRight="14.4dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:weightSum="4"
+        android:layout_below="@id/mTimelineFirstLine"
+        >
         <TextView
             style="@style/MatchTimelineItemExplnation"
             android:text="两黄变红"
@@ -62,17 +75,6 @@
             android:text="替补上场"
             android:drawableLeft="@drawable/ic_player_up"
             />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="14.4dp"
-        android:paddingRight="14.4dp"
-        android:layout_below="@id/mTimelineFirstLine"
-        >
-
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mMatchTimelines"
