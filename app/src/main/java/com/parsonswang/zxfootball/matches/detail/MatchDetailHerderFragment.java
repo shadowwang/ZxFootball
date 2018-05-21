@@ -12,6 +12,7 @@ import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
+import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.bean.MatchSummary;
 import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.view.MatchScoreInfoView;
@@ -80,4 +81,7 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
         matchInfoMatchScoreInfoView.setHomeTeamGoalInfo(goalPlayers.homeGoalPlayers);
         matchInfoMatchScoreInfoView.setAwayTeamGoalInfo(goalPlayers.awayGoalPlayers);
     }
+
+    @Override
+    public void getMatchTimelineInfo(MatchStatBean matchStatBean) {}
 }

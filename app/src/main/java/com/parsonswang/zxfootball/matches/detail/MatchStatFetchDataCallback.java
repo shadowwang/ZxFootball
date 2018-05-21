@@ -40,6 +40,7 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
         Document document = Jsoup.parse(s);
 
         final MatchStatBean matchStatBean = getMatchTimelines(document);
+        mMatchStatView.getMatchTimelineInfo(matchStatBean);
 
         final GoalPlayers goalPlayers = getGoalPlayers(matchStatBean);
         mMatchStatView.getGoalPlayersInfo(goalPlayers);

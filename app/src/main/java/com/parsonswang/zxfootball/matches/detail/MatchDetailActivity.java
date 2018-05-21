@@ -65,6 +65,9 @@ public class MatchDetailActivity extends BaseActivity {
             final String matchId = getIntent().getStringExtra("matchId");
             if (!StringUtils.isEmptyString(matchId)) {
                 mMatchDetailHerderFragment = MatchDetailHerderFragment.newInstance(matchId);
+                if (mMatchDetailPageAdapter != null) {
+                    mMatchDetailPageAdapter.setMathcId(matchId);
+                }
             }
 
             if (mMatchDetailHerderFragment != null) {

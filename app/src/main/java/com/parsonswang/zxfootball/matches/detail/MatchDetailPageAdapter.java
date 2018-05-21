@@ -11,6 +11,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
 
     private String[] mTitles;
+    private String mMatchId;
+
+    public void setMathcId(String matchId) {
+        this.mMatchId = matchId;
+        notifyDataSetChanged();
+    }
 
     public MatchDetailPageAdapter(FragmentManager fm) {
         super(fm);
@@ -26,7 +32,7 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MatchTimeLineFragment();
+                return MatchTimeLineFragment.newInstance(mMatchId);
             case 1:
                 return new MatchLineupFragment();
             case 2:

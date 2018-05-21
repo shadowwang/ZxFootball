@@ -39,6 +39,10 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
         matchModel = new MatchModel();
     }
 
+    public MatchPresenter(MatchContract.IMatchStatView iMatchStatView) {
+        this.mIMatchStatView = iMatchStatView;
+    }
+
     @Override
     protected void start() {
         getHeaderTabTitle();
