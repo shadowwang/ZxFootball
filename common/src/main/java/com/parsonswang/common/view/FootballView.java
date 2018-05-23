@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.parsonswang.common.R;
 
+import timber.log.Timber;
+
 /**
  * 自绘足球场view
  */
@@ -44,11 +46,20 @@ public class FootballView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //正规球场长度是宽度的1.6倍
-        //如果高度设置的是Match_Parent
-        if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
-            final int currentWidth = MeasureSpec.getSize(widthMeasureSpec);
-            mHeight = (int) (currentWidth * 1.6);
-            setMeasuredDimension(currentWidth, mHeight);
+        //如果高度为match_parent或wrap_content
+        if (mDirection == DIRECTION_VER) {
+            if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED) {
+                final int currentWidth = MeasureSpec.getSize(widthMeasureSpec);
+                mHeight = (int) (currentWidth * 1.6);
+                setMeasuredDimension(currentWidth, mHeight);
+            }
+        } else if (mDirection == DIRECTION_HOR) {
+            //如果高度为match_parent或wrap_content
+            if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED) {
+                final int currentWidth = MeasureSpec.getSize(widthMeasureSpec);
+                mHeight = (int) (currentWidth / 1.6);
+                setMeasuredDimension(currentWidth, mHeight);
+            }
         }
     }
 
@@ -67,7 +78,7 @@ public class FootballView extends View {
      * @param canvas
      */
     private void drawVec(Canvas canvas) {
-
+        Timber.i("垂直布局");
     }
 
     /**
@@ -75,6 +86,6 @@ public class FootballView extends View {
      * @param canvas
      */
     private void drawHor(Canvas canvas) {
-
+        Timber.i("水平布局");
     }
 }

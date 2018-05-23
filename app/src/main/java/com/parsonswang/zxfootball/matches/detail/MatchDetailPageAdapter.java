@@ -21,8 +21,7 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
     public MatchDetailPageAdapter(FragmentManager fm) {
         super(fm);
         this.mTitles = new String[]{
-                "比赛进程",
-                "比赛阵容",
+                "比赛信息",
                 "球员数据",
                 "比赛统计"
         };
@@ -34,10 +33,8 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return MatchTimeLineFragment.newInstance(mMatchId);
             case 1:
-                return new MatchLineupFragment();
-            case 2:
                 return new MatchPlayerStatFragment();
-            case 3:
+            case 2:
                 return new MatchStatFragment();
         }
         return null;
