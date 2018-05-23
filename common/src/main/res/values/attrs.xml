@@ -14,6 +14,9 @@
         <attr name="pstsShouldExpand" format="boolean"/>
         <attr name="pstsTextAllCaps" format="boolean"/>
         <attr name="pstsTextColor" format="color"/>
+    </declare-styleable>
 
+    <declare-styleable name="FootballView">
+        <attr name="fbvDirection" format="integer" />
     </declare-styleable>
 </resources>

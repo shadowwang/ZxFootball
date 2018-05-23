@@ -87,6 +87,11 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
                     matchStatBean.awayTeamId = awayTeamId;
                 }
             }
+
+            //==========主队阵型===========================
+
+
+            //==========客队阵型===========================
         }
 
         return matchStatBean;
@@ -104,16 +109,24 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
         for (MatchTimelines matchTimeline : matchStatBean.matchTimelinesList) {
             if (matchTimeline.teamId.equals(homeTeamId)
                     && (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL
-                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN)) {
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN)
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_WULONG_GOAL) {
 
-                homeTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
-            }
-
-            if (matchTimeline.teamId.equals(awayTeamId)
+                homeTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName);
+                if (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_WULONG_GOAL) {
+                    homeTeamGoalPlayers.append("(乌龙)");
+                }
+                homeTeamGoalPlayers.append("\r\n");
+            } else if (matchTimeline.teamId.equals(awayTeamId)
                     && (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL
-                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN)) {
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN
+                    || matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_WULONG_GOAL)) {
 
-                awayTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName).append("\r\n");
+                awayTeamGoalPlayers.append("(" + matchTimeline.minute + "')" + matchTimeline.playerName);
+                if (matchTimeline.eventType == Constant.MatchTimelineEventType.EVENTTYPE_WULONG_GOAL) {
+                    awayTeamGoalPlayers.append("(乌龙)");
+                }
+                awayTeamGoalPlayers.append("\r\n");
             }
         }
 
