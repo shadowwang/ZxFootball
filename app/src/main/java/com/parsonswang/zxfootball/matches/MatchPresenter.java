@@ -41,6 +41,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
 
     public MatchPresenter(MatchContract.IMatchStatView iMatchStatView) {
         this.mIMatchStatView = iMatchStatView;
+        matchModel = new MatchModel();
     }
 
     @Override

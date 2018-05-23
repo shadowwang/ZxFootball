@@ -19,6 +19,8 @@ public class FootballView extends View {
 
     private int mDirection;//球场方向(水平or垂直)
 
+    private int mHeight;
+
     public void setDirection(int direction) {
         this.mDirection = direction;
         requestLayout();
@@ -45,8 +47,8 @@ public class FootballView extends View {
         //如果高度设置的是Match_Parent
         if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.EXACTLY) {
             final int currentWidth = MeasureSpec.getSize(widthMeasureSpec);
-            int height = (int) (currentWidth * 1.6);
-            setMeasuredDimension(currentWidth, height);
+            mHeight = (int) (currentWidth * 1.6);
+            setMeasuredDimension(currentWidth, mHeight);
         }
     }
 
@@ -60,10 +62,18 @@ public class FootballView extends View {
         }
     }
 
+    /**
+     * 垂直布局
+     * @param canvas
+     */
     private void drawVec(Canvas canvas) {
 
     }
 
+    /**
+     * 水平布局
+     * @param canvas
+     */
     private void drawHor(Canvas canvas) {
 
     }

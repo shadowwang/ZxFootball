@@ -1,7 +1,6 @@
 package com.parsonswang.zxfootball.matches.detail;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +38,10 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_TO_RED, R.drawable.ic_red_card);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_SUBSTITUTES_DOWN, R.drawable.ic_player_down);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_SUBSTITUTES_UP, R.drawable.ic_player_up);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_STEAL, R.drawable.ic_steal);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_SAVE, R.drawable.ic_save);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN_NOT, R.drawable.ic_dian_not_goal);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN_SAVE, R.drawable.ic_dian_save);
 
         if (matchPresenter != null) {
             matchPresenter.getMatchStat(getArguments().getString(BUNDKE_KEY_MATCHSTAT));
@@ -53,9 +56,8 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         return matchTimeLineFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match_process, container, false);
         matchPresenter = new MatchPresenter(this);
         return view;
@@ -63,9 +65,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
 
     @Override
-    public void getGoalPlayersInfo(GoalPlayers goalPlayers) {
-
-    }
+    public void getGoalPlayersInfo(GoalPlayers goalPlayers) {}
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
@@ -73,7 +73,5 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     }
 
     @Override
-    public void showExceptionView() {
-
-    }
+    public void showExceptionView() {}
 }

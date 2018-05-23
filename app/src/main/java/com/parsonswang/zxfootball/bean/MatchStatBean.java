@@ -13,11 +13,31 @@ public class MatchStatBean implements Parcelable{
 
     public String awayTeamId;
 
+    public String homeTeamFormation;//主队阵形
+
+    public String awayTeamFormation;//客队阵形
+
     public MatchStatBean() {}
+
 
     protected MatchStatBean(Parcel in) {
         homeTeamId = in.readString();
         awayTeamId = in.readString();
+        homeTeamFormation = in.readString();
+        awayTeamFormation = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(homeTeamId);
+        dest.writeString(awayTeamId);
+        dest.writeString(homeTeamFormation);
+        dest.writeString(awayTeamFormation);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<MatchStatBean> CREATOR = new Creator<MatchStatBean>() {
@@ -38,17 +58,8 @@ public class MatchStatBean implements Parcelable{
                 "matchTimelinesList=" + matchTimelinesList +
                 ", homeTeamId='" + homeTeamId + '\'' +
                 ", awayTeamId='" + awayTeamId + '\'' +
+                ", homeTeamFormation='" + homeTeamFormation + '\'' +
+                ", awayTeamFormation='" + awayTeamFormation + '\'' +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(homeTeamId);
-        dest.writeString(awayTeamId);
     }
 }

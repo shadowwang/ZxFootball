@@ -24,7 +24,7 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
                 "比赛进程",
                 "比赛阵容",
                 "球员数据",
-                "数据统计"
+                "比赛统计"
         };
     }
 
