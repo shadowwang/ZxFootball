@@ -114,6 +114,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="14.4dp"
+            android:layout_marginBottom="14.4dp"
             app:fbvDirection="0"
             android:background="@color/colorBottomItemTextSelectedColor" />
 
