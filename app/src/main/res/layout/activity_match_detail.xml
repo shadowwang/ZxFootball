@@ -22,7 +22,7 @@
                 android:id="@+id/fl_matchinfo_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 />
 
             <com.parsonswang.common.view.PagerSlidingTabStrip

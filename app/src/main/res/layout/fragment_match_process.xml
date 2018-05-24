@@ -5,116 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    android:fillViewport="true"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/mTimelineFirstLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14.4dp"
-            android:orientation="horizontal"
-            android:paddingLeft="14.4dp"
-            android:paddingRight="14.4dp"
-            android:weightSum="4">
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_assist"
-                android:text="送出助攻" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_goal"
-                android:text="普通进球" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_2yellow_red"
-                android:text="两黄变红" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_yellow_card"
-                android:text="吃到黄牌" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/mTimelineFirstLine"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:paddingLeft="14.4dp"
-            android:paddingRight="14.4dp"
-            android:weightSum="4">
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_goal_dian"
-                android:text="点球进球" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_goal_own"
-                android:text="乌龙进球" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_player_down"
-                android:text="替换下场" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_player_up"
-                android:text="替补上场" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:paddingLeft="14.4dp"
-            android:paddingRight="14.4dp"
-            android:weightSum="4">
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_steal"
-                android:text="关键抢断" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_save"
-                android:text="门线救险" />
-
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_dian_not_goal"
-                android:text="点球不进" />
-            <TextView
-                style="@style/MatchTimelineItemExplnation"
-                android:drawableLeft="@drawable/ic_dian_save"
-                android:text="扑出点球" />
-
-
-        </LinearLayout>
-
+        android:orientation="vertical"
+        android:paddingBottom="14.4dp"
+        >
         <com.parsonswang.common.view.FootballView
             android:id="@+id/mMatchTimelines"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="14.4dp"
-            android:layout_marginBottom="14.4dp"
+            android:layout_marginBottom="5dp"
             app:fbvDirection="0"
             android:background="@color/colorBottomItemTextSelectedColor" />
 
