@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.parsonswang.common.R;
 import com.parsonswang.common.utils.UIUtils;
@@ -32,25 +30,46 @@ public class FootballView extends View {
     private static final float FRAME_RESTRICT_LEFT_RATIO = 0.17F;//垂直方向禁区左侧边距与球场宽度比
     private static final float FRAME_RESTRICT_WIDTH_RATIO = 0.66F;//垂直方向禁区宽度边距与球场宽度比
 
+    private static final float SMALL_RESTRICT_WITH_RESTRICT_WIDTH_RATIO = 0.45F;//大禁区与小禁区的宽度比
+    private static final float SMALL_RESTRICT_HEIGHT_RESTRICT_HEIGHT_RATIO = 0.34F;//大禁区与小禁区的宽度比
+    private static final float DIANPOINT_RESTRICT_HEIGHT_RATIO = 0.68F;//点球距离球门线与大禁区高度比
+    private static final float MIDDLECIRCLE_FRAME_WIDTH_RATIO = 0.27F;//中圈半径与球场宽度比例
+
     //================垂直方向上上面的禁区参数=================
     private int mTopRestrictBottom;//禁区高度
     private int mTopRestrictRight;//禁区宽度+禁区左侧距离
     private int mTopRestrictLeft;//禁区左侧距离
-    private int mTopRestrictTop;//进去顶部距离
+    private int mTopRestrictTop;//禁区顶部距离
 
     private int mBottomRestrictBottom;//禁区高度
-    private int mBottomtrictRight;//禁区宽度
+    private int mBottomRestrictRight;//禁区宽度
     private int mBottomRestrictLeft;//禁区左侧距离
-    private int mBottomRestrictTop;//进去顶部距离
+    private int mBottomRestrictTop;//禁区顶部距离
+
+    private int mTopSmallRestrictBottom;//小禁区高度
+    private int mTopSmallRestrictRight;//小禁区宽度+禁区左侧距离
+    private int mTopSmallRestrictLeft;//小禁区左侧距离
+    private int mTopSmallRestrictTop;//小禁区顶部距离
+
+    private int mBottomSmallRestrictBottom;//小禁区高度
+    private int mBottomSmallRestrictRight;//小禁区宽度+禁区左侧距离
+    private int mBottomSmallRestrictLeft;//小禁区左侧距离
+    private int mBottomSmallRestrictTop;//小禁区顶部距离
 
     private Paint mFramePaint;//用于绘制整个球场边界
+    private Paint mDotPaint;//画点的画笔
 
-    private void initFramePaint(Context context) {
+    private void initPaint(Context context) {
         mFramePaint = new Paint();
         mFramePaint.setColor(context.getResources().getColor(android.R.color.white));
         mFramePaint.setStyle(Paint.Style.STROKE);
         mFramePaint.setStrokeWidth(UIUtils.dip2px(context, 2));
         mFramePaint.setAntiAlias(true);
+
+        mDotPaint = new Paint();
+        mDotPaint.setColor(context.getResources().getColor(android.R.color.white));
+        mDotPaint.setStyle(Paint.Style.FILL);
+        mDotPaint.setAntiAlias(true);
     }
 
     public void setDirection(int direction) {
@@ -71,7 +90,7 @@ public class FootballView extends View {
 
         ta.recycle();
 
-        initFramePaint(context);
+        initPaint(context);
     }
 
     @Override
@@ -79,7 +98,6 @@ public class FootballView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //正规球场长度是宽度的1.6倍
         //如果高度没有明确指定(在ScrollView里子view为match-parent或wrap_content，其mode都表示未指定（UNSPECIFIED）)
-
         if (mDirection == DIRECTION_VER) {
             if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
                 mWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -106,28 +124,116 @@ public class FootballView extends View {
         }
     }
 
-    private void drawTopRestrict(Canvas canvas) {
-        //大禁区
-        mTopRestrictBottom = (int) (getMeasuredHeight() * FRAME_RESTRICT_HEIGHT_RATIO);
+    private int mRestrictWidth;//大禁区的宽
+    private int mRestrictHeight;//大禁区的高
+    private int mSmallRestrictWidth;//大禁区的宽
+    private int mSmallRestrictHeight;//大禁区的高
+
+    private void drawRestrict(Canvas canvas) {
+        mRestrictWidth = (int) (getMeasuredWidth() * FRAME_RESTRICT_WIDTH_RATIO);
+        mRestrictHeight = (int) (getMeasuredHeight() * FRAME_RESTRICT_HEIGHT_RATIO);
+        mSmallRestrictWidth = (int) (mRestrictWidth * SMALL_RESTRICT_WITH_RESTRICT_WIDTH_RATIO);
+        mSmallRestrictHeight = (int) (mRestrictHeight * SMALL_RESTRICT_HEIGHT_RESTRICT_HEIGHT_RATIO);
+
+        //大禁区(上)
+        mTopRestrictBottom = mRestrictHeight;
         mTopRestrictLeft = (int) (getMeasuredWidth() * FRAME_RESTRICT_LEFT_RATIO);
-        mTopRestrictRight = (int) (getMeasuredWidth() * FRAME_RESTRICT_WIDTH_RATIO) + mTopRestrictLeft;
+        mTopRestrictRight = mRestrictWidth + mTopRestrictLeft;
         mTopRestrictTop = 0;
         canvas.drawRect(mTopRestrictLeft, mTopRestrictTop, mTopRestrictRight, mTopRestrictBottom, mFramePaint);
 
-        //小禁区
+        //大禁区(下)
+        mBottomRestrictLeft = mTopRestrictLeft;
+        mBottomRestrictTop = getMeasuredHeight() - mRestrictHeight;
+        mBottomRestrictBottom = getMeasuredHeight();
+        mBottomRestrictRight = mTopRestrictRight;
+        canvas.drawRect(mBottomRestrictLeft, mBottomRestrictTop, mBottomRestrictRight, mBottomRestrictBottom, mFramePaint);
 
+
+        //小禁区(上)
+        mTopSmallRestrictLeft = mTopRestrictLeft + (mRestrictWidth - mSmallRestrictWidth) / 2;
+        mTopSmallRestrictBottom = mSmallRestrictHeight;
+        mTopSmallRestrictRight = mTopSmallRestrictLeft + mSmallRestrictWidth;
+        mTopSmallRestrictTop = 0;
+        canvas.drawRect(mTopSmallRestrictLeft, mTopSmallRestrictTop, mTopSmallRestrictRight, mTopSmallRestrictBottom, mFramePaint);
+
+        //小禁区(下)
+        mBottomSmallRestrictLeft = mTopSmallRestrictLeft;
+        mBottomSmallRestrictTop = getMeasuredHeight() - mSmallRestrictHeight;
+        mBottomSmallRestrictBottom = getMeasuredHeight();
+        mBottomSmallRestrictRight = mTopSmallRestrictRight;
+        canvas.drawRect(mBottomSmallRestrictLeft, mBottomSmallRestrictTop, mBottomSmallRestrictRight, mBottomSmallRestrictBottom, mFramePaint);
     }
+
+    /**
+     * 绘制点球点
+     * @param canvas
+     */
+    private void drawDot(Canvas canvas) {
+        //上半部禁区点球点
+        int mDianPointLeft = getMeasuredWidth() / 2;
+        int mDianPointTop = (int) (mRestrictHeight * DIANPOINT_RESTRICT_HEIGHT_RATIO);
+        canvas.drawCircle(mDianPointLeft, mDianPointTop, UIUtils.dip2px(getContext(), 2), mDotPaint);
+
+        //下半部禁区点球点
+        int mBottomDianPointTop = getMeasuredHeight() - mDianPointTop;
+        canvas.drawCircle(mDianPointLeft, mBottomDianPointTop, UIUtils.dip2px(getContext(), 2), mDotPaint);
+
+        //中圈点
+        int middleDotX = getMeasuredWidth() / 2;
+        int middleDotY = getMeasuredHeight() / 2;
+        canvas.drawCircle(middleDotX, middleDotY, UIUtils.dip2px(getContext(), 3), mDotPaint);
+    }
+
+    /**
+     * 画中线
+     * @param canvas
+     */
+    private void drawMiddleLine(Canvas canvas) {
+        int middleLineStartX = 0;
+        int middleLineStartY = getMeasuredHeight() / 2;
+
+        int middleLineEndX = getMeasuredWidth();
+        int middleLineEndY = getMeasuredHeight() / 2;
+        canvas.drawLine(middleLineStartX, middleLineStartY, middleLineEndX, middleLineEndY, mFramePaint);
+    }
+
+    /**
+     * 画中圈
+     * @param canvas
+     */
+    private void drawMiddleCircle(Canvas canvas) {
+        int middleCircleX = getMeasuredWidth() / 2;
+        int middleCircleY = getMeasuredHeight() / 2;
+        int radius = (int) (getMeasuredWidth() * MIDDLECIRCLE_FRAME_WIDTH_RATIO);
+        canvas.drawCircle(middleCircleX, middleCircleY, radius, mFramePaint);
+    }
+
+    /**
+     * 绘制四个角旗区的弧
+     */
+    private void drawCornerArc(Canvas canvas) {
+    }
+
     /**
      * 垂直布局
      * @param canvas
      */
     private void drawVec(Canvas canvas) {
-        Timber.i("垂直布局");
-        //1.绘制边线
+        //1.绘制整个球场边线
         canvas.drawRect(0,0, getMeasuredWidth(), getMeasuredHeight(), mFramePaint);
 
-        //2.绘制两个禁区
-        drawTopRestrict(canvas);
+        //2.绘制禁区
+        drawRestrict(canvas);
+
+        //3.绘制点球点
+        drawDot(canvas);
+
+        //4.画中线
+        drawMiddleLine(canvas);
+
+        //画中圈
+        drawMiddleCircle(canvas);
     }
 
     /**
@@ -135,6 +241,5 @@ public class FootballView extends View {
      * @param canvas
      */
     private void drawHor(Canvas canvas) {
-        Timber.i("水平布局");
     }
 }
