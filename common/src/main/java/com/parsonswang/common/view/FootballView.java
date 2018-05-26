@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,7 +34,7 @@ public class FootballView extends View {
     private static final float SMALL_RESTRICT_WITH_RESTRICT_WIDTH_RATIO = 0.45F;//大禁区与小禁区的宽度比
     private static final float SMALL_RESTRICT_HEIGHT_RESTRICT_HEIGHT_RATIO = 0.34F;//大禁区与小禁区的宽度比
     private static final float DIANPOINT_RESTRICT_HEIGHT_RATIO = 0.68F;//点球距离球门线与大禁区高度比
-    private static final float MIDDLECIRCLE_FRAME_WIDTH_RATIO = 0.27F;//中圈半径与球场宽度比例
+    private static final float MIDDLECIRCLE_FRAME_WIDTH_RATIO = 0.18F;//中圈半径与球场宽度比例
 
     //================垂直方向上上面的禁区参数=================
     private int mTopRestrictBottom;//禁区高度
@@ -213,6 +214,39 @@ public class FootballView extends View {
      * 绘制四个角旗区的弧
      */
     private void drawCornerArc(Canvas canvas) {
+        final int size = UIUtils.dip2px(getContext(), 20);
+        //左上方的角球区
+        RectF leftTopRect = new RectF();
+        leftTopRect.left = -size / 2;
+        leftTopRect.top = -size / 2;
+        leftTopRect.bottom = size / 2;
+        leftTopRect.right = size / 2;
+        canvas.drawArc(leftTopRect, 0,90,false, mFramePaint);
+
+        //右上方角球区
+        RectF rightTopRect = new RectF();
+        rightTopRect.left = getMeasuredWidth() - size / 2;
+        rightTopRect.top = -size / 2;
+        rightTopRect.bottom = size / 2;
+        rightTopRect.right = getMeasuredWidth() + size / 2;
+        canvas.drawArc(rightTopRect, -180,-270,false, mFramePaint);
+
+        //左下方角球区
+        RectF leftBottomRect = new RectF();
+        leftBottomRect.left = -size / 2;
+        leftBottomRect.top = getMeasuredHeight() - size / 2;
+        leftBottomRect.bottom = getMeasuredHeight() + size / 2;
+        leftBottomRect.right = size / 2;
+        canvas.drawArc(leftBottomRect, -90,180,false, mFramePaint);
+
+        //右下方角球区
+        RectF rightBottomRect = new RectF();
+        rightBottomRect.left = getMeasuredWidth() - size / 2;
+        rightBottomRect.top = getMeasuredHeight() - size / 2;
+        rightBottomRect.bottom = getMeasuredHeight() + size / 2;
+        rightBottomRect.right = getMeasuredWidth() + size / 2;
+        canvas.drawArc(rightBottomRect, -90,-270,false, mFramePaint);
+
     }
 
     /**
@@ -232,8 +266,11 @@ public class FootballView extends View {
         //4.画中线
         drawMiddleLine(canvas);
 
-        //画中圈
+        //5.画中圈
         drawMiddleCircle(canvas);
+
+        //6.绘制角球区弧
+        drawCornerArc(canvas);
     }
 
     /**
