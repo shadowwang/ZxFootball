@@ -62,13 +62,13 @@ public class MatchesBean {
          * startHMStr : 19:35
          * competitionNameFull : 中国足球超级联赛
          * awayTeamName : 重庆力帆
-         * homeTeamName : 贵州恒丰智诚
+         * homeTeamName : 贵州恒丰智诚?_],o=/
          */
 
         public int type = TYPE_NORMAL;
 
         private String stageName;
-        private int competitionPositiion;
+        private float competitionPositiion;
         private String score;
         private String competitionName;
         private int competitionId;
@@ -85,6 +85,34 @@ public class MatchesBean {
         private String awayTeamName;
         private String homeTeamName;
 
+        private String awayTeamCountry;
+        private String competitionTeamType;
+        private String homeTeamCountry;
+
+        public String getAwayTeamCountry() {
+            return awayTeamCountry;
+        }
+
+        public void setAwayTeamCountry(String awayTeamCountry) {
+            this.awayTeamCountry = awayTeamCountry;
+        }
+
+        public String getCompetitionTeamType() {
+            return competitionTeamType;
+        }
+
+        public void setCompetitionTeamType(String competitionTeamType) {
+            this.competitionTeamType = competitionTeamType;
+        }
+
+        public String getHomeTeamCountry() {
+            return homeTeamCountry;
+        }
+
+        public void setHomeTeamCountry(String homeTeamCountry) {
+            this.homeTeamCountry = homeTeamCountry;
+        }
+
         public String getStageName() {
             return stageName;
         }
@@ -93,16 +121,16 @@ public class MatchesBean {
             this.stageName = stageName;
         }
 
-        public int getCompetitionPositiion() {
+        public float getCompetitionPositiion() {
             return competitionPositiion;
         }
 
-        public void setCompetitionPositiion(int competitionPositiion) {
+        public void setCompetitionPositiion(float competitionPositiion) {
             this.competitionPositiion = competitionPositiion;
         }
 
         public String getScore() {
-            return score;
+            return score.replaceAll("\\*", "");
         }
 
         public void setScore(String score) {
@@ -224,7 +252,8 @@ public class MatchesBean {
         @Override
         public String toString() {
             return "MatchInfo{" +
-                    "stageName='" + stageName + '\'' +
+                    "type=" + type +
+                    ", stageName='" + stageName + '\'' +
                     ", competitionPositiion=" + competitionPositiion +
                     ", score='" + score + '\'' +
                     ", competitionName='" + competitionName + '\'' +
@@ -241,6 +270,9 @@ public class MatchesBean {
                     ", competitionNameFull='" + competitionNameFull + '\'' +
                     ", awayTeamName='" + awayTeamName + '\'' +
                     ", homeTeamName='" + homeTeamName + '\'' +
+                    ", awayTeamCountry='" + awayTeamCountry + '\'' +
+                    ", competitionTeamType='" + competitionTeamType + '\'' +
+                    ", homeTeamCountry='" + homeTeamCountry + '\'' +
                     '}';
         }
     }

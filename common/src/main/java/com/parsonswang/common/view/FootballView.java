@@ -250,11 +250,19 @@ public class FootballView extends View {
     }
 
     /**
+     * 绘制禁区顶弧
+     * @param canvas
+     */
+    private void drawRestrictTopArc(Canvas canvas) {
+
+    }
+
+    /**
      * 垂直布局
      * @param canvas
      */
     private void drawVec(Canvas canvas) {
-        //1.绘制整个球场边线
+        //1.绘制整个球场边线 b
         canvas.drawRect(0,0, getMeasuredWidth(), getMeasuredHeight(), mFramePaint);
 
         //2.绘制禁区
@@ -271,6 +279,9 @@ public class FootballView extends View {
 
         //6.绘制角球区弧
         drawCornerArc(canvas);
+
+        //7.绘制两个禁区顶弧
+        drawRestrictTopArc(canvas);
     }
 
     /**
