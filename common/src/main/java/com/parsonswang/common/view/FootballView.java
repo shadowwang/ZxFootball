@@ -253,7 +253,26 @@ public class FootballView extends View {
      * 绘制禁区顶弧
      * @param canvas
      */
-    private void drawRestrictTopArc(Canvas canvas) {
+    private void drawRestrictArc(Canvas canvas) {
+        //禁区弧长度与小禁区宽度之差 
+        int diff = (int) ((mSmallRestrictWidth * 0.15) / 2);
+        int restrictArcHeight = (int) ((int) (mSmallRestrictHeight * 0.8) / 1.2);
+
+        //顶部禁区弧
+        RectF restrictTopArcRect = new RectF();
+        restrictTopArcRect.left = mTopSmallRestrictLeft + diff;
+        restrictTopArcRect.top = mRestrictHeight - restrictArcHeight;
+        restrictTopArcRect.bottom = mRestrictHeight + restrictArcHeight;
+        restrictTopArcRect.right = mTopSmallRestrictRight - diff;
+        canvas.drawArc(restrictTopArcRect, -180,-180,false, mFramePaint);
+
+        //底部禁区弧
+        RectF restrictBottomArcRect = new RectF();
+        restrictBottomArcRect.left = restrictTopArcRect.left;
+        restrictBottomArcRect.top = mBottomRestrictTop - restrictArcHeight;
+        restrictBottomArcRect.bottom = mBottomRestrictTop + restrictArcHeight;
+        restrictBottomArcRect.right = restrictTopArcRect.right;
+        canvas.drawArc(restrictBottomArcRect, -180,180,false, mFramePaint);
 
     }
 
@@ -262,7 +281,7 @@ public class FootballView extends View {
      * @param canvas
      */
     private void drawVec(Canvas canvas) {
-        //1.绘制整个球场边线 b
+        //1.绘制整个球场边线
         canvas.drawRect(0,0, getMeasuredWidth(), getMeasuredHeight(), mFramePaint);
 
         //2.绘制禁区
@@ -281,7 +300,7 @@ public class FootballView extends View {
         drawCornerArc(canvas);
 
         //7.绘制两个禁区顶弧
-        drawRestrictTopArc(canvas);
+        drawRestrictArc(canvas);
     }
 
     /**
