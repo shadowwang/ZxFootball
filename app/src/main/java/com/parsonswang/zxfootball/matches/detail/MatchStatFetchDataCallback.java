@@ -8,6 +8,7 @@ import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
+import com.parsonswang.zxfootball.bean.PlayerStatics;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.matches.MatchContract;
 
@@ -88,10 +89,25 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
                 }
             }
 
-            //==========主队阵型===========================
+            //主队阵容
+            String homePlayerStatistics = kvMap.get("homePlayerStatistics");
+            if (!StringUtils.isEmptyString(homePlayerStatistics)) {
+                if (homePlayerStatistics.lastIndexOf(";") != -1) {
+                    homePlayerStatistics = homePlayerStatistics.substring(0, timelinsJsonArrayStr.length() - 1);
+                }
+                matchStatBean.homePlayerStaticsList = JsonObjectMap.getInstance().fromJson(homePlayerStatistics,  new TypeToken<List<PlayerStatics>>(){}.getType());
+            }
+
+            //客队阵容
+            String awayPlayerStatistics = kvMap.get("awayPlayerStatistics");
+            if (!StringUtils.isEmptyString(awayPlayerStatistics)) {
+                if (awayPlayerStatistics.lastIndexOf(";") != -1) {
+                    awayPlayerStatistics = awayPlayerStatistics.substring(0, timelinsJsonArrayStr.length() - 1);
+                }
+                matchStatBean.awayPlayerStaticsList = JsonObjectMap.getInstance().fromJson(awayPlayerStatistics,  new TypeToken<List<PlayerStatics>>(){}.getType());
+            }
 
 
-            //==========客队阵型===========================
         }
 
         return matchStatBean;

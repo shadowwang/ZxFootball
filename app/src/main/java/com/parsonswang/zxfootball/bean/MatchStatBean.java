@@ -9,6 +9,10 @@ public class MatchStatBean implements Parcelable{
 
     public List<MatchTimelines> matchTimelinesList;
 
+    public List<PlayerStatics> homePlayerStaticsList;
+
+    public List<PlayerStatics> awayPlayerStaticsList;
+
     public String homeTeamId;
 
     public String awayTeamId;
@@ -27,19 +31,6 @@ public class MatchStatBean implements Parcelable{
         awayTeamFormation = in.readString();
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(homeTeamId);
-        dest.writeString(awayTeamId);
-        dest.writeString(homeTeamFormation);
-        dest.writeString(awayTeamFormation);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     public static final Creator<MatchStatBean> CREATOR = new Creator<MatchStatBean>() {
         @Override
         public MatchStatBean createFromParcel(Parcel in) {
@@ -53,13 +44,15 @@ public class MatchStatBean implements Parcelable{
     };
 
     @Override
-    public String toString() {
-        return "MatchStatBean{" +
-                "matchTimelinesList=" + matchTimelinesList +
-                ", homeTeamId='" + homeTeamId + '\'' +
-                ", awayTeamId='" + awayTeamId + '\'' +
-                ", homeTeamFormation='" + homeTeamFormation + '\'' +
-                ", awayTeamFormation='" + awayTeamFormation + '\'' +
-                '}';
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(homeTeamId);
+        dest.writeString(awayTeamId);
+        dest.writeString(homeTeamFormation);
+        dest.writeString(awayTeamFormation);
     }
 }
