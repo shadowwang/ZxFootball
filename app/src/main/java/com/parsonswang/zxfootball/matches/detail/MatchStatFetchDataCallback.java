@@ -93,7 +93,7 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
             String homePlayerStatistics = kvMap.get("homePlayerStatistics");
             if (!StringUtils.isEmptyString(homePlayerStatistics)) {
                 if (homePlayerStatistics.lastIndexOf(";") != -1) {
-                    homePlayerStatistics = homePlayerStatistics.substring(0, timelinsJsonArrayStr.length() - 1);
+                    homePlayerStatistics = homePlayerStatistics.substring(0, homePlayerStatistics.length() - 1);
                 }
                 matchStatBean.homePlayerStaticsList = JsonObjectMap.getInstance().fromJson(homePlayerStatistics,  new TypeToken<List<PlayerStatics>>(){}.getType());
             }
@@ -102,7 +102,7 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
             String awayPlayerStatistics = kvMap.get("awayPlayerStatistics");
             if (!StringUtils.isEmptyString(awayPlayerStatistics)) {
                 if (awayPlayerStatistics.lastIndexOf(";") != -1) {
-                    awayPlayerStatistics = awayPlayerStatistics.substring(0, timelinsJsonArrayStr.length() - 1);
+                    awayPlayerStatistics = awayPlayerStatistics.substring(0, awayPlayerStatistics.length() - 1);
                 }
                 matchStatBean.awayPlayerStaticsList = JsonObjectMap.getInstance().fromJson(awayPlayerStatistics,  new TypeToken<List<PlayerStatics>>(){}.getType());
             }
