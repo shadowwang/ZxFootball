@@ -2,12 +2,13 @@ package com.parsonswang.zxfootball.bean;
 
 public class PlayerStatics {
 
+
     /**
      * offsides : 0
-     * player : {"currentMarketValue":18000000,"height":"1.85m","age":31,"extra":{},"position":"GK","birthday":534960000000,"teamId":21,"id":675,"nameZh":"纳瓦斯","country1":"Costa Rica","mainPosition":"Keeper"}
+     * player : {"currentMarketValue":650000,"height":"1.92m","age":31,"extra":{},"position":"GK","birthday":537033600000,"teamId":41,"id":1010,"nameZh":"曾诚","country1":"China","mainPosition":"Keeper"}
      * bigChanceCreated : 0
      * corners : 0
-     * passes : 21
+     * passes : 19
      * crosses : 0
      * bigChanceScored : 0
      * keyPasses : 0
@@ -16,33 +17,33 @@ public class PlayerStatics {
      * interceptions : 0
      * isManOfTheMatch : false
      * shots : 0
-     * clearances : 2
-     * ballRecovery : 7
-     * accLB : 5
+     * clearances : 1
+     * ballRecovery : 6
+     * accLB : 7
      * shotsOnPost : 0
      * tacklesSucc : 0
-     * fouled : 1
+     * fouled : 0
      * ownGoals : 0
-     * homeAway : home
+     * homeAway : away
      * dribblesSucc : 0
      * accThB : 0
-     * finalThirdPass : 4
+     * finalThirdPass : 2
      * shotsOffTag : 0
      * penaltyMissd : 0
      * totalTackles : 0
      * fouls : 0
      * assists : 0
      * penaltySaved : 0
-     * playerName : 纳瓦斯
+     * playerName : 曾诚
      * inTime : 0
-     * passSucc : 61.9
+     * passSucc : 78.95
      * penaltyScored : 0
      * outTime : 90
-     * shirtNo : 1
+     * shirtNo : 19
      * accCrosses : 0
      * errorsSum : 0
-     * playerId : 675
-     * matchId : 52288
+     * playerId : 1010
+     * matchId : 51401
      * shotsBlocked : 0
      * redCards : 0
      * disp : 0
@@ -51,114 +52,114 @@ public class PlayerStatics {
      * position : GK
      * seriousError : 0
      * thBall : 0
-     * aerialsTotal : 1
-     * teamId : 21
+     * aerialsTotal : 0
+     * teamId : 41
      * tacklesTotal : 0
      * yelCards : 0
      * bigChanceMissed : 0
-     * id : 2226898
-     * rate : 6.7
+     * id : 2212426
+     * rate : 6.66
      * isAppear : true
-     * longBall : 13
+     * longBall : 10
      * dribblesAttempted : 0
      * accCorners : 0
      * isFirstEleven : true
      * blockShots : 0
      * dribbledPast : 0
-     * touches : 29
+     * touches : 28
      * positionCoord : {"vertical":0.0,"horizontal":5.0}
-     * defensiveAerials : 1
+     * defensiveAerials : 0
      * mins : 90
      * offensiveAerials : 0
      * shotsOT : 0
      * goals : 0
-     * possession : 0.0228628
+     * possession : 0.0302234
      * offsideWon : 0
      * dribbles : 0
      * aerialDuelScc : 0
      * unsTouches : 0
      */
 
-    private int offsides;
+    private String offsides;
     private PlayerBean player;
-    private int bigChanceCreated;
-    private int corners;
-    private int passes;
-    private int crosses;
-    private int bigChanceScored;
-    private int keyPasses;
-    private int aerialsWon;
-    private int finalThirdPassAcc;
-    private int interceptions;
+    private String bigChanceCreated;
+    private String corners;
+    private String passes;
+    private String crosses;
+    private String bigChanceScored;
+    private String keyPasses;
+    private String aerialsWon;
+    private String finalThirdPassAcc;
+    private String interceptions;
     private boolean isManOfTheMatch;
-    private int shots;
-    private int clearances;
-    private int ballRecovery;
-    private int accLB;
-    private int shotsOnPost;
-    private int tacklesSucc;
-    private int fouled;
-    private int ownGoals;
+    private String shots;
+    private String clearances;
+    private String ballRecovery;
+    private String accLB;
+    private String shotsOnPost;
+    private String tacklesSucc;
+    private String fouled;
+    private String ownGoals;
     private String homeAway;
-    private int dribblesSucc;
-    private int accThB;
-    private int finalThirdPass;
-    private int shotsOffTag;
-    private int penaltyMissd;
-    private int totalTackles;
-    private int fouls;
-    private int assists;
-    private int penaltySaved;
+    private String dribblesSucc;
+    private String accThB;
+    private String finalThirdPass;
+    private String shotsOffTag;
+    private String penaltyMissd;
+    private String totalTackles;
+    private String fouls;
+    private String assists;
+    private String penaltySaved;
     private String playerName;
-    private int inTime;
+    private String inTime;
     private double passSucc;
-    private int penaltyScored;
-    private int outTime;
-    private int shirtNo;
-    private int accCrosses;
-    private int errorsSum;
-    private int playerId;
-    private int matchId;
-    private int shotsBlocked;
-    private int redCards;
-    private int disp;
-    private int fatalError;
-    private int possessionNum;
+    private String penaltyScored;
+    private String outTime;
+    private String shirtNo;
+    private String accCrosses;
+    private String errorsSum;
+    private String playerId;
+    private String matchId;
+    private String shotsBlocked;
+    private String redCards;
+    private String disp;
+    private String fatalError;
+    private String possessionNum;
     private String position;
-    private int seriousError;
-    private int thBall;
-    private int aerialsTotal;
-    private int teamId;
-    private int tacklesTotal;
-    private int yelCards;
-    private int bigChanceMissed;
-    private int id;
+    private String seriousError;
+    private String thBall;
+    private String aerialsTotal;
+    private String teamId;
+    private String tacklesTotal;
+    private String yelCards;
+    private String bigChanceMissed;
+    private String id;
     private double rate;
     private boolean isAppear;
-    private int longBall;
-    private int dribblesAttempted;
-    private int accCorners;
+    private String longBall;
+    private String dribblesAttempted;
+    private String accCorners;
     private boolean isFirstEleven;
-    private int blockShots;
-    private int dribbledPast;
-    private int touches;
+    private String blockShots;
+    private String dribbledPast;
+    private String touches;
     private String positionCoord;
-    private int defensiveAerials;
-    private int mins;
-    private int offensiveAerials;
-    private int shotsOT;
-    private int goals;
+    private String defensiveAerials;
+    private String mins;
+    private String offensiveAerials;
+    private String shotsOT;
+    private String goals;
     private double possession;
-    private int offsideWon;
-    private int dribbles;
-    private int aerialDuelScc;
-    private int unsTouches;
+    private String offsideWon;
+    private String dribbles;
+    private String aerialDuelScc;
+    private String unsTouches;
 
-    public int getOffsides() {
+    public String getOffsides() {
         return offsides;
     }
 
-    public void setOffsides(int offsides) {
+    public void setOffsides(String offsides) {
         this.offsides = offsides;
     }
 
@@ -170,75 +171,75 @@ public class PlayerStatics {
         this.player = player;
     }
 
-    public int getBigChanceCreated() {
+    public String getBigChanceCreated() {
         return bigChanceCreated;
     }
 
-    public void setBigChanceCreated(int bigChanceCreated) {
+    public void setBigChanceCreated(String bigChanceCreated) {
         this.bigChanceCreated = bigChanceCreated;
     }
 
-    public int getCorners() {
+    public String getCorners() {
         return corners;
     }
 
-    public void setCorners(int corners) {
+    public void setCorners(String corners) {
         this.corners = corners;
     }
 
-    public int getPasses() {
+    public String getPasses() {
         return passes;
     }
 
-    public void setPasses(int passes) {
+    public void setPasses(String passes) {
         this.passes = passes;
     }
 
-    public int getCrosses() {
+    public String getCrosses() {
         return crosses;
     }
 
-    public void setCrosses(int crosses) {
+    public void setCrosses(String crosses) {
         this.crosses = crosses;
     }
 
-    public int getBigChanceScored() {
+    public String getBigChanceScored() {
         return bigChanceScored;
     }
 
-    public void setBigChanceScored(int bigChanceScored) {
+    public void setBigChanceScored(String bigChanceScored) {
         this.bigChanceScored = bigChanceScored;
     }
 
-    public int getKeyPasses() {
+    public String getKeyPasses() {
         return keyPasses;
     }
 
-    public void setKeyPasses(int keyPasses) {
+    public void setKeyPasses(String keyPasses) {
         this.keyPasses = keyPasses;
     }
 
-    public int getAerialsWon() {
+    public String getAerialsWon() {
         return aerialsWon;
     }
 
-    public void setAerialsWon(int aerialsWon) {
+    public void setAerialsWon(String aerialsWon) {
         this.aerialsWon = aerialsWon;
     }
 
-    public int getFinalThirdPassAcc() {
+    public String getFinalThirdPassAcc() {
         return finalThirdPassAcc;
     }
 
-    public void setFinalThirdPassAcc(int finalThirdPassAcc) {
+    public void setFinalThirdPassAcc(String finalThirdPassAcc) {
         this.finalThirdPassAcc = finalThirdPassAcc;
     }
 
-    public int getInterceptions() {
+    public String getInterceptions() {
         return interceptions;
     }
 
-    public void setInterceptions(int interceptions) {
+    public void setInterceptions(String interceptions) {
         this.interceptions = interceptions;
     }
 
@@ -250,67 +251,67 @@ public class PlayerStatics {
         this.isManOfTheMatch = isManOfTheMatch;
     }
 
-    public int getShots() {
+    public String getShots() {
         return shots;
     }
 
-    public void setShots(int shots) {
+    public void setShots(String shots) {
         this.shots = shots;
     }
 
-    public int getClearances() {
+    public String getClearances() {
         return clearances;
     }
 
-    public void setClearances(int clearances) {
+    public void setClearances(String clearances) {
         this.clearances = clearances;
     }
 
-    public int getBallRecovery() {
+    public String getBallRecovery() {
         return ballRecovery;
     }
 
-    public void setBallRecovery(int ballRecovery) {
+    public void setBallRecovery(String ballRecovery) {
         this.ballRecovery = ballRecovery;
     }
 
-    public int getAccLB() {
+    public String getAccLB() {
         return accLB;
     }
 
-    public void setAccLB(int accLB) {
+    public void setAccLB(String accLB) {
         this.accLB = accLB;
     }
 
-    public int getShotsOnPost() {
+    public String getShotsOnPost() {
         return shotsOnPost;
     }
 
-    public void setShotsOnPost(int shotsOnPost) {
+    public void setShotsOnPost(String shotsOnPost) {
         this.shotsOnPost = shotsOnPost;
     }
 
-    public int getTacklesSucc() {
+    public String getTacklesSucc() {
         return tacklesSucc;
     }
 
-    public void setTacklesSucc(int tacklesSucc) {
+    public void setTacklesSucc(String tacklesSucc) {
         this.tacklesSucc = tacklesSucc;
     }
 
-    public int getFouled() {
+    public String getFouled() {
         return fouled;
     }
 
-    public void setFouled(int fouled) {
+    public void setFouled(String fouled) {
         this.fouled = fouled;
     }
 
-    public int getOwnGoals() {
+    public String getOwnGoals() {
         return ownGoals;
     }
 
-    public void setOwnGoals(int ownGoals) {
+    public void setOwnGoals(String ownGoals) {
         this.ownGoals = ownGoals;
     }
 
@@ -322,75 +323,75 @@ public class PlayerStatics {
         this.homeAway = homeAway;
     }
 
-    public int getDribblesSucc() {
+    public String getDribblesSucc() {
         return dribblesSucc;
     }
 
-    public void setDribblesSucc(int dribblesSucc) {
+    public void setDribblesSucc(String dribblesSucc) {
         this.dribblesSucc = dribblesSucc;
     }
 
-    public int getAccThB() {
+    public String getAccThB() {
         return accThB;
     }
 
-    public void setAccThB(int accThB) {
+    public void setAccThB(String accThB) {
         this.accThB = accThB;
     }
 
-    public int getFinalThirdPass() {
+    public String getFinalThirdPass() {
         return finalThirdPass;
     }
 
-    public void setFinalThirdPass(int finalThirdPass) {
+    public void setFinalThirdPass(String finalThirdPass) {
         this.finalThirdPass = finalThirdPass;
     }
 
-    public int getShotsOffTag() {
+    public String getShotsOffTag() {
         return shotsOffTag;
     }
 
-    public void setShotsOffTag(int shotsOffTag) {
+    public void setShotsOffTag(String shotsOffTag) {
         this.shotsOffTag = shotsOffTag;
     }
 
-    public int getPenaltyMissd() {
+    public String getPenaltyMissd() {
         return penaltyMissd;
     }
 
-    public void setPenaltyMissd(int penaltyMissd) {
+    public void setPenaltyMissd(String penaltyMissd) {
         this.penaltyMissd = penaltyMissd;
     }
 
-    public int getTotalTackles() {
+    public String getTotalTackles() {
         return totalTackles;
     }
 
-    public void setTotalTackles(int totalTackles) {
+    public void setTotalTackles(String totalTackles) {
         this.totalTackles = totalTackles;
     }
 
-    public int getFouls() {
+    public String getFouls() {
         return fouls;
     }
 
-    public void setFouls(int fouls) {
+    public void setFouls(String fouls) {
         this.fouls = fouls;
     }
 
-    public int getAssists() {
+    public String getAssists() {
         return assists;
     }
 
-    public void setAssists(int assists) {
+    public void setAssists(String assists) {
         this.assists = assists;
     }
 
-    public int getPenaltySaved() {
+    public String getPenaltySaved() {
         return penaltySaved;
     }
 
-    public void setPenaltySaved(int penaltySaved) {
+    public void setPenaltySaved(String penaltySaved) {
         this.penaltySaved = penaltySaved;
     }
 
@@ -402,11 +403,11 @@ public class PlayerStatics {
         this.playerName = playerName;
     }
 
-    public int getInTime() {
+    public String getInTime() {
         return inTime;
     }
 
-    public void setInTime(int inTime) {
+    public void setInTime(String inTime) {
         this.inTime = inTime;
     }
 
@@ -418,99 +419,99 @@ public class PlayerStatics {
         this.passSucc = passSucc;
     }
 
-    public int getPenaltyScored() {
+    public String getPenaltyScored() {
         return penaltyScored;
     }
 
-    public void setPenaltyScored(int penaltyScored) {
+    public void setPenaltyScored(String penaltyScored) {
         this.penaltyScored = penaltyScored;
     }
 
-    public int getOutTime() {
+    public String getOutTime() {
         return outTime;
     }
 
-    public void setOutTime(int outTime) {
+    public void setOutTime(String outTime) {
         this.outTime = outTime;
     }
 
-    public int getShirtNo() {
+    public String getShirtNo() {
         return shirtNo;
     }
 
-    public void setShirtNo(int shirtNo) {
+    public void setShirtNo(String shirtNo) {
         this.shirtNo = shirtNo;
     }
 
-    public int getAccCrosses() {
+    public String getAccCrosses() {
         return accCrosses;
     }
 
-    public void setAccCrosses(int accCrosses) {
+    public void setAccCrosses(String accCrosses) {
         this.accCrosses = accCrosses;
     }
 
-    public int getErrorsSum() {
+    public String getErrorsSum() {
         return errorsSum;
     }
 
-    public void setErrorsSum(int errorsSum) {
+    public void setErrorsSum(String errorsSum) {
         this.errorsSum = errorsSum;
     }
 
-    public int getPlayerId() {
+    public String getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(int playerId) {
+    public void setPlayerId(String playerId) {
         this.playerId = playerId;
     }
 
-    public int getMatchId() {
+    public String getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(int matchId) {
+    public void setMatchId(String matchId) {
         this.matchId = matchId;
     }
 
-    public int getShotsBlocked() {
+    public String getShotsBlocked() {
         return shotsBlocked;
     }
 
-    public void setShotsBlocked(int shotsBlocked) {
+    public void setShotsBlocked(String shotsBlocked) {
         this.shotsBlocked = shotsBlocked;
     }
 
-    public int getRedCards() {
+    public String getRedCards() {
         return redCards;
     }
 
-    public void setRedCards(int redCards) {
+    public void setRedCards(String redCards) {
         this.redCards = redCards;
     }
 
-    public int getDisp() {
+    public String getDisp() {
         return disp;
     }
 
-    public void setDisp(int disp) {
+    public void setDisp(String disp) {
         this.disp = disp;
     }
 
-    public int getFatalError() {
+    public String getFatalError() {
         return fatalError;
     }
 
-    public void setFatalError(int fatalError) {
+    public void setFatalError(String fatalError) {
         this.fatalError = fatalError;
     }
 
-    public int getPossessionNum() {
+    public String getPossessionNum() {
         return possessionNum;
     }
 
-    public void setPossessionNum(int possessionNum) {
+    public void setPossessionNum(String possessionNum) {
         this.possessionNum = possessionNum;
     }
 
@@ -522,67 +523,67 @@ public class PlayerStatics {
         this.position = position;
     }
 
-    public int getSeriousError() {
+    public String getSeriousError() {
         return seriousError;
     }
 
-    public void setSeriousError(int seriousError) {
+    public void setSeriousError(String seriousError) {
         this.seriousError = seriousError;
     }
 
-    public int getThBall() {
+    public String getThBall() {
         return thBall;
     }
 
-    public void setThBall(int thBall) {
+    public void setThBall(String thBall) {
         this.thBall = thBall;
     }
 
-    public int getAerialsTotal() {
+    public String getAerialsTotal() {
         return aerialsTotal;
     }
 
-    public void setAerialsTotal(int aerialsTotal) {
+    public void setAerialsTotal(String aerialsTotal) {
         this.aerialsTotal = aerialsTotal;
     }
 
-    public int getTeamId() {
+    public String getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(String teamId) {
         this.teamId = teamId;
     }
 
-    public int getTacklesTotal() {
+    public String getTacklesTotal() {
         return tacklesTotal;
     }
 
-    public void setTacklesTotal(int tacklesTotal) {
+    public void setTacklesTotal(String tacklesTotal) {
         this.tacklesTotal = tacklesTotal;
     }
 
-    public int getYelCards() {
+    public String getYelCards() {
         return yelCards;
     }
 
-    public void setYelCards(int yelCards) {
+    public void setYelCards(String yelCards) {
         this.yelCards = yelCards;
     }
 
-    public int getBigChanceMissed() {
+    public String getBigChanceMissed() {
         return bigChanceMissed;
     }
 
-    public void setBigChanceMissed(int bigChanceMissed) {
+    public void setBigChanceMissed(String bigChanceMissed) {
         this.bigChanceMissed = bigChanceMissed;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -602,27 +603,27 @@ public class PlayerStatics {
         this.isAppear = isAppear;
     }
 
-    public int getLongBall() {
+    public String getLongBall() {
         return longBall;
     }
 
-    public void setLongBall(int longBall) {
+    public void setLongBall(String longBall) {
         this.longBall = longBall;
     }
 
-    public int getDribblesAttempted() {
+    public String getDribblesAttempted() {
         return dribblesAttempted;
     }
 
-    public void setDribblesAttempted(int dribblesAttempted) {
+    public void setDribblesAttempted(String dribblesAttempted) {
         this.dribblesAttempted = dribblesAttempted;
     }
 
-    public int getAccCorners() {
+    public String getAccCorners() {
         return accCorners;
     }
 
-    public void setAccCorners(int accCorners) {
+    public void setAccCorners(String accCorners) {
         this.accCorners = accCorners;
     }
 
@@ -634,27 +635,27 @@ public class PlayerStatics {
         this.isFirstEleven = isFirstEleven;
     }
 
-    public int getBlockShots() {
+    public String getBlockShots() {
         return blockShots;
     }
 
-    public void setBlockShots(int blockShots) {
+    public void setBlockShots(String blockShots) {
         this.blockShots = blockShots;
     }
 
-    public int getDribbledPast() {
+    public String getDribbledPast() {
         return dribbledPast;
     }
 
-    public void setDribbledPast(int dribbledPast) {
+    public void setDribbledPast(String dribbledPast) {
         this.dribbledPast = dribbledPast;
     }
 
-    public int getTouches() {
+    public String getTouches() {
         return touches;
     }
 
-    public void setTouches(int touches) {
+    public void setTouches(String touches) {
         this.touches = touches;
     }
 
@@ -666,43 +667,43 @@ public class PlayerStatics {
         this.positionCoord = positionCoord;
     }
 
-    public int getDefensiveAerials() {
+    public String getDefensiveAerials() {
         return defensiveAerials;
     }
 
-    public void setDefensiveAerials(int defensiveAerials) {
+    public void setDefensiveAerials(String defensiveAerials) {
         this.defensiveAerials = defensiveAerials;
     }
 
-    public int getMins() {
+    public String getMins() {
         return mins;
     }
 
-    public void setMins(int mins) {
+    public void setMins(String mins) {
         this.mins = mins;
     }
 
-    public int getOffensiveAerials() {
+    public String getOffensiveAerials() {
         return offensiveAerials;
     }
 
-    public void setOffensiveAerials(int offensiveAerials) {
+    public void setOffensiveAerials(String offensiveAerials) {
         this.offensiveAerials = offensiveAerials;
     }
 
-    public int getShotsOT() {
+    public String getShotsOT() {
         return shotsOT;
     }
 
-    public void setShotsOT(int shotsOT) {
+    public void setShotsOT(String shotsOT) {
         this.shotsOT = shotsOT;
     }
 
-    public int getGoals() {
+    public String getGoals() {
         return goals;
     }
 
-    public void setGoals(int goals) {
+    public void setGoals(String goals) {
         this.goals = goals;
     }
 
@@ -714,70 +715,70 @@ public class PlayerStatics {
         this.possession = possession;
     }
 
-    public int getOffsideWon() {
+    public String getOffsideWon() {
         return offsideWon;
     }
 
-    public void setOffsideWon(int offsideWon) {
+    public void setOffsideWon(String offsideWon) {
         this.offsideWon = offsideWon;
     }
 
-    public int getDribbles() {
+    public String getDribbles() {
         return dribbles;
     }
 
-    public void setDribbles(int dribbles) {
+    public void setDribbles(String dribbles) {
         this.dribbles = dribbles;
     }
 
-    public int getAerialDuelScc() {
+    public String getAerialDuelScc() {
         return aerialDuelScc;
     }
 
-    public void setAerialDuelScc(int aerialDuelScc) {
+    public void setAerialDuelScc(String aerialDuelScc) {
         this.aerialDuelScc = aerialDuelScc;
     }
 
-    public int getUnsTouches() {
+    public String getUnsTouches() {
         return unsTouches;
     }
 
-    public void setUnsTouches(int unsTouches) {
+    public void setUnsTouches(String unsTouches) {
         this.unsTouches = unsTouches;
     }
 
     public static class PlayerBean {
         /**
-         * currentMarketValue : 18000000
-         * height : 1.85m
+         * currentMarketValue : 650000
+         * height : 1.92m
          * age : 31
          * extra : {}
          * position : GK
-         * birthday : 534960000000
-         * teamId : 21
-         * id : 675
-         * nameZh : 纳瓦斯
-         * country1 : Costa Rica
+         * birthday : 537033600000
+         * teamId : 41
+         * id : 1010
+         * nameZh : 曾诚
+         * country1 : China
          * mainPosition : Keeper
          */
 
-        private int currentMarketValue;
+        private String currentMarketValue;
         private String height;
-        private int age;
+        private String age;
         private ExtraBean extra;
         private String position;
         private long birthday;
-        private int teamId;
-        private int id;
+        private String teamId;
+        private String id;
         private String nameZh;
         private String country1;
         private String mainPosition;
 
-        public int getCurrentMarketValue() {
+        public String getCurrentMarketValue() {
             return currentMarketValue;
         }
 
-        public void setCurrentMarketValue(int currentMarketValue) {
+        public void setCurrentMarketValue(String currentMarketValue) {
             this.currentMarketValue = currentMarketValue;
         }
 
@@ -789,11 +790,11 @@ public class PlayerStatics {
             this.height = height;
         }
 
-        public int getAge() {
+        public String getAge() {
             return age;
         }
 
-        public void setAge(int age) {
+        public void setAge(String age) {
             this.age = age;
         }
 
@@ -821,19 +822,19 @@ public class PlayerStatics {
             this.birthday = birthday;
         }
 
-        public int getTeamId() {
+        public String getTeamId() {
             return teamId;
         }
 
-        public void setTeamId(int teamId) {
+        public void setTeamId(String teamId) {
             this.teamId = teamId;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -863,5 +864,85 @@ public class PlayerStatics {
 
         public static class ExtraBean {
         }
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerStatics{" +
+                "offsides='" + offsides + '\'' +
+                ", player=" + player +
+                ", bigChanceCreated='" + bigChanceCreated + '\'' +
+                ", corners='" + corners + '\'' +
+                ", passes='" + passes + '\'' +
+                ", crosses='" + crosses + '\'' +
+                ", bigChanceScored='" + bigChanceScored + '\'' +
+                ", keyPasses='" + keyPasses + '\'' +
+                ", aerialsWon='" + aerialsWon + '\'' +
+                ", finalThirdPassAcc='" + finalThirdPassAcc + '\'' +
+                ", interceptions='" + interceptions + '\'' +
+                ", isManOfTheMatch=" + isManOfTheMatch +
+                ", shots='" + shots + '\'' +
+                ", clearances='" + clearances + '\'' +
+                ", ballRecovery='" + ballRecovery + '\'' +
+                ", accLB='" + accLB + '\'' +
+                ", shotsOnPost='" + shotsOnPost + '\'' +
+                ", tacklesSucc='" + tacklesSucc + '\'' +
+                ", fouled='" + fouled + '\'' +
+                ", ownGoals='" + ownGoals + '\'' +
+                ", homeAway='" + homeAway + '\'' +
+                ", dribblesSucc='" + dribblesSucc + '\'' +
+                ", accThB='" + accThB + '\'' +
+                ", finalThirdPass='" + finalThirdPass + '\'' +
+                ", shotsOffTag='" + shotsOffTag + '\'' +
+                ", penaltyMissd='" + penaltyMissd + '\'' +
+                ", totalTackles='" + totalTackles + '\'' +
+                ", fouls='" + fouls + '\'' +
+                ", assists='" + assists + '\'' +
+                ", penaltySaved='" + penaltySaved + '\'' +
+                ", playerName='" + playerName + '\'' +
+                ", inTime='" + inTime + '\'' +
+                ", passSucc=" + passSucc +
+                ", penaltyScored='" + penaltyScored + '\'' +
+                ", outTime='" + outTime + '\'' +
+                ", shirtNo='" + shirtNo + '\'' +
+                ", accCrosses='" + accCrosses + '\'' +
+                ", errorsSum='" + errorsSum + '\'' +
+                ", playerId='" + playerId + '\'' +
+                ", matchId='" + matchId + '\'' +
+                ", shotsBlocked='" + shotsBlocked + '\'' +
+                ", redCards='" + redCards + '\'' +
+                ", disp='" + disp + '\'' +
+                ", fatalError='" + fatalError + '\'' +
+                ", possessionNum='" + possessionNum + '\'' +
+                ", position='" + position + '\'' +
+                ", seriousError='" + seriousError + '\'' +
+                ", thBall='" + thBall + '\'' +
+                ", aerialsTotal='" + aerialsTotal + '\'' +
+                ", teamId='" + teamId + '\'' +
+                ", tacklesTotal='" + tacklesTotal + '\'' +
+                ", yelCards='" + yelCards + '\'' +
+                ", bigChanceMissed='" + bigChanceMissed + '\'' +
+                ", id='" + id + '\'' +
+                ", rate=" + rate +
+                ", isAppear=" + isAppear +
+                ", longBall='" + longBall + '\'' +
+                ", dribblesAttempted='" + dribblesAttempted + '\'' +
+                ", accCorners='" + accCorners + '\'' +
+                ", isFirstEleven=" + isFirstEleven +
+                ", blockShots='" + blockShots + '\'' +
+                ", dribbledPast='" + dribbledPast + '\'' +
+                ", touches='" + touches + '\'' +
+                ", positionCoord='" + positionCoord + '\'' +
+                ", defensiveAerials='" + defensiveAerials + '\'' +
+                ", mins='" + mins + '\'' +
+                ", offensiveAerials='" + offensiveAerials + '\'' +
+                ", shotsOT='" + shotsOT + '\'' +
+                ", goals='" + goals + '\'' +
+                ", possession=" + possession +
+                ", offsideWon='" + offsideWon + '\'' +
+                ", dribbles='" + dribbles + '\'' +
+                ", aerialDuelScc='" + aerialDuelScc + '\'' +
+                ", unsTouches='" + unsTouches + '\'' +
+                '}';
     }
 }

@@ -8,6 +8,7 @@ import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
+import com.parsonswang.zxfootball.bean.PlayerInfo;
 import com.parsonswang.zxfootball.bean.PlayerStatics;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.matches.MatchContract;
@@ -106,11 +107,48 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
                 }
                 matchStatBean.awayPlayerStaticsList = JsonObjectMap.getInstance().fromJson(awayPlayerStatistics,  new TypeToken<List<PlayerStatics>>(){}.getType());
             }
-
-
         }
 
+        //得到主队首发阵容
+        Element homeTeamSummary = document.getElementById("match-summary-header-home-team");
+        //阵型
+        matchStatBean.homeTeamFormation = homeTeamSummary.select("div.team-formation").text();
+
+        final List<PlayerStatics> homePlayerStaticsList = matchStatBean.homePlayerStaticsList;
+        getMatchPlayerInfo(homePlayerStaticsList, matchStatBean, true);
+
+        //得到客队首发阵容
+        Element awayTeamSummary = document.getElementById("match-summary-header-away-team");
+        matchStatBean.awayTeamFormation = awayTeamSummary.select("div.team-formation").text();
+
+        final List<PlayerStatics> awayPlayerStaticsList = matchStatBean.awayPlayerStaticsList;
+        getMatchPlayerInfo(awayPlayerStaticsList, matchStatBean, false);
+
         return matchStatBean;
+    }
+
+    private void getMatchPlayerInfo(List<PlayerStatics> playerStaticsList, MatchStatBean matchStatBean,boolean isHome) {
+        final List<PlayerInfo> mainPlayerInfos = new ArrayList<>();
+        final List<PlayerInfo> benchPlayerInfos = new ArrayList<>();
+        for (PlayerStatics ps : playerStaticsList) {
+            PlayerInfo playerInfo = new PlayerInfo();
+            playerInfo.playerName = ps.getPlayerName();
+            playerInfo.shirtNum = ps.getShirtNo();
+            playerInfo.playerId = ps.getPlayerId();
+            playerInfo.avatarUrl = String.format(Constant.PlayerConstant.PLAYER_AVATAR_URL, playerInfo.playerId);
+            if (ps.isIsFirstEleven()) {
+                mainPlayerInfos.add(playerInfo);
+            } else {
+                benchPlayerInfos.add(playerInfo);
+            }
+        }
+        if (isHome) {
+            matchStatBean.homeMainPlayerInfos = mainPlayerInfos;
+            matchStatBean.homeBenchPlayerInfos = benchPlayerInfos;
+        } else {
+            matchStatBean.awayMainPlayerInfos  = mainPlayerInfos;
+            matchStatBean.awayBenchPlayerInfos = benchPlayerInfos;
+        }
     }
 
     private GoalPlayers getGoalPlayers(MatchStatBean matchStatBean) {

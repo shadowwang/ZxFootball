@@ -69,7 +69,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
-        Timber.i(matchStatBean.matchTimelinesList.toString());
+        Timber.i(matchStatBean.homeMainPlayerInfos.toString());
     }
 
     @Override

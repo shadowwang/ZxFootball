@@ -90,6 +90,7 @@ public class JsonObjectMap {
         try {
             return gson.fromJson(jsonString, type);
         } catch (JsonSyntaxException e) {
+            e.printStackTrace();
             Timber.e(TAG, "form json error.");
         }
         return new ArrayList<T>();

@@ -36,7 +36,7 @@ public class Constant {
         public static final int EVENTTYPE_ASSIST= 1;
         public static final int EVENTTYPE_WULONG_GOAL= 3;
         public static final int EVENTTYPE_GOAL_DIAN= 4;
-        public static final int EVENTTYPE_GOAL_DIAN_NOT= 5;//点球不紧
+        public static final int EVENTTYPE_GOAL_DIAN_NOT= 5;//点球不进
         public static final int EVENTTYPE_GOAL_DIAN_SAVE= 6;//扑出点球
         public static final int EVENTTYPE_YELLOW_CARD = 7;
         public static final int EVENTTYPE_2YELLOW_TO_RED = 9;//两黄被罚下
@@ -46,5 +46,9 @@ public class Constant {
         public static final int EVENTTYPE_STEAL = 13;//最后一道防线抢断
         public static final int EVENTTYPE_SAVE = 14;//扑救
         public static final int EVENTTYPE_DEADLINESS = 16;//致命失误导致失球
+    }
+
+    public static class PlayerConstant {
+        public static final String PLAYER_AVATAR_URL = "http://ov68gixwy.bkt.clouddn.com/players/%1$s.jpg";
     }
 }

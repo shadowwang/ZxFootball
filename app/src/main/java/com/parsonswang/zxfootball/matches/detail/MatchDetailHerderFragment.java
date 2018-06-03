@@ -49,7 +49,7 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
         mMatchPresenter = new MatchPresenter(this, this);
         final String matchId = getArguments().getString("matchId");
         mMatchPresenter.getMatchDetail(matchId);
-        mMatchPresenter.getMatchStat(matchId);
+        //mMatchPresenter.getMatchStat(matchId);
 
         return view;
     }
