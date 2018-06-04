@@ -141,12 +141,46 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
 
+    private int lastX, lastY;
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (!mEnable) {
             return false;
         }
 
+        boolean inIntercepted = false;
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (Math.abs(x) < 40) {
+                    inIntercepted = true;
+                } else {
+                    inIntercepted = false;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int deltaX = x - lastX;
+                int deltaY = y - lastY;
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    inIntercepted = true;
+                } else {
+                    inIntercepted = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                inIntercepted = false;
+                break;
+        }
+
+        lastX = x;
+        lastY = y;
+
+        if (!inIntercepted) {
+            return false;
+        }
         if (mViewDragHelper != null) {
             return mViewDragHelper.shouldInterceptTouchEvent(ev);
         }
