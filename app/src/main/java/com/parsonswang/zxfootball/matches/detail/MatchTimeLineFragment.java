@@ -10,9 +10,12 @@ import com.parsonswang.common.base.BaseLazyLoadFragment;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchStatBean;
+import com.parsonswang.zxfootball.bean.PlayerInfo;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -69,7 +72,8 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
-        Timber.i(matchStatBean.homeMainPlayerInfos.toString());
+        final List<PlayerInfo> mainPlayerInfoList = matchStatBean.homeMainPlayerInfos;
+
     }
 
     @Override

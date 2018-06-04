@@ -36,7 +36,7 @@ public class MatchContract {
     /**
      *  比赛详情view
      */
-    public interface IMatchDetailView extends IBaseView{
+    public interface IMatchDetailView extends IBaseView {
         //展示比赛信息头部
         void showMatchInfoHeader(MatchDetailHeaderInfoBean matchDetailHeaderInfoBean);
         //展示比赛总结
