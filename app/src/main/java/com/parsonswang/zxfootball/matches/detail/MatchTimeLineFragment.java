@@ -72,7 +72,11 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
-        final List<PlayerInfo> mainPlayerInfoList = matchStatBean.homeMainPlayerInfos;
+        final List<PlayerInfo> homeMainPlayerInfos = matchStatBean.homeMainPlayerInfos;
+        final String homeTeamFormation = matchStatBean.homeTeamFormation;
+
+        final List<PlayerInfo> awayMainPlayerInfos = matchStatBean.awayMainPlayerInfos;
+        final String awayTeamFormation = matchStatBean.awayTeamFormation;
 
     }
 

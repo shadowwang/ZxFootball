@@ -21,10 +21,11 @@ public class MatchContainerLayout extends FrameLayout {
         super(context, attrs);
     }
 
+
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         Timber.i("left: " + left + " top: " + top + " right: " + right + " bottom: " + bottom);
         super.onLayout(changed, left, top, right, bottom);
-
     }
 }

@@ -29,4 +29,8 @@ public class MatchPlayerView extends FrameLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_match_player, null, false);
         addView(view);
     }
+
+    public void setData(String avatar, String name) {
+
+    }
 }

@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     android:scrollbars="none"
     >
-    <LinearLayout
+    <com.parsonswang.zxfootball.common.view.MatchContainerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="14.4dp"
         >
         <com.parsonswang.common.view.FootballView
             android:id="@+id/mMatchTimelines"
@@ -19,8 +18,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             app:fbvDirection="0"
             android:background="@color/colorBottomItemTextSelectedColor" />
-
-    </LinearLayout>
+    </com.parsonswang.zxfootball.common.view.MatchContainerLayout>
 </android.support.v4.widget.NestedScrollView>
