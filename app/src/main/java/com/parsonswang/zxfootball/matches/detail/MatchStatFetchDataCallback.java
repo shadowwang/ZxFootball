@@ -19,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +57,8 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
     private MatchStatBean getMatchTimelines(Document document) {
         MatchStatBean matchStatBean = new MatchStatBean();
 
-        Elements jsValElements = document.getElementsByTag("script").eq(18);
+//        Elements elements = document.getElementsByTag("script");
+        Elements jsValElements = document.getElementsByTag("script").eq(16);
 
         for (Element element : jsValElements) {
             //var表达式：var keyName = values;
@@ -128,8 +130,8 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
     }
 
     private void getMatchPlayerInfo(List<PlayerStatics> playerStaticsList, MatchStatBean matchStatBean,boolean isHome) {
-        final List<PlayerInfo> mainPlayerInfos = new ArrayList<>();
-        final List<PlayerInfo> benchPlayerInfos = new ArrayList<>();
+        final LinkedList<PlayerInfo> mainPlayerInfos = new LinkedList<>();
+        final LinkedList<PlayerInfo> benchPlayerInfos = new LinkedList<>();
         for (PlayerStatics ps : playerStaticsList) {
             PlayerInfo playerInfo = new PlayerInfo();
             playerInfo.playerName = ps.getPlayerName();

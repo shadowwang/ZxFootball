@@ -9,16 +9,17 @@
     <com.parsonswang.zxfootball.common.view.MatchContainerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical"
         >
         <com.parsonswang.common.view.FootballView
             android:id="@+id/mMatchTimelines"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+
             app:fbvDirection="0"
             android:background="@color/colorBottomItemTextSelectedColor" />
     </com.parsonswang.zxfootball.common.view.MatchContainerLayout>

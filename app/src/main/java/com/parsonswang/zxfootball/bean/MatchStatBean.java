@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class MatchStatBean implements Parcelable{
@@ -21,11 +22,11 @@ public class MatchStatBean implements Parcelable{
 
     public String awayTeamFormation;//客队阵形
 
-    public List<PlayerInfo> homeMainPlayerInfos;
-    public List<PlayerInfo> homeBenchPlayerInfos;
+    public LinkedList<PlayerInfo> homeMainPlayerInfos;
+    public LinkedList<PlayerInfo> homeBenchPlayerInfos;
 
-    public List<PlayerInfo> awayMainPlayerInfos;
-    public List<PlayerInfo> awayBenchPlayerInfos;
+    public LinkedList<PlayerInfo> awayMainPlayerInfos;
+    public LinkedList<PlayerInfo> awayBenchPlayerInfos;
 
     public MatchStatBean() {}
 
