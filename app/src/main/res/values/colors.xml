@@ -10,4 +10,6 @@
 
     <color name="colorCommonContentBackground">#252E34</color>
     <color name="colorCommonLine">#64696B</color>
+
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

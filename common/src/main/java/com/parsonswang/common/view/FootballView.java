@@ -62,13 +62,13 @@ public class FootballView extends View {
 
     private void initPaint(Context context) {
         mFramePaint = new Paint();
-        mFramePaint.setColor(context.getResources().getColor(android.R.color.white));
+        mFramePaint.setColor(context.getResources().getColor(R.color.colorPrimary));
         mFramePaint.setStyle(Paint.Style.STROKE);
         mFramePaint.setStrokeWidth(UIUtils.dip2px(context, 2));
         mFramePaint.setAntiAlias(true);
 
         mDotPaint = new Paint();
-        mDotPaint.setColor(context.getResources().getColor(android.R.color.white));
+        mDotPaint.setColor(context.getResources().getColor(R.color.colorPrimary));
         mDotPaint.setStyle(Paint.Style.FILL);
         mDotPaint.setAntiAlias(true);
     }

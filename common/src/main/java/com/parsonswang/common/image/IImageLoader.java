@@ -12,5 +12,5 @@ public interface IImageLoader {
 
     void loadImage(Context context, ImageView imageView, String url, int defaultResId);
 
-    void loadRoundImage(Context context, ImageView imageView, String url, int defaultResId, int radius);
+    void loadRoundImage(Context context, ImageView imageView, String url, int defaultResId);
 }

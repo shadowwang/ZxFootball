@@ -12,8 +12,8 @@ import com.parsonswang.zxfootball.R;
 
 public class ImageUtils {
 
-    public static void loadMatchPlayerAvatar(Context context, ImageView imageView, String url, int radius) {
-        Imageloaders.loadRoundImage(context, url, imageView, R.drawable.ic_default_player, radius);
+    public static void loadMatchPlayerAvatar(Context context, ImageView imageView, String url) {
+        Imageloaders.loadRoundImage(context, url, imageView, R.drawable.ic_default_player);
     }
 
 }

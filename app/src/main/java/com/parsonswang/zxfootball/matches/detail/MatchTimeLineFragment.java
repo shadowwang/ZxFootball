@@ -7,14 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.parsonswang.common.base.BaseLazyLoadFragment;
+import com.parsonswang.common.view.FootballView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchStatBean;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
 import com.parsonswang.zxfootball.common.Constant;
+import com.parsonswang.zxfootball.common.view.MatchContainerLayout;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import timber.log.Timber;
@@ -30,6 +33,9 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     private SparseIntArray mTimeLineEventResMap = new SparseIntArray();
 
     private MatchPresenter matchPresenter;
+
+    private MatchContainerLayout mMatchContainerLayout;
+    private FootballView mFootballView;
 
     @Override
     protected void loadData() {
@@ -62,7 +68,11 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match_process, container, false);
+        mMatchContainerLayout = view.findViewById(R.id.match_container);
+        mFootballView = view.findViewById(R.id.football_view);
+
         matchPresenter = new MatchPresenter(this);
+
         return view;
     }
 
@@ -72,12 +82,10 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
-        final List<PlayerInfo> homeMainPlayerInfos = matchStatBean.homeMainPlayerInfos;
-        final String homeTeamFormation = matchStatBean.homeTeamFormation;
-
-        final List<PlayerInfo> awayMainPlayerInfos = matchStatBean.awayMainPlayerInfos;
-        final String awayTeamFormation = matchStatBean.awayTeamFormation;
-
+        //添加出场球员信息
+        mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
+                matchStatBean.homeMainPlayerInfos, matchStatBean.homeTeamFormation,
+                matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight());
     }
 
     @Override

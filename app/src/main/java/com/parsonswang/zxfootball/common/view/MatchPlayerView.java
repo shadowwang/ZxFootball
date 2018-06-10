@@ -45,7 +45,7 @@ public class MatchPlayerView extends FrameLayout {
     }
 
     public void setData(String avatarUrl, String name) {
-        ImageUtils.loadMatchPlayerAvatar(mContext, mIvPlayer, avatarUrl, UIUtils.dip2px(mContext, 50));
+        ImageUtils.loadMatchPlayerAvatar(mContext, mIvPlayer, avatarUrl);
         mTvPlayernName.setText(name);
     }
 }

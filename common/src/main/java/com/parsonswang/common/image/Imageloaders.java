@@ -13,8 +13,8 @@ public class Imageloaders {
         ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadImage(context, iv, url, defaultId);
     }
 
-    public static void loadRoundImage(Context context, String url, ImageView iv, int defaultId, int radius) {
-        ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadRoundImage(context, iv, url, defaultId, radius);
+    public static void loadRoundImage(Context context, String url, ImageView iv, int defaultId) {
+        ImageLoaderFactory.INSTANCE.getImageLoaderFactory().loadRoundImage(context, iv, url, defaultId);
     }
 
 }
