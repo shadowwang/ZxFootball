@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.common.network.JsonCallback;
 import com.parsonswang.common.network.OkHttpUtil;
-import com.parsonswang.common.utils.BarUtils;
 import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
@@ -124,7 +123,6 @@ public class MainActivity extends BaseActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
 
         OkHttpUtil.get().url("http://www.tzuqiu.cc/matches/queryFixture.json")
@@ -133,7 +131,7 @@ public class MainActivity extends BaseActivity {
                 .build().execute(new JsonCallback<MatchesBean>() {
             @Override
             protected void onSuccess(MatchesBean matchBean) {
-                Timber.i(matchBean.toString());
+                //Timber.i(matchBean.toString());
             }
 
             @Override

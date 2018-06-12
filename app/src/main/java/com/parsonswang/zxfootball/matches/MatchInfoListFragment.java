@@ -138,18 +138,27 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
     }
 
 
+    private void getNextMatchInfo() {
+        mRollbackMonth ++;
+        mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
+    }
+
     @Override
     public void showMatchInfoList(MatchesBean matchesBean) {
 
+        if (matchesBean == null) {
+            getNextMatchInfo();
+            return;
+        }
+
         final List<MatchesBean.MatchInfo> matchInfos = matchesBean.getDatas();
         if (matchInfos.isEmpty()) {
-            mRollbackMonth ++;
-
-            mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
+            getNextMatchInfo();
             return;
         }
 
         if (matchInfos.isEmpty()) {
+            getNextMatchInfo();
             return;
         }
         //先分为已比赛和未比赛的
