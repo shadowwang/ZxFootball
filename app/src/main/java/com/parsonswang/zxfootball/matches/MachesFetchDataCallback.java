@@ -13,8 +13,6 @@ public class MachesFetchDataCallback<T> extends JsonCallback<MatchesBean> {
 
     private MatchContract.IMatchInfoView matchView;
 
-    public MachesFetchDataCallback() {}
-
     public MachesFetchDataCallback(MatchContract.IMatchInfoView matchView) {
         this.matchView = matchView;
     }
