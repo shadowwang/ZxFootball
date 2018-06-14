@@ -104,10 +104,25 @@ public class MatchContainerLayout extends TableLayout {
                 }
                 tableRow.addView(goalKeeper);
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
-                ((LinearLayout.LayoutParams)goalKeeper.getLayoutParams()).bottomMargin = UIUtils.dip2px(getContext(), 5);
+
             } else {
-                int awayCntPerRow =  Integer.parseInt(homeRowInfo.get(i));
+                int awayCntPerRow =  Integer.parseInt(awayRowInfo.get(awayRowCnt - i - 2));
                 Timber.i("awayCntPerRow: " + awayCntPerRow);
+                for (int j = 0; j < awayCntPerRow; j++) {
+                    MatchPlayerView playerView = new MatchPlayerView(getContext());
+                    final PlayerInfo playerInfo = awayMainPlayerInfos.pollLast();
+                    if (playerInfo != null) {
+                        playerView.setData(playerInfo.avatarUrl, playerInfo.playerName);
+                    }
+                    tableRow.setWeightSum(awayCntPerRow);
+                    tableRow.addView(playerView);
+                    tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+                    ((LinearLayout.LayoutParams)playerView.getLayoutParams()).weight = 1;
+                    playerView.getLayoutParams().height = homeRowHeight;
+                    if (j == 0) {
+                        ((LinearLayout.LayoutParams)playerView.getLayoutParams()).topMargin = UIUtils.dip2px(getContext(), 5);
+                    }
+                }
             }
         }
     }
