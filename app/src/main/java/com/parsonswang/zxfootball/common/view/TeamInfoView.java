@@ -16,6 +16,7 @@ import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.Constant;
 
 /**
@@ -51,10 +52,30 @@ public class TeamInfoView extends FrameLayout {
         addView(view);
     }
 
-    public void setInfo(int teamId, String teamName) {
-        String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + teamId + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
-        Imageloaders.loadImage(mContext, url, mIvTeam, 0);
-        mTvTeam.setText(teamName);
+    private static final int WORDCUP_COMPETION_ID = 21;
+
+    public void setInfo(MatchesBean.MatchInfo matchInfo, boolean isHome) {
+        //http://ov68gixwy.bkt.clouddn.com/countries/Russia.png?imageView2/2/w/24
+        if (isHome) {
+            if (matchInfo.getCompetitionId() == WORDCUP_COMPETION_ID) {
+                String url = "http://ov68gixwy.bkt.clouddn.com/countries/" + matchInfo.getHomeTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                Imageloaders.loadImage(mContext, url, mIvTeam, 0);
+            } else {
+                String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + matchInfo.getHomeTeamId() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                Imageloaders.loadImage(mContext, url, mIvTeam, 0);
+            }
+            mTvTeam.setText(matchInfo.getHomeTeamName());
+        } else {
+            if (matchInfo.getCompetitionId() == WORDCUP_COMPETION_ID) {
+                String url = "http://ov68gixwy.bkt.clouddn.com/countries/" + matchInfo.getAwayTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                Imageloaders.loadImage(mContext, url, mIvTeam, 0);
+            } else {
+                String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + matchInfo.getAwayTeamId() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                Imageloaders.loadImage(mContext, url, mIvTeam, 0);
+            }
+            mTvTeam.setText(matchInfo.getAwayTeamName());
+        }
+
     }
 
     public void setHomeTeamGoalInfo(String goalPlayers) {

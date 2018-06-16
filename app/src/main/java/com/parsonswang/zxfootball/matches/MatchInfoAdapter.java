@@ -37,6 +37,13 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
         }
     }
 
+    public void clearData() {
+        if (matchInfoList != null && !matchInfoList.isEmpty()) {
+            matchInfoList.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getItemViewType(int position) {
         return this.matchInfoList.get(position).type;
@@ -72,8 +79,8 @@ public class MatchInfoAdapter extends RecyclerView.Adapter implements AdapterSti
                 mathInfoListItemVH.matchScoreInfoView.mTvMatchStatus.setText("未开始");
             }
             mathInfoListItemVH.matchScoreInfoView.mTvStage.setText(matchInfo.getStageName());
-            mathInfoListItemVH.matchScoreInfoView.mHomeTeam.setInfo(matchInfo.getHomeTeamId(), matchInfo.getHomeTeamName());
-            mathInfoListItemVH.matchScoreInfoView.mAwayTeam.setInfo(matchInfo.getAwayTeamId(), matchInfo.getAwayTeamName());
+            mathInfoListItemVH.matchScoreInfoView.mHomeTeam.setInfo(matchInfo, true);
+            mathInfoListItemVH.matchScoreInfoView.mAwayTeam.setInfo(matchInfo, false);
 
         } else if (holder instanceof MatchInfoDateItemVH) {
             MatchInfoDateItemVH matchInfoDateItemVH = (MatchInfoDateItemVH) holder;

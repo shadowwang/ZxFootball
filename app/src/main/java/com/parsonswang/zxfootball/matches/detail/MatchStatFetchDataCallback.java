@@ -57,8 +57,8 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
     private MatchStatBean getMatchTimelines(Document document) {
         MatchStatBean matchStatBean = new MatchStatBean();
 
-//        Elements elements = document.getElementsByTag("script");
-        Elements jsValElements = document.getElementsByTag("script").eq(16);
+        Elements elements = document.getElementsByTag("script");
+        Elements jsValElements = document.getElementsByTag("script").eq(18);
 
         for (Element element : jsValElements) {
             //var表达式：var keyName = values;

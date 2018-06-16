@@ -84,7 +84,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
         //添加出场球员信息
         mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
-                matchStatBean.homeMainPlayerInfos, matchStatBean.homeTeamFormation,
+                matchStatBean.homeMainPlayerInfos, matchStatBean.awayTeamFormation,
                 matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight());
     }
 

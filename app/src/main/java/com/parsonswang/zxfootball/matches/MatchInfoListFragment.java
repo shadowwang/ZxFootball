@@ -147,29 +147,28 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
     public void showMatchInfoList(MatchesBean matchesBean) {
 
         if (matchesBean == null) {
-            getNextMatchInfo();
             return;
         }
 
         final List<MatchesBean.MatchInfo> matchInfos = matchesBean.getDatas();
-        if (matchInfos.isEmpty()) {
+        if (Integer.parseInt(mCompetionId) != 21 && matchInfos.isEmpty()) {
             getNextMatchInfo();
             return;
         }
 
-        if (matchInfos.isEmpty()) {
-            getNextMatchInfo();
-            return;
-        }
+
         //先分为已比赛和未比赛的
         final List<MatchesBean.MatchInfo> hasMatchedList = new ArrayList<>();
 //        List<MatchesBean.MatchInfo> noMatchedList = new ArrayList<>();
 
         //增加比赛日期头部
-        MatchesBean.MatchInfo matchInfoHeader = new MatchesBean.MatchInfo();
-        matchInfoHeader.type = MatchesBean.MatchInfo.TYPE_TITLE;
-        matchInfoHeader.setMatchDate(getHeaderDateStr());
-        hasMatchedList.add(matchInfoHeader);
+        if (!matchInfos.isEmpty()) {
+            MatchesBean.MatchInfo matchInfoHeader = new MatchesBean.MatchInfo();
+            matchInfoHeader.type = MatchesBean.MatchInfo.TYPE_TITLE;
+            matchInfoHeader.setMatchDate(getHeaderDateStr());
+            hasMatchedList.add(matchInfoHeader);
+        }
+
 
         for (MatchesBean.MatchInfo matchInfo : matchInfos) {
             if (matchInfo.isIsFinish()) {
@@ -190,15 +189,18 @@ public class MatchInfoListFragment extends BaseLazyLoadFragment implements Match
         matchInfos.clear();
         matchInfos.addAll(hasMatchedList);
         Timber.i("---showMatchInfoList---" + matchInfos);
-        mMatchInfoAdapter.addAll(matchInfos);
+
         if (mOffset == 0) {
+            mMatchInfoAdapter.clearData();
             mRefreshLayout.finishRefresh();
         } else {
             mRefreshLayout.finishLoadmore();
         }
 
-        //fix:每月初赛事很少情况下做个补偿处理,以免体验不好
-        if (hasMatchedList.size() < 10) {
+        mMatchInfoAdapter.addAll(matchInfos);
+
+        //fix:每月初赛事很少情况下做个补偿处理,以免体验不好(世界杯这种四年一次的就算了)
+        if (Integer.parseInt(mCompetionId) != 21 && hasMatchedList.size() < 10) {
             mRollbackMonth ++;
             mMatchPresenter.getMatchInfos(mCompetionId, getSpecifyDateParams());
         }

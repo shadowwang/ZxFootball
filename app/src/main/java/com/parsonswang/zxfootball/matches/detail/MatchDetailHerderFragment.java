@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseFragment;
 import com.parsonswang.common.image.Imageloaders;
+import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
@@ -73,7 +75,23 @@ public class MatchDetailHerderFragment extends BaseFragment implements MatchCont
 
     @Override
     public void showMatchSummary(MatchSummary matchSummary) {
-        mMarqueTextView.setText(matchDetailHeaderInfoBean.homeTeamName + ":" + matchSummary.getHomeMatchSummary() + " " + matchDetailHeaderInfoBean.awayTeamName + ":"  + matchSummary.getAwayMatchSummary());
+        final String homeSummary = matchSummary.getHomeMatchSummary();
+        String matchSummaryStr = "";
+        if (!StringUtils.isEmptyString(homeSummary)) {
+            matchSummaryStr = matchDetailHeaderInfoBean.homeTeamName + ":" + matchSummary.getHomeMatchSummary();
+        }
+
+        String awaySummary = matchSummary.getAwayMatchSummary();
+        if (!StringUtils.isEmptyString(awaySummary)) {
+            matchSummaryStr += " " + matchDetailHeaderInfoBean.awayTeamName + ":"  + matchSummary.getAwayMatchSummary();
+        }
+
+        if (!StringUtils.isEmptyString(matchSummaryStr)) {
+            mMarqueTextView.setVisibility(View.VISIBLE);
+            mMarqueTextView.setText(matchSummaryStr);
+        } else {
+            mMarqueTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
