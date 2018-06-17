@@ -12,4 +12,6 @@
     <color name="colorCommonLine">#64696B</color>
 
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorFootviewBg">#7CCD7C</color>
+
 </resources>

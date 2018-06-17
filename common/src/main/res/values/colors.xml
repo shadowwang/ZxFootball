@@ -6,5 +6,5 @@
 
     <color name="colorCommonBackground">#191F26</color>
     <color name="colorCommonTextDefault">#5D6266</color>
-
+    <color name="colorFootviewLine">#E4EBD6</color>
 </resources>
