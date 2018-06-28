@@ -86,6 +86,8 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
                 matchStatBean.homeMainPlayerInfos, matchStatBean.awayTeamFormation,
                 matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight());
+        //添加timeline
+
     }
 
     @Override

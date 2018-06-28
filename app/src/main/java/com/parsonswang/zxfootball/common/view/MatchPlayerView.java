@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.parsonswang.common.image.GlideImageLoader;
 import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.common.utils.UIUtils;
+import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.common.utils.ImageUtils;
 
@@ -22,7 +23,7 @@ import com.parsonswang.zxfootball.common.utils.ImageUtils;
 public class MatchPlayerView extends FrameLayout {
 
     private ImageView mIvPlayer;
-    private TextView mTvPlayernName;
+    private MarqueTextView mTvPlayernName;
 
     private Context mContext;
 
@@ -46,6 +47,12 @@ public class MatchPlayerView extends FrameLayout {
 
     public void setData(String avatarUrl, String name) {
         ImageUtils.loadMatchPlayerAvatar(mContext, mIvPlayer, avatarUrl);
+
+        if (name.contains("·") && name.split("·").length > 1) {
+            name = name.split("·")[1];
+        } else if (name.contains("-") && name.split("-").length > 1) {
+            name = name.split("-")[1];
+        }
         mTvPlayernName.setText(name);
     }
 }
