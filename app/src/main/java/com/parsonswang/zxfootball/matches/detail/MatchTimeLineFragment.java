@@ -11,6 +11,7 @@ import com.parsonswang.common.view.FootballView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.GoalPlayers;
 import com.parsonswang.zxfootball.bean.MatchStatBean;
+import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.common.view.MatchContainerLayout;
@@ -86,8 +87,12 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
                 matchStatBean.homeMainPlayerInfos, matchStatBean.awayTeamFormation,
                 matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight());
-        //添加timeline
 
+        //添加timeline
+        final List<MatchTimelines> matchTimelinesList =  matchStatBean.matchTimelinesList;
+        mMatchContainerLayout.addTimeLine(matchStatBean.homeMainPlayerInfos,
+                matchStatBean.awayMainPlayerInfos,
+                matchTimelinesList);
     }
 
     @Override

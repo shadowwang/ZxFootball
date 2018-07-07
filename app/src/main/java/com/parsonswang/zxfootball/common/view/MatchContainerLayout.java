@@ -11,11 +11,13 @@ import android.widget.TableRow;
 
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.utils.UIUtils;
+import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -31,6 +33,12 @@ public class MatchContainerLayout extends TableLayout {
     public MatchContainerLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setGravity(VERTICAL);
+    }
+
+    public void addTimeLine(LinkedList<PlayerInfo> homeMainPlayerInfos,
+                            LinkedList<PlayerInfo> awayMainPlayerInfos,
+                            List<MatchTimelines> matchTimelines) {
+
     }
 
     public void addPlayer(String homeTeamFormation,
