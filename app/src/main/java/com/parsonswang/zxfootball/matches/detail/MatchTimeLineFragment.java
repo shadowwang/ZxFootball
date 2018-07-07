@@ -92,7 +92,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         final List<MatchTimelines> matchTimelinesList =  matchStatBean.matchTimelinesList;
         mMatchContainerLayout.addTimeLine(matchStatBean.homeMainPlayerInfos,
                 matchStatBean.awayMainPlayerInfos,
-                matchTimelinesList);
+                matchTimelinesList, mTimeLineEventResMap);
     }
 
     @Override

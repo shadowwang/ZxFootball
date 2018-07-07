@@ -6,6 +6,17 @@
     android:background="@color/colorCommonBackground"
     android:layout_height="56dp">
 
+    <ImageView
+        android:id="@+id/mIvLeft"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="14dp"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/tv_title"
@@ -21,6 +32,7 @@
         />
 
     <ImageView
+        android:id="@+id/mRightView"
         android:layout_width="24dp"
         android:layout_height="24dp"
         app:srcCompat="@drawable/ic_search"

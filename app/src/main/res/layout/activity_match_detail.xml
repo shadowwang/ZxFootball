@@ -8,6 +8,12 @@
     android:fitsSystemWindows="true"
     >
 
+    <com.parsonswang.zxfootball.common.view.CommonActionBar
+        android:id="@+id/mActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        />
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

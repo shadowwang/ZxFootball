@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.view.PagerSlidingTabStrip;
 import com.parsonswang.zxfootball.R;
+import com.parsonswang.zxfootball.common.view.CommonActionBar;
 
 /**
  * Created by wangchun on 2017/12/23.
@@ -18,6 +20,7 @@ import com.parsonswang.zxfootball.R;
 
 public class MatchDetailActivity extends BaseActivity {
 
+    private CommonActionBar mCommonActionBar;
     private PagerSlidingTabStrip mTabs;
     private MatchDetailHerderFragment mMatchDetailHerderFragment;
     private ViewPager mViewPager;
@@ -36,6 +39,15 @@ public class MatchDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_match_detail);
         mViewPager = findViewById(R.id.vp_detail);
         mTabs = findViewById(R.id.tabs);
+        mCommonActionBar = findViewById(R.id.mActionBar);
+        mCommonActionBar.hideRightArrow();
+        mCommonActionBar.showLeftArrow();
+        mCommonActionBar.setLeftArrowClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
 

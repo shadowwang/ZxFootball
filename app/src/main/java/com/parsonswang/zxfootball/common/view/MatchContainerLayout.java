@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.SparseIntArray;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -37,7 +38,8 @@ public class MatchContainerLayout extends TableLayout {
 
     public void addTimeLine(LinkedList<PlayerInfo> homeMainPlayerInfos,
                             LinkedList<PlayerInfo> awayMainPlayerInfos,
-                            List<MatchTimelines> matchTimelines) {
+                            List<MatchTimelines> matchTimelines,
+                            SparseIntArray timeLineEventResMap) {
 
     }
 
