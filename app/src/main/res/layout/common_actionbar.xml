@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorCommonBackground"
-    android:layout_height="56dp">
+    android:layout_height="66dp">
 
     <ImageView
         android:id="@+id/mIvLeft"
@@ -41,4 +41,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="14dp"
         />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorCommonContentBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 </android.support.constraint.ConstraintLayout>
