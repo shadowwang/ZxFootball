@@ -124,20 +124,5 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
-
-        OkHttpUtil.get().url("http://www.tzuqiu.cc/matches/queryFixture.json")
-                .addParams("comeptitionId", "3")
-                .addParams("date", "2017.9.1+至+2017.10.31")
-                .build().execute(new JsonCallback<MatchesBean>() {
-            @Override
-            protected void onSuccess(MatchesBean matchBean) {
-                //Timber.i(matchBean.toString());
-            }
-
-            @Override
-            protected void onFail(Call call, String reson) {
-                Timber.e(reson);
-            }
-        });
     }
 }

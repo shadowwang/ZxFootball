@@ -17,6 +17,7 @@ import com.parsonswang.zxfootball.bean.PlayerInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,18 +37,13 @@ public class MatchContainerLayout extends TableLayout {
         setGravity(VERTICAL);
     }
 
-    public void addTimeLine(LinkedList<PlayerInfo> homeMainPlayerInfos,
-                            LinkedList<PlayerInfo> awayMainPlayerInfos,
-                            List<MatchTimelines> matchTimelines,
-                            SparseIntArray timeLineEventResMap) {
-
-    }
-
     public void addPlayer(String homeTeamFormation,
                           LinkedList<PlayerInfo> homeMainPlayerInfos,
                           String awayTeamFormation,
                           LinkedList<PlayerInfo> awayMainPlayerInfos,
-                          int height) {
+                          int height,
+                          HashMap<String, MatchTimelines> matchTimelines,
+                          SparseIntArray timeLineEventResMap) {
         //=====主队球员（首发）=====
         final ArrayList<String> homeRowInfo = getRowCnt(homeTeamFormation);
         int homeRowCnt = homeRowInfo.size() + 1;
@@ -67,7 +63,7 @@ public class MatchContainerLayout extends TableLayout {
                 MatchPlayerView playerView = new MatchPlayerView(getContext());
                 final PlayerInfo playerInfo = homeMainPlayerInfos.poll();
                 if (playerInfo != null) {
-                    playerView.setData(playerInfo.avatarUrl, playerInfo.playerName);
+                    playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
                 }
 
                 tableRow.addView(playerView);
@@ -84,7 +80,7 @@ public class MatchContainerLayout extends TableLayout {
                     MatchPlayerView playerView = new MatchPlayerView(getContext());
                     final PlayerInfo playerInfo = homeMainPlayerInfos.poll();
                     if (playerInfo != null) {
-                        playerView.setData(playerInfo.avatarUrl, playerInfo.playerName);
+                        playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
                     }
                     tableRow.setWeightSum(homeCntPerRow);
                     tableRow.addView(playerView);
@@ -110,7 +106,7 @@ public class MatchContainerLayout extends TableLayout {
                 MatchPlayerView goalKeeper = new MatchPlayerView(getContext());
                 final PlayerInfo playerInfo = awayMainPlayerInfos.poll();
                 if (playerInfo != null) {
-                    goalKeeper.setData(playerInfo.avatarUrl, playerInfo.playerName);
+                    goalKeeper.setData(playerInfo, matchTimelines, timeLineEventResMap);
                 }
                 tableRow.addView(goalKeeper);
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -122,7 +118,7 @@ public class MatchContainerLayout extends TableLayout {
                     MatchPlayerView playerView = new MatchPlayerView(getContext());
                     final PlayerInfo playerInfo = awayMainPlayerInfos.pollLast();
                     if (playerInfo != null) {
-                        playerView.setData(playerInfo.avatarUrl, playerInfo.playerName);
+                        playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
                     }
                     tableRow.setWeightSum(awayCntPerRow);
                     tableRow.addView(playerView);

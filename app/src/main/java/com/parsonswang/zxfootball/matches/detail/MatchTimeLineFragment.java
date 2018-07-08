@@ -5,6 +5,7 @@ import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.parsonswang.common.base.BaseLazyLoadFragment;
 import com.parsonswang.common.view.FootballView;
@@ -18,6 +19,7 @@ import com.parsonswang.zxfootball.common.view.MatchContainerLayout;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     private MatchPresenter matchPresenter;
 
     private MatchContainerLayout mMatchContainerLayout;
+    private LinearLayout mEventContainer;
     private FootballView mFootballView;
 
     @Override
@@ -71,6 +74,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         View view = inflater.inflate(R.layout.fragment_match_process, container, false);
         mMatchContainerLayout = view.findViewById(R.id.match_container);
         mFootballView = view.findViewById(R.id.football_view);
+        mEventContainer = view.findViewById(R.id.event_container);
 
         matchPresenter = new MatchPresenter(this);
 
@@ -83,16 +87,23 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
 
     @Override
     public void getMatchTimelineInfo(MatchStatBean matchStatBean) {
-        //添加出场球员信息
+        //添加timeline
+        final List<MatchTimelines> matchTimelinesList = matchStatBean.matchTimelinesList;
+
+        HashMap<String, MatchTimelines> timelinesHashMap = new HashMap<>(matchTimelinesList.size());
+        for (MatchTimelines timelines : matchTimelinesList) {
+            timelinesHashMap.put(timelines.playerId, timelines);
+        }
+
+        Timber.i(timelinesHashMap.toString());
+
+        //添加出场球员和timeline信息
         mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
                 matchStatBean.homeMainPlayerInfos, matchStatBean.awayTeamFormation,
-                matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight());
+                matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight(),
+                timelinesHashMap, mTimeLineEventResMap);
 
-        //添加timeline
-        final List<MatchTimelines> matchTimelinesList =  matchStatBean.matchTimelinesList;
-        mMatchContainerLayout.addTimeLine(matchStatBean.homeMainPlayerInfos,
-                matchStatBean.awayMainPlayerInfos,
-                matchTimelinesList, mTimeLineEventResMap);
+
     }
 
     @Override

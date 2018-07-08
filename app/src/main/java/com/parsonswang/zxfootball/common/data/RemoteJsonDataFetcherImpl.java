@@ -7,6 +7,8 @@ import com.parsonswang.common.network.OkHttpUtil;
 
 import java.util.Map;
 
+import timber.log.Timber;
+
 /**
  * 从服务器获取比赛数据
  * Created by parsonswang on 2017/10/20.
@@ -29,6 +31,7 @@ public class RemoteJsonDataFetcherImpl implements IDataFetcher<JsonCallback>{
                 httpGetBuilder.addParams(entry.getKey(), entry.getValue());
             }
         }
+        Timber.i("fetchData: " + mUrl);
 
         httpGetBuilder.build().execute(callback);
     }
