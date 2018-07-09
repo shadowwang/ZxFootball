@@ -19,7 +19,9 @@ import com.parsonswang.zxfootball.common.view.MatchContainerLayout;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +40,6 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     private MatchPresenter matchPresenter;
 
     private MatchContainerLayout mMatchContainerLayout;
-    private LinearLayout mEventContainer;
     private FootballView mFootballView;
 
     @Override
@@ -55,6 +56,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_SAVE, R.drawable.ic_save);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN_NOT, R.drawable.ic_dian_not_goal);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN_SAVE, R.drawable.ic_dian_save);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_WULONG_GOAL, R.drawable.ic_goal_own);
 
         if (matchPresenter != null) {
             matchPresenter.getMatchStat(getArguments().getString(BUNDKE_KEY_MATCHSTAT));
@@ -74,7 +76,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         View view = inflater.inflate(R.layout.fragment_match_process, container, false);
         mMatchContainerLayout = view.findViewById(R.id.match_container);
         mFootballView = view.findViewById(R.id.football_view);
-        mEventContainer = view.findViewById(R.id.event_container);
+
 
         matchPresenter = new MatchPresenter(this);
 
@@ -90,9 +92,23 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
         //添加timeline
         final List<MatchTimelines> matchTimelinesList = matchStatBean.matchTimelinesList;
 
-        HashMap<String, MatchTimelines> timelinesHashMap = new HashMap<>(matchTimelinesList.size());
+        HashMap<String, ArrayList<MatchTimelines>> timelinesHashMap = new HashMap<>(matchTimelinesList.size());
+
+        HashSet<String> keySet = new HashSet<>();
+
         for (MatchTimelines timelines : matchTimelinesList) {
-            timelinesHashMap.put(timelines.playerId, timelines);
+//            timelinesHashMap.put(timelines.playerId, timelines);
+            ArrayList<MatchTimelines> timelinesArrayList = null;
+            if (!keySet.contains(timelines.playerId)) {
+                keySet.add(timelines.playerId);
+                timelinesArrayList = new ArrayList<>();
+                timelinesArrayList.add(timelines);
+                timelinesHashMap.put(timelines.playerId, timelinesArrayList);
+            } else {
+                if (timelinesHashMap.get(timelines.playerId) != null) {
+                    timelinesHashMap.get(timelines.playerId).add(timelines);
+                }
+            }
         }
 
         Timber.i(timelinesHashMap.toString());

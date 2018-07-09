@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
         >
         <ImageView
             android:id="@+id/iv_player"
@@ -35,9 +36,10 @@
 
     <LinearLayout
         android:id="@+id/event_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
         android:orientation="horizontal"
+        android:layout_gravity="center_horizontal|top"
         >
 
     </LinearLayout>

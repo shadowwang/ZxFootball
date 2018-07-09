@@ -1,6 +1,7 @@
 package com.parsonswang.zxfootball.common.view;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parsonswang.common.image.GlideImageLoader;
@@ -20,6 +22,7 @@ import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
 import com.parsonswang.zxfootball.common.utils.ImageUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -29,6 +32,7 @@ public class MatchPlayerView extends FrameLayout {
 
     private ImageView mIvPlayer;
     private MarqueTextView mTvPlayernName;
+    private LinearLayout mEventContainer;
 
     private Context mContext;
 
@@ -47,10 +51,12 @@ public class MatchPlayerView extends FrameLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_match_player, null, false);
         mIvPlayer = view.findViewById(R.id.iv_player);
         mTvPlayernName = view.findViewById(R.id.tv_playername);
+        mEventContainer = view.findViewById(R.id.event_container);
+
         addView(view);
     }
 
-    public void setData(PlayerInfo playerInfo, HashMap<String, MatchTimelines> matchTimelines,
+    public void setData(PlayerInfo playerInfo, HashMap<String, ArrayList<MatchTimelines>> matchTimelines,
                         SparseIntArray timeLineEventResMap) {
         ImageUtils.loadMatchPlayerAvatar(mContext, mIvPlayer, playerInfo.avatarUrl);
 
@@ -62,9 +68,18 @@ public class MatchPlayerView extends FrameLayout {
         }
         mTvPlayernName.setText(name);
 
-        final MatchTimelines matchTimeline = matchTimelines.get(playerInfo.playerId);
-        if (matchTimeline != null) {
-            int res = timeLineEventResMap.get(matchTimeline.eventType);
+        final ArrayList<MatchTimelines> matchTimelineList= matchTimelines.get(playerInfo.playerId);
+        if (matchTimelineList != null && !matchTimelineList.isEmpty()) {
+            for (MatchTimelines matchTimeline : matchTimelineList) {
+                int res = timeLineEventResMap.get(matchTimeline.eventType);
+                ImageView imageView = new ImageView(getContext());
+                imageView.setBackgroundResource(res);
+                mEventContainer.addView(imageView);
+
+                final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mEventContainer.getLayoutParams();
+                layoutParams.width = UIUtils.dip2px(getContext(), 10);
+                layoutParams.height = UIUtils.dip2px(getContext(), 10);
+            }
         }
 
     }

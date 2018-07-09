@@ -42,7 +42,7 @@ public class MatchContainerLayout extends TableLayout {
                           String awayTeamFormation,
                           LinkedList<PlayerInfo> awayMainPlayerInfos,
                           int height,
-                          HashMap<String, MatchTimelines> matchTimelines,
+                          HashMap<String, ArrayList<MatchTimelines>> matchTimelines,
                           SparseIntArray timeLineEventResMap) {
         //=====主队球员（首发）=====
         final ArrayList<String> homeRowInfo = getRowCnt(homeTeamFormation);
