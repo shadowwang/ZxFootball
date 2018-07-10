@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,6 +25,8 @@ import com.parsonswang.zxfootball.common.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import timber.log.Timber;
 
 /**
  * 比赛球员信息view
@@ -69,16 +72,21 @@ public class MatchPlayerView extends FrameLayout {
         mTvPlayernName.setText(name);
 
         final ArrayList<MatchTimelines> matchTimelineList= matchTimelines.get(playerInfo.playerId);
+
         if (matchTimelineList != null && !matchTimelineList.isEmpty()) {
             for (MatchTimelines matchTimeline : matchTimelineList) {
                 int res = timeLineEventResMap.get(matchTimeline.eventType);
-                ImageView imageView = new ImageView(getContext());
-                imageView.setBackgroundResource(res);
-                mEventContainer.addView(imageView);
+
+                TextView textView = new TextView(getContext());
+                textView.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, UIUtils.dip2px(getContext(), 2));
+                textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, res, 0);
+                textView.setText(matchTimeline.minute + " ");
+                mEventContainer.addView(textView);
 
                 final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mEventContainer.getLayoutParams();
-                layoutParams.width = UIUtils.dip2px(getContext(), 10);
-                layoutParams.height = UIUtils.dip2px(getContext(), 10);
+                layoutParams.width = LayoutParams.WRAP_CONTENT;
+                layoutParams.height = LayoutParams.WRAP_CONTENT;
             }
         }
 

@@ -34,6 +34,7 @@ public class Constant {
     public static class MatchTimelineEventType {
         public static final int EVENTTYPE_GOAL= 0;
         public static final int EVENTTYPE_ASSIST= 1;
+        public static final int EVENTTYPE_ZHONGZHU= 2;
         public static final int EVENTTYPE_WULONG_GOAL= 3;
         public static final int EVENTTYPE_GOAL_DIAN= 4;
         public static final int EVENTTYPE_GOAL_DIAN_NOT= 5;//点球不进

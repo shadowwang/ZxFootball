@@ -45,6 +45,7 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
     @Override
     protected void loadData() {
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL, R.drawable.ic_goal);
+        mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_ZHONGZHU, R.drawable.ic_zhongzhu);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_ASSIST, R.drawable.ic_assist);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_GOAL_DIAN, R.drawable.ic_goal_dian);
         mTimeLineEventResMap.put(Constant.MatchTimelineEventType.EVENTTYPE_YELLOW_CARD, R.drawable.ic_yellow_card);
