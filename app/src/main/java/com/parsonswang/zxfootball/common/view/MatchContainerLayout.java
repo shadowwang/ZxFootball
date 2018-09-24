@@ -1,11 +1,16 @@
 package com.parsonswang.zxfootball.common.view;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.Gravity;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,6 +19,7 @@ import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
+import com.parsonswang.zxfootball.common.Constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,21 +41,24 @@ public class MatchContainerLayout extends TableLayout {
     public MatchContainerLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setGravity(VERTICAL);
+
     }
 
     public void addPlayer(String homeTeamFormation,
                           LinkedList<PlayerInfo> homeMainPlayerInfos,
+                          LinkedList<PlayerInfo> homeBenchPlayerInfos,
                           String awayTeamFormation,
                           LinkedList<PlayerInfo> awayMainPlayerInfos,
+                          LinkedList<PlayerInfo> awayBenchPlayerInfos,
                           int height,
                           HashMap<String, ArrayList<MatchTimelines>> matchTimelines,
-                          SparseIntArray timeLineEventResMap) {
+                          final SparseIntArray timeLineEventResMap) {
         //=====主队球员（首发）=====
         final ArrayList<String> homeRowInfo = getRowCnt(homeTeamFormation);
         int homeRowCnt = homeRowInfo.size() + 1;
 
         final int homeRowHeight = height / 2 / homeRowCnt;
-        Timber.i("homeRowHeight: " + homeRowHeight);
+        Timber.i("matchTimelines: " + matchTimelines);
 
         for (int i = 0; i < homeRowCnt; i++) {
             TableRow tableRow = new TableRow(getContext());
@@ -63,7 +72,8 @@ public class MatchContainerLayout extends TableLayout {
                 MatchPlayerView playerView = new MatchPlayerView(getContext());
                 final PlayerInfo playerInfo = homeMainPlayerInfos.poll();
                 if (playerInfo != null) {
-                    playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
+                    final ArrayList<MatchTimelines> matchTimelinesArrayList = matchTimelines.get(playerInfo.playerId);
+                    playerView.setData(playerInfo, matchTimelinesArrayList, timeLineEventResMap);
                 }
 
                 tableRow.addView(playerView);
@@ -74,16 +84,21 @@ public class MatchContainerLayout extends TableLayout {
 //                ((LinearLayout.LayoutParams)tableRow.getLayoutParams()).topMargin = UIUtils.dip2px(getContext(), 15);
 
                 int homeCntPerRow =  Integer.parseInt(homeRowInfo.get(i - 1));
-                Timber.i("homeCntPerRow: " + homeCntPerRow);
-
                 for (int j = 0; j < homeCntPerRow; j++) {
-                    MatchPlayerView playerView = new MatchPlayerView(getContext());
-                    final PlayerInfo playerInfo = homeMainPlayerInfos.poll();
-                    if (playerInfo != null) {
-                        playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
-                    }
-                    tableRow.setWeightSum(homeCntPerRow);
+                    final MatchPlayerView playerView = new MatchPlayerView(getContext());
                     tableRow.addView(playerView);
+                    final PlayerInfo homeMainPlayerInfo = homeMainPlayerInfos.poll();
+                    if (homeMainPlayerInfo != null) {
+                        final ArrayList<MatchTimelines> matchTimelinesArrayList = matchTimelines.get(homeMainPlayerInfo.playerId);
+                        playerView.setData(homeMainPlayerInfo, matchTimelinesArrayList, timeLineEventResMap);
+                        if (homeMainPlayerInfo.hasExchangeDown) {
+                            final PlayerInfo homeBenchPlayerInfo = homeBenchPlayerInfos.poll();
+                            final ArrayList<MatchTimelines> matchBenchTimelinesArrayList = matchTimelines.get(homeBenchPlayerInfo.playerId);
+                            playerView.substitution(homeBenchPlayerInfo, matchBenchTimelinesArrayList, timeLineEventResMap);
+                        }
+                    }
+
+                    tableRow.setWeightSum(homeCntPerRow);
                     tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
                     ((LinearLayout.LayoutParams)playerView.getLayoutParams()).weight = 1;
                     playerView.getLayoutParams().height = homeRowHeight;
@@ -91,10 +106,10 @@ public class MatchContainerLayout extends TableLayout {
             }
         }
 
+
         //=========客队球员(首发)=============
         final ArrayList<String> awayRowInfo = getRowCnt(awayTeamFormation);
         int awayRowCnt = awayRowInfo.size() + 1;
-        Timber.i("awayRowCnt: " + awayRowCnt);
 
         final int awayRowHeight = height / 2 / awayRowCnt;
         for (int i = 0; i < awayRowCnt; i++) {
@@ -106,19 +121,20 @@ public class MatchContainerLayout extends TableLayout {
                 MatchPlayerView goalKeeper = new MatchPlayerView(getContext());
                 final PlayerInfo playerInfo = awayMainPlayerInfos.poll();
                 if (playerInfo != null) {
-                    goalKeeper.setData(playerInfo, matchTimelines, timeLineEventResMap);
+                    final ArrayList<MatchTimelines> matchTimelinesArrayList = matchTimelines.get(playerInfo.playerId);
+                    goalKeeper.setData(playerInfo, matchTimelinesArrayList, timeLineEventResMap);
                 }
                 tableRow.addView(goalKeeper);
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
 
             } else {
                 int awayCntPerRow =  Integer.parseInt(awayRowInfo.get(awayRowCnt - i - 2));
-                Timber.i("awayCntPerRow: " + awayCntPerRow);
                 for (int j = 0; j < awayCntPerRow; j++) {
                     MatchPlayerView playerView = new MatchPlayerView(getContext());
                     final PlayerInfo playerInfo = awayMainPlayerInfos.pollLast();
                     if (playerInfo != null) {
-                        playerView.setData(playerInfo, matchTimelines, timeLineEventResMap);
+                        final ArrayList<MatchTimelines> matchTimelinesArrayList = matchTimelines.get(playerInfo.playerId);
+                        playerView.setData(playerInfo, matchTimelinesArrayList, timeLineEventResMap);
                     }
                     tableRow.setWeightSum(awayCntPerRow);
                     tableRow.addView(playerView);
@@ -132,6 +148,9 @@ public class MatchContainerLayout extends TableLayout {
             }
         }
     }
+
+
+
 
     /**
      * 根据阵型得到行数

@@ -112,12 +112,18 @@ public class MatchTimeLineFragment extends BaseLazyLoadFragment implements Match
             }
         }
 
-        Timber.i(timelinesHashMap.toString());
+        Timber.i(matchStatBean.homeBenchPlayerInfos.toString());
+        Timber.i(matchStatBean.awayBenchPlayerInfos.toString());
+
 
         //添加出场球员和timeline信息
         mMatchContainerLayout.addPlayer(matchStatBean.homeTeamFormation,
-                matchStatBean.homeMainPlayerInfos, matchStatBean.awayTeamFormation,
-                matchStatBean.awayMainPlayerInfos, mFootballView.getMeasuredHeight(),
+                matchStatBean.homeMainPlayerInfos,
+                matchStatBean.homeBenchPlayerInfos,
+                matchStatBean.awayTeamFormation,
+                matchStatBean.awayMainPlayerInfos,
+                matchStatBean.awayBenchPlayerInfos,
+                mFootballView.getMeasuredHeight(),
                 timelinesHashMap, mTimeLineEventResMap);
 
 

@@ -1,7 +1,7 @@
 package com.parsonswang.zxfootball.common.view;
 
 import android.content.Context;
-import android.media.Image;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -14,17 +14,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.parsonswang.common.image.GlideImageLoader;
-import com.parsonswang.common.image.Imageloaders;
 import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.common.view.MarqueTextView;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
+import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.common.utils.ImageUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import timber.log.Timber;
 
@@ -33,11 +31,12 @@ import timber.log.Timber;
  */
 public class MatchPlayerView extends FrameLayout {
 
-    private ImageView mIvPlayer;
-    private MarqueTextView mTvPlayernName;
-    private LinearLayout mEventContainer;
-
+    private ImageView mIvMainPlayer;
+    private MarqueTextView mTvMainPlayerName;
+    private LinearLayout mMainEventContainer;
     private Context mContext;
+
+    public boolean showUp;
 
     public MatchPlayerView(@NonNull Context context) {
         super(context);
@@ -52,16 +51,37 @@ public class MatchPlayerView extends FrameLayout {
     private void init(Context context) {
         this.mContext = context;
         View view = LayoutInflater.from(context).inflate(R.layout.layout_match_player, null, false);
-        mIvPlayer = view.findViewById(R.id.iv_player);
-        mTvPlayernName = view.findViewById(R.id.tv_playername);
-        mEventContainer = view.findViewById(R.id.event_container);
+
+        mIvMainPlayer = view.findViewById(R.id.iv_player);
+        mTvMainPlayerName = view.findViewById(R.id.tv_playername);
+        mMainEventContainer = view.findViewById(R.id.event_container);
 
         addView(view);
     }
 
-    public void setData(PlayerInfo playerInfo, HashMap<String, ArrayList<MatchTimelines>> matchTimelines,
+    private PlayerInfo mainPlayerInfo, benchPlayerInfo;
+    private ArrayList<MatchTimelines> mainMatchTimelineList, benchMatchTimelineList;
+    private SparseIntArray mainTimeLineEventResMap, benchTimeLineEventResMap;
+
+    /**
+     * 设置队员信息
+     * @param playerInfo
+     * @param matchTimelineList
+     * @param timeLineEventResMap
+     */
+    public void setData(PlayerInfo playerInfo, ArrayList<MatchTimelines> matchTimelineList,
                         SparseIntArray timeLineEventResMap) {
-        ImageUtils.loadMatchPlayerAvatar(mContext, mIvPlayer, playerInfo.avatarUrl);
+        if (this.mainPlayerInfo == null) {
+            this.mainPlayerInfo = playerInfo;
+        }
+        if (this.mainMatchTimelineList == null) {
+            this.mainMatchTimelineList = matchTimelineList;
+        }
+        if (this.mainTimeLineEventResMap == null) {
+            this.mainTimeLineEventResMap = timeLineEventResMap;
+        }
+
+        ImageUtils.loadMatchPlayerAvatar(mContext, mIvMainPlayer, playerInfo.avatarUrl);
 
         String name = playerInfo.playerName;
         if (name.contains("·") && name.split("·").length > 1) {
@@ -69,26 +89,94 @@ public class MatchPlayerView extends FrameLayout {
         } else if (name.contains("-") && name.split("-").length > 1) {
             name = name.split("-")[1];
         }
-        mTvPlayernName.setText(name);
+        mTvMainPlayerName.setText(name);
 
-        final ArrayList<MatchTimelines> matchTimelineList= matchTimelines.get(playerInfo.playerId);
-
-        if (matchTimelineList != null && !matchTimelineList.isEmpty()) {
+        if (matchTimelineList != null) {
+            mMainEventContainer.removeAllViews();
             for (MatchTimelines matchTimeline : matchTimelineList) {
-                int res = timeLineEventResMap.get(matchTimeline.eventType);
+                final int eventType = matchTimeline.eventType;
+                if (eventType == Constant.MatchTimelineEventType.EVENTTYPE_SUBSTITUTES_DOWN) {
+                    playerInfo.hasExchangeDown = true;
+                }
+
+                int res = timeLineEventResMap.get(eventType);
 
                 TextView textView = new TextView(getContext());
                 textView.setTextColor(getContext().getResources().getColor(R.color.colorWhite));
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, UIUtils.dip2px(getContext(), 2));
+//                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, UIUtils.dip2px(getContext(), 2));
                 textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, res, 0);
-                textView.setText(matchTimeline.minute + " ");
-                mEventContainer.addView(textView);
+                textView.setText(String.valueOf(matchTimeline.minute));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 8);
+                mMainEventContainer.addView(textView);
 
-                final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mEventContainer.getLayoutParams();
-                layoutParams.width = LayoutParams.WRAP_CONTENT;
-                layoutParams.height = LayoutParams.WRAP_CONTENT;
+                final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
+                layoutParams.leftMargin = UIUtils.dip2px(mContext, 2);
             }
         }
+    }
 
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            Timber.i("---runnable---" + showUp);
+            if (showUp) {//显示替换上场球员信息
+                setData(benchPlayerInfo, benchMatchTimelineList, benchTimeLineEventResMap);
+                showUp = false;
+            } else {//显示主力球员信息
+                setData(mainPlayerInfo, mainMatchTimelineList, mainTimeLineEventResMap);
+                showUp = true;
+            }
+
+            if (mHandler != null) {
+                mHandler.postDelayed(this, 2000);
+            }
+        }
+    };
+
+    /**
+     * 替补球员信息
+     * @param playerInfo
+     * @param matchTimelineList
+     * @param timeLineEventResMap
+     */
+    public void substitution(PlayerInfo playerInfo, ArrayList<MatchTimelines> matchTimelineList,
+                             SparseIntArray timeLineEventResMap) {
+        if (this.benchPlayerInfo == null) {
+            this.benchPlayerInfo = playerInfo;
+        }
+        if (this.benchMatchTimelineList == null) {
+            this.benchMatchTimelineList = matchTimelineList;
+        }
+        if (this.benchTimeLineEventResMap == null) {
+            this.benchTimeLineEventResMap = timeLineEventResMap;
+        }
+
+        if (mHandler != null) {
+            mHandler.postDelayed(runnable, 1000);
+        }
+    }
+
+    private Handler mHandler;
+
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        Timber.i("---onWindowVisibilityChanged---" + visibility);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Timber.i("---onAttachedToWindow---");
+        mHandler = new Handler();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Timber.i("---onDetachedFromWindow---");
+        if (mHandler != null) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
     }
 }

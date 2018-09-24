@@ -137,6 +137,7 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
             playerInfo.playerName = ps.getPlayerName();
             playerInfo.shirtNum = ps.getShirtNo();
             playerInfo.playerId = ps.getPlayerId();
+            playerInfo.teamId = ps.getTeamId();
             playerInfo.avatarUrl = String.format(Constant.PlayerConstant.PLAYER_AVATAR_URL, playerInfo.playerId);
             if (ps.isIsFirstEleven()) {
                 mainPlayerInfos.add(playerInfo);

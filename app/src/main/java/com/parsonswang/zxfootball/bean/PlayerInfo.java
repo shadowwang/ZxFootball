@@ -8,6 +8,8 @@ public class PlayerInfo {
     public String shirtNum;
     public String avatarUrl;
     public String playerName;
+    public String teamId;
+    public boolean hasExchangeDown;//是否被换下
 
     @Override
     public String toString() {
@@ -16,6 +18,7 @@ public class PlayerInfo {
                 ", shirtNum='" + shirtNum + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", playerName='" + playerName + '\'' +
+                ", teamId='" + teamId + '\'' +
                 '}';
     }
 }
