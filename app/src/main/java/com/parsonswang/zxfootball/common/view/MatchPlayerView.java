@@ -97,6 +97,7 @@ public class MatchPlayerView extends FrameLayout {
                 final int eventType = matchTimeline.eventType;
                 if (eventType == Constant.MatchTimelineEventType.EVENTTYPE_SUBSTITUTES_DOWN) {
                     playerInfo.hasExchangeDown = true;
+                    playerInfo.downMinute = matchTimeline.minute;//被换下时间
                 }
 
                 int res = timeLineEventResMap.get(eventType);
@@ -115,10 +116,10 @@ public class MatchPlayerView extends FrameLayout {
         }
     }
 
+
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Timber.i("---runnable---" + showUp);
             if (showUp) {//显示替换上场球员信息
                 setData(benchPlayerInfo, benchMatchTimelineList, benchTimeLineEventResMap);
                 showUp = false;
@@ -157,12 +158,6 @@ public class MatchPlayerView extends FrameLayout {
     }
 
     private Handler mHandler;
-
-    @Override
-    protected void onWindowVisibilityChanged(int visibility) {
-        super.onWindowVisibilityChanged(visibility);
-        Timber.i("---onWindowVisibilityChanged---" + visibility);
-    }
 
     @Override
     protected void onAttachedToWindow() {

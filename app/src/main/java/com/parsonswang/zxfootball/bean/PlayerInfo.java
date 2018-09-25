@@ -10,6 +10,7 @@ public class PlayerInfo {
     public String playerName;
     public String teamId;
     public boolean hasExchangeDown;//是否被换下
+    public int downMinute;//被换下时间
 
     @Override
     public String toString() {
