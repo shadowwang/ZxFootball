@@ -1,7 +1,8 @@
 package com.parsonswang.zxfootball.common.data;
 
-import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.common.network.ResonseCallback;
+
+import java.util.LinkedHashMap;
 
 /**
  * 获取数据的基础接口
@@ -10,5 +11,5 @@ import com.parsonswang.common.network.ResonseCallback;
 
 public interface IDataFetcher<T extends ResonseCallback> {
 
-    void fetchData(T callback, LinkedHashTreeMap<String, String> params);
+    void fetchData(T callback, LinkedHashMap<String, String> params);
 }

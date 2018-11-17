@@ -1,11 +1,11 @@
 package com.parsonswang.zxfootball.matches;
 
-import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.common.data.DataFetchFactory;
 import com.parsonswang.zxfootball.matches.detail.MatchDetailsFetchDataCallback;
 import com.parsonswang.zxfootball.matches.detail.MatchStatFetchDataCallback;
 
+import java.util.LinkedHashMap;
 import java.util.Locale;
 
 import timber.log.Timber;
@@ -18,7 +18,7 @@ public class MatchModel {
 
     public void getMatchInfoDatas(String competionId, String dateBetween, MachesFetchDataCallback machesFetchDataCallback) {
 
-        LinkedHashTreeMap<String, String> paramsMap = new LinkedHashTreeMap<>();
+        LinkedHashMap<String, String> paramsMap = new LinkedHashMap<>();
         paramsMap.put("comeptitionId", competionId);
         paramsMap.put("date", dateBetween);
 

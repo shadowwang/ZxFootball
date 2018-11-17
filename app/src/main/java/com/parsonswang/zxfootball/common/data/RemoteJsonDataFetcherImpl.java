@@ -1,10 +1,10 @@
 package com.parsonswang.zxfootball.common.data;
 
-import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.common.network.HttpGetBuilder;
 import com.parsonswang.common.network.JsonCallback;
 import com.parsonswang.common.network.OkHttpUtil;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -23,7 +23,7 @@ public class RemoteJsonDataFetcherImpl implements IDataFetcher<JsonCallback>{
     }
 
     @Override
-    public void fetchData(JsonCallback callback, LinkedHashTreeMap<String, String> params) {
+    public void fetchData(JsonCallback callback, LinkedHashMap<String, String> params) {
         HttpGetBuilder httpGetBuilder = OkHttpUtil.get().url(mUrl);
 
         if (params != null) {

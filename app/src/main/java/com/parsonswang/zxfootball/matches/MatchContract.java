@@ -30,6 +30,8 @@ public class MatchContract {
         void getMatchDetail(String matchId);
 
         void getMatchStat(String matchId);
+
+        void getMatchPlayerInfos(String matchId);
     }
 
 

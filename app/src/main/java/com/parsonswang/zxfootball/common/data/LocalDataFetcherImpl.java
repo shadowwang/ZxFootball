@@ -1,7 +1,8 @@
 package com.parsonswang.zxfootball.common.data;
 
-import com.google.gson.internal.LinkedHashTreeMap;
 import com.parsonswang.common.network.ResonseCallback;
+
+import java.util.LinkedHashMap;
 
 /**
  * Created by wangchun on 2017/10/22.
@@ -10,7 +11,7 @@ import com.parsonswang.common.network.ResonseCallback;
 public class LocalDataFetcherImpl implements IDataFetcher {
 
     @Override
-    public void fetchData(ResonseCallback callback, LinkedHashTreeMap params) {
+    public void fetchData(ResonseCallback callback, LinkedHashMap params) {
 
     }
 }

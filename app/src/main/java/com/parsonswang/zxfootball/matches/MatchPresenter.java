@@ -65,6 +65,10 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
         matchModel.getMatchInfoDatas(comeptitionId, dataBetween, new MachesFetchDataCallback<MatchesBean>(matchInfoView));
     }
 
+    /**
+     * 得到比赛详情
+     * @param matchId
+     */
     @Override
     public void getMatchDetail(String matchId) {
         matchModel.getMatchDetailInfo(matchId, new MatchDetailsFetchDataCallback(mIMatchDetailView));
@@ -73,6 +77,15 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
     @Override
     public void getMatchStat(String matchId) {
         matchModel.getMatchStatInfo(matchId, new MatchStatFetchDataCallback(mIMatchStatView));
+    }
+
+    /**
+     * 得到比赛球员信息
+     * @param matchId
+     */
+    @Override
+    public void getMatchPlayerInfos(String matchId) {
+
     }
 
     private void getHeaderTabTitle() {
