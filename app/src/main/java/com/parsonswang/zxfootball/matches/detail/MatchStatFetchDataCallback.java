@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
 import okhttp3.Call;
-import timber.log.Timber;
 
 /**
  * Created by parsonswang on 2018/2/5.
