@@ -7,6 +7,7 @@ import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.mvp.AbsPresenter;
 import com.parsonswang.zxfootball.common.utils.ConfigUtil;
 import com.parsonswang.zxfootball.matches.detail.MatchDetailsFetchDataCallback;
+import com.parsonswang.zxfootball.matches.detail.MatchPlayerInfoCallback;
 import com.parsonswang.zxfootball.matches.detail.MatchStatFetchDataCallback;
 
 import timber.log.Timber;
@@ -21,6 +22,8 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
     private MatchContract.IMatchInfoView matchInfoView;
     private MatchContract.IMatchDetailView mIMatchDetailView;
     private MatchContract.IMatchStatView mIMatchStatView;
+    private MatchContract.IMatchPlayerInfoView mIMatchPlayerInfoView;
+
     private MatchModel matchModel;
 
     public MatchPresenter(MatchContract.IMatchView matchView) {
@@ -41,6 +44,11 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
 
     public MatchPresenter(MatchContract.IMatchStatView iMatchStatView) {
         this.mIMatchStatView = iMatchStatView;
+        matchModel = new MatchModel();
+    }
+
+    public MatchPresenter(MatchContract.IMatchPlayerInfoView iMatchPlayerInfoView) {
+        this.mIMatchPlayerInfoView = iMatchPlayerInfoView;
         matchModel = new MatchModel();
     }
 
@@ -85,7 +93,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
      */
     @Override
     public void getMatchPlayerInfos(String matchId) {
-
+        matchModel.getMatchPlayerInfo(matchId, new MatchPlayerInfoCallback(mIMatchPlayerInfoView));
     }
 
     private void getHeaderTabTitle() {

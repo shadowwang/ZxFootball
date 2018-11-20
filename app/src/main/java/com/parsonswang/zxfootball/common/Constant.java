@@ -18,6 +18,7 @@ public class Constant {
 
         public static final String MATCH_STAT_URL = HTTP_REQUEST_URL + "matches/%1$s/stat.do";
 
+        public static final String MATCH_PLAYERINFO_URL = HTTP_REQUEST_URL + "matches/%1$s/playerStats.do";
     }
 
 

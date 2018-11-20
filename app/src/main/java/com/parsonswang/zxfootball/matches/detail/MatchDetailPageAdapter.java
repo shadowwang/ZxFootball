@@ -33,7 +33,7 @@ public class MatchDetailPageAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return MatchTimeLineFragment.newInstance(mMatchId);
             case 1:
-                return new MatchPlayerStatFragment();
+                return MatchPlayerStatFragment.newInstance(mMatchId);
             case 2:
                 return new MatchStatFragment();
         }

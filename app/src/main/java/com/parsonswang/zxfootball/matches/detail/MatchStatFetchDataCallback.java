@@ -1,6 +1,5 @@
 package com.parsonswang.zxfootball.matches.detail;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.parsonswang.common.network.HtmlCallback;
 import com.parsonswang.common.utils.JsonObjectMap;
@@ -18,11 +17,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
 
 import okhttp3.Call;
 

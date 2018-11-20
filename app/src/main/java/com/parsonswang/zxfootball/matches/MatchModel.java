@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball.matches;
 import com.parsonswang.zxfootball.common.Constant;
 import com.parsonswang.zxfootball.common.data.DataFetchFactory;
 import com.parsonswang.zxfootball.matches.detail.MatchDetailsFetchDataCallback;
+import com.parsonswang.zxfootball.matches.detail.MatchPlayerInfoCallback;
 import com.parsonswang.zxfootball.matches.detail.MatchStatFetchDataCallback;
 
 import java.util.LinkedHashMap;
@@ -38,6 +39,15 @@ public class MatchModel {
 
     public void getMatchStatInfo(String comeptionId, MatchStatFetchDataCallback callback) {
         String url = String.format(Locale.getDefault(), Constant.NetworkProtocolConstant.MATCH_STAT_URL, comeptionId);
+        Timber.i(url);
+
+        DataFetchFactory.getInstance()
+                .getDataFetcher(url, DataFetchFactory.DATA_FETCH_TYPE_HTML)
+                .fetchData(callback, null);
+    }
+
+    public void getMatchPlayerInfo(String comeptionId, MatchPlayerInfoCallback callback) {
+        String url = String.format(Locale.getDefault(), Constant.NetworkProtocolConstant.MATCH_PLAYERINFO_URL, comeptionId);
         Timber.i(url);
 
         DataFetchFactory.getInstance()

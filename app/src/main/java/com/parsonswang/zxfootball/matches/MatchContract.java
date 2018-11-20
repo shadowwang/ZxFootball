@@ -54,4 +54,8 @@ public class MatchContract {
 
          void getMatchTimelineInfo(MatchStatBean matchStatBean);
     }
+
+    public interface IMatchPlayerInfoView extends IBaseView {
+        void getMatchPlayerInfo();
+    }
 }
