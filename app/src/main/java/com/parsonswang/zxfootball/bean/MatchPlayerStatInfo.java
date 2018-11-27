@@ -14,10 +14,13 @@ public class MatchPlayerStatInfo {
         public String team;
     }
 
-    private class PlayerStatInfo {
+    public static class PlayerStatInfo {
         public String name;
         public String num;
+        public int age;
         public String location;
+        public String avatar;
+        public String playerPageUrl;
         public int shootCnt;
         public int shootOnTargetCnt;
         public int keyPass;
