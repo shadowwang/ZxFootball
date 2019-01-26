@@ -22,14 +22,13 @@ public class Constant {
     }
 
 
-    public static class TeamImageSize {
+    public static class TeamImage {
         public static final int IMAGE_SIZE_SMALL = 20;
-
         public static final int IMAGE_SIZE_MIDDLE = 60;
-
         public static final int IMAGE_SIZE_LARGE = 80;
-
         public static final int IMAGE_SIZE_ORIGNAL = 100;
+
+        public static final String TEAM_LOGO_PREF = "http://pks73m1c4.bkt.clouddn.com/teams/";
     }
 
     public static class MatchTimelineEventType {

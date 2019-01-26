@@ -56,21 +56,22 @@ public class TeamInfoView extends FrameLayout {
 
     public void setInfo(MatchesBean.MatchInfo matchInfo, boolean isHome) {
         //http://ov68gixwy.bkt.clouddn.com/countries/Russia.png?imageView2/2/w/24
+        // 2019-01-26变更：http://pks73m1c4.bkt.clouddn.com/teams/34.png?imageView2/2/w/20
         if (isHome) {
             if (matchInfo.getCompetitionId() == WORDCUP_COMPETION_ID) {
-                String url = "http://ov68gixwy.bkt.clouddn.com/countries/" + matchInfo.getHomeTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                String url = Constant.TeamImage.TEAM_LOGO_PREF + matchInfo.getHomeTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImage.IMAGE_SIZE_LARGE;
                 Imageloaders.loadImage(mContext, url, mIvTeam, 0);
             } else {
-                String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + matchInfo.getHomeTeamId() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                String url = Constant.TeamImage.TEAM_LOGO_PREF + matchInfo.getHomeTeamId() + ".png?imageView2/2/w/" + Constant.TeamImage.IMAGE_SIZE_LARGE;
                 Imageloaders.loadImage(mContext, url, mIvTeam, 0);
             }
             mTvTeam.setText(matchInfo.getHomeTeamName());
         } else {
             if (matchInfo.getCompetitionId() == WORDCUP_COMPETION_ID) {
-                String url = "http://ov68gixwy.bkt.clouddn.com/countries/" + matchInfo.getAwayTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                String url = Constant.TeamImage.TEAM_LOGO_PREF + matchInfo.getAwayTeamCountry() + ".png?imageView2/2/w/" + Constant.TeamImage.IMAGE_SIZE_LARGE;
                 Imageloaders.loadImage(mContext, url, mIvTeam, 0);
             } else {
-                String url = "http://ov68gixwy.bkt.clouddn.com/teams/" + matchInfo.getAwayTeamId() + ".png?imageView2/2/w/" + Constant.TeamImageSize.IMAGE_SIZE_LARGE;
+                String url = Constant.TeamImage.TEAM_LOGO_PREF + matchInfo.getAwayTeamId() + ".png?imageView2/2/w/" + Constant.TeamImage.IMAGE_SIZE_LARGE;
                 Imageloaders.loadImage(mContext, url, mIvTeam, 0);
             }
             mTvTeam.setText(matchInfo.getAwayTeamName());
