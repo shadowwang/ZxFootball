@@ -46,13 +46,28 @@ public class MatchPlayerInfoCallback extends HtmlCallback {
 
                     final String playerInfoTxt = trs.get(i).text();
                     String[] playerInfos = playerInfoTxt.split(" ");
-                    playerStatInfo.name = playerInfos[1];
-                    playerStatInfo.age = Integer.parseInt(playerInfos[2]);
-                    playerStatInfo.location = playerInfos[3];
-                    playerStatInfo.shootCnt = Integer.parseInt(playerInfos[4]);
-                    playerStatInfo.shootOnTargetCnt = Integer.parseInt(playerInfos[5]);
-                    
+                    for (String playerInfo : playerInfos) {
+                        Timber.i(playerInfo);
+                    }
 
+                    final int length = playerInfos.length;
+                    Timber.i(length + "");
+
+                    int startIndex = length == 12 ? 2 : 3;
+
+//                    playerStatInfo.name = playerInfos[1];
+//                    playerStatInfo.age = Integer.parseInt(playerInfos[startIndex].substring(0, playerInfos[startIndex].length() - 1));
+//                    playerStatInfo.location = playerInfos[startIndex + 1];
+//                    playerStatInfo.shootCnt = Integer.parseInt(playerInfos[startIndex + 2]);
+//                    playerStatInfo.shootOnTargetCnt = Integer.parseInt(playerInfos[startIndex + 3]);
+//                    playerStatInfo.keyPass = Integer.parseInt(playerInfos[startIndex + 4]);
+//                    playerStatInfo.psPercent = Float.parseFloat(playerInfos[startIndex + 5]);
+//                    playerStatInfo.makeChanceCnt = Integer.parseInt(playerInfos[startIndex + 6]);
+//                    playerStatInfo.headingDuelCnt = Integer.parseInt(playerInfos[startIndex + 7]);
+//                    playerStatInfo.touchBallCnt = Integer.parseInt(playerInfos[startIndex + 8]);
+//                    playerStatInfo.scoreGrade = Float.parseFloat(playerInfos[startIndex + 9]);
+//
+//                    Timber.i(playerStatInfo + "");
                 }
             }
 

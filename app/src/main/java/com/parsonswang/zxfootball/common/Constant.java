@@ -28,7 +28,7 @@ public class Constant {
         public static final int IMAGE_SIZE_LARGE = 80;
         public static final int IMAGE_SIZE_ORIGNAL = 100;
 
-        public static final String TEAM_LOGO_PREF = "http://pks73m1c4.bkt.clouddn.com/teams/";
+        public static final String TEAM_LOGO_PREF = "http://pm884jf3e.bkt.clouddn.com/teams/";
     }
 
     public static class MatchTimelineEventType {
@@ -50,6 +50,6 @@ public class Constant {
     }
 
     public static class PlayerConstant {
-        public static final String PLAYER_AVATAR_URL = "http://ov68gixwy.bkt.clouddn.com/players/%1$s.jpg";
+        public static final String PLAYER_AVATAR_URL = "http://pm884jf3e.bkt.clouddn.com/players/%1$s.jpg";
     }
 }

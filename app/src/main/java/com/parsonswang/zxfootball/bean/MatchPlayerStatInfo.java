@@ -16,7 +16,6 @@ public class MatchPlayerStatInfo {
 
     public static class PlayerStatInfo {
         public String name;
-        public String num;
         public int age;
         public String location;
         public String avatar;
@@ -29,6 +28,27 @@ public class MatchPlayerStatInfo {
         public int headingDuelCnt;
         public int touchBallCnt;
         public float scoreGrade;
+
+        @Override
+        public String toString() {
+            return "PlayerStatInfo{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    ", location='" + location + '\'' +
+                    ", avatar='" + avatar + '\'' +
+                    ", playerPageUrl='" + playerPageUrl + '\'' +
+                    ", shootCnt=" + shootCnt +
+                    ", shootOnTargetCnt=" + shootOnTargetCnt +
+                    ", keyPass=" + keyPass +
+                    ", psPercent=" + psPercent +
+                    ", makeChanceCnt=" + makeChanceCnt +
+                    ", headingDuelCnt=" + headingDuelCnt +
+                    ", touchBallCnt=" + touchBallCnt +
+                    ", scoreGrade=" + scoreGrade +
+                    '}';
+        }
     }
+
+
 
 }

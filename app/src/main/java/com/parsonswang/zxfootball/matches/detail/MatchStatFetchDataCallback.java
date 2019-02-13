@@ -55,7 +55,7 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
         MatchStatBean matchStatBean = new MatchStatBean();
 
         Elements elements = document.getElementsByTag("script");
-        Elements jsValElements = document.getElementsByTag("script").eq(19);
+        Elements jsValElements = document.getElementsByTag("script").eq(20);
 
         for (Element element : jsValElements) {
             //var表达式：var keyName = values;
