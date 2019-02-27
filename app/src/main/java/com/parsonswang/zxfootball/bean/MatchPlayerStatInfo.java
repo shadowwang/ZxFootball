@@ -16,8 +16,7 @@ public class MatchPlayerStatInfo {
 
     public static class PlayerStatInfo {
         public String name;
-        public int age;
-        public String location;
+        public String desc;
         public String avatar;
         public String playerPageUrl;
         public int shootCnt;
@@ -33,8 +32,7 @@ public class MatchPlayerStatInfo {
         public String toString() {
             return "PlayerStatInfo{" +
                     "name='" + name + '\'' +
-                    ", age=" + age +
-                    ", location='" + location + '\'' +
+                    ", desc='" + desc + '\'' +
                     ", avatar='" + avatar + '\'' +
                     ", playerPageUrl='" + playerPageUrl + '\'' +
                     ", shootCnt=" + shootCnt +
