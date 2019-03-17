@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
+import timber.log.Timber;
 
 /**
  * Created by parsonswang on 2018/2/5.
@@ -51,11 +52,25 @@ public class MatchStatFetchDataCallback extends HtmlCallback {
 
     }
 
+    private int getMatchStatIndex(Document document) {
+        Elements elements = document.getElementsByTag("script");
+        int index = 0;
+        for (int i = elements.size() - 1; i >= 0; i--) {
+            final Element element = elements.get(i);
+            String text = element.toString();
+            if (text.contains("timelines")) {
+                index = i;
+                break;
+            }
+        }
+        Timber.i("getMatchStatIndex: " + index);
+        return index;
+    }
+
     private MatchStatBean getMatchTimelines(Document document) {
         MatchStatBean matchStatBean = new MatchStatBean();
 
-        Elements elements = document.getElementsByTag("script");
-        Elements jsValElements = document.getElementsByTag("script").eq(21);
+        Elements jsValElements = document.getElementsByTag("script").eq(getMatchStatIndex(document));
 
         for (Element element : jsValElements) {
             //var表达式：var keyName = values;
