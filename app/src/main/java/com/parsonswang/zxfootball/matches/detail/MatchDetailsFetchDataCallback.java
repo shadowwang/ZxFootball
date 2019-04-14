@@ -39,6 +39,11 @@ public class MatchDetailsFetchDataCallback extends HtmlCallback {
         //得到比赛头部信息
         MatchDetailHeaderInfoBean matchDetailHeaderInfoBean = getMatchHeaderBean(document);
 
+        if (matchDetailView == null) {
+            Timber.e("matchDetailView is null");
+            return;
+        }
+
         if (matchDetailHeaderInfoBean == null) {
             matchDetailView.showExceptionView();
         } else {

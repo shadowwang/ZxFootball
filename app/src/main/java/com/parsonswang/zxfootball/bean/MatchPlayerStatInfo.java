@@ -3,6 +3,7 @@ package com.parsonswang.zxfootball.bean;
 import java.util.ArrayList;
 
 public class MatchPlayerStatInfo {
+
     public TeamInfo homeTeamInfo;
     public TeamInfo awayTeamInfo;
 
@@ -15,6 +16,10 @@ public class MatchPlayerStatInfo {
     }
 
     public static class PlayerStatInfo {
+        public static final int TYPE_TITLE = 0x01;
+        public static final int TYPE_NORMAL = 0x02;
+
+        public int type = TYPE_NORMAL;
         public String name;
         public String desc;
         public String avatar;

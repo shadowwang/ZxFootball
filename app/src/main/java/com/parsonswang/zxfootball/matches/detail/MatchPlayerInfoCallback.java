@@ -63,12 +63,18 @@ public class MatchPlayerInfoCallback extends HtmlCallback {
     @Override
     protected void onSuccess(String s) {
         Document document = Jsoup.parse(s);
+        ArrayList<MatchPlayerStatInfo.PlayerStatInfo> homePlayerStatInfos = null;
+        ArrayList<MatchPlayerStatInfo.PlayerStatInfo> awayPlayerStatInfos = null;
         if (document != null) {
             final Element homeSummary = document.getElementById("summary");
-            ArrayList<MatchPlayerStatInfo.PlayerStatInfo> homePlayerStatInfos = getPlayerStatInfo(homeSummary);
+            homePlayerStatInfos = getPlayerStatInfo(homeSummary);
 
             final Element awaySummary = document.getElementById("summary1");
-            ArrayList<MatchPlayerStatInfo.PlayerStatInfo> awayPlayerStatInfos = getPlayerStatInfo(awaySummary);
+            awayPlayerStatInfos = getPlayerStatInfo(awaySummary);
+        }
+
+        if (mMatchPlayerInfoView != null) {
+            mMatchPlayerInfoView.getMatchPlayerInfo(homePlayerStatInfos, awayPlayerStatInfos );
         }
     }
 
