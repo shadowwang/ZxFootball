@@ -4,55 +4,92 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="5dp"
-    android:weightSum="10"
+    android:weightSum="11"
     android:background="@color/colorCommonBackground"
     >
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        >
+
+        <ImageView
+            android:id="@+id/mIvPlayerAvatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/mTvPlayerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/mIvPlayerAvatar"
+            android:textColor="@color/colorPrimary"
+            android:text="梅西"
+            android:textSize="12dp"
+            android:layout_marginLeft="8dp"
+            />
+
+        <TextView
+            android:id="@+id/mTvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/mIvPlayerAvatar"
+            android:layout_below="@id/mTvPlayerName"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/colorPrimary"
+            android:text="前锋"
+            android:textSize="10dp"
+            android:layout_marginLeft="8dp"
+            />
     </RelativeLayout>
     <TextView
-        style="@style/PlayerStatItem"
-        android:layout_weight="2"
-        android:text="球员"
-        />
-    <TextView
+        android:id="@+id/mTvShootCnt"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvShootOnTargetCnt"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvKeyPass"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvPsPercent"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="88.3"
         />
     <TextView
+        android:id="@+id/mTvMakeChanceCnt"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvHeadingDuelCnt"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvTouchBallCnt"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="1"
         />
     <TextView
+        android:id="@+id/mTvScoreGrade"
         style="@style/PlayerStatItem"
         android:layout_weight="1"
         android:text="7.53"

@@ -74,8 +74,8 @@ public class MatchPlayerStatFragment extends BaseLazyLoadFragment implements Mat
         mRvHomePlayerStatList = (RecyclerView) view.findViewById(R.id.mRvHomePlayerStatList);
         mRvAwayPlayerStatList = (RecyclerView) view.findViewById(R.id.mRvAwayPlayerStatList);
 
-        mHomeStatListAdapter = new PlayerStatListAdapter();
-        mAwayStatListAdapter = new PlayerStatListAdapter();
+        mHomeStatListAdapter = new PlayerStatListAdapter(mContext);
+        mAwayStatListAdapter = new PlayerStatListAdapter(mContext);
 
         initPlayerStatList(mRvHomePlayerStatList, mHomeStatListAdapter);
         initPlayerStatList(mRvAwayPlayerStatList, mAwayStatListAdapter);
