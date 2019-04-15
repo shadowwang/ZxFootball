@@ -59,9 +59,10 @@ public class MatchPlayerStatFragment extends BaseLazyLoadFragment implements Mat
     private void initPlayerStatList(RecyclerView recyclerView, PlayerStatListAdapter playerStatListAdapter) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(playerStatListAdapter);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addItemDecoration(new CommonRecyclerViewDivider( getContext(),
                 LinearLayoutManager.VERTICAL,
-                UIUtils.dip2px(getContext(), 1F),
+                UIUtils.dip2px(mContext, 5F),
                 Color.parseColor("#232C30")));
     }
 
