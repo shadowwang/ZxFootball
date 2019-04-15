@@ -6,12 +6,19 @@ import android.view.ViewGroup;
 
 import com.parsonswang.zxfootball.bean.MatchPlayerStatInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerStatListAdapter extends RecyclerView.Adapter {
 
-    private List<MatchPlayerStatInfo.PlayerStatInfo> playerStatInfos;
+    private List<MatchPlayerStatInfo.PlayerStatInfo> playerStatInfos = new ArrayList<>();
 
+    public void addAll(List<MatchPlayerStatInfo.PlayerStatInfo> playerStatInfos) {
+        if (playerStatInfos != null && !playerStatInfos.isEmpty()) {
+            this.playerStatInfos.addAll(playerStatInfos);
+            notifyDataSetChanged();
+        }
+    }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,6 +10,9 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,8 +21,8 @@
             >
             <ImageView
                 android:id="@+id/mHomeTeamLogo"
-                android:layout_width="30dp"
-                android:layout_height="40dp" />
+                android:layout_width="20dp"
+                android:layout_height="26dp" />
             <TextView
                 android:id="@+id/mHomeTeamName"
                 android:layout_width="wrap_content"
@@ -26,7 +30,7 @@
                 android:textColor="@android:color/white"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="重庆力帆"
                 />
         </LinearLayout>
@@ -45,8 +49,8 @@
             >
             <ImageView
                 android:id="@+id/mAwayTeamLogo"
-                android:layout_width="30dp"
-                android:layout_height="40dp" />
+                android:layout_width="20dp"
+                android:layout_height="26dp" />
             <TextView
                 android:id="@+id/mAwayTeamName"
                 android:layout_width="wrap_content"
@@ -54,7 +58,7 @@
                 android:textColor="@android:color/white"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="重庆力帆"
                 />
         </LinearLayout>

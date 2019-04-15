@@ -1,5 +1,6 @@
 package com.parsonswang.zxfootball.matches.detail;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +13,12 @@ import android.widget.TextView;
 
 import com.parsonswang.common.base.BaseLazyLoadFragment;
 import com.parsonswang.common.image.Imageloaders;
+import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.zxfootball.R;
 import com.parsonswang.zxfootball.bean.MatchDetailHeaderInfoBean;
 import com.parsonswang.zxfootball.bean.MatchPlayerStatInfo;
 import com.parsonswang.zxfootball.bean.MatchSummary;
+import com.parsonswang.zxfootball.common.view.CommonRecyclerViewDivider;
 import com.parsonswang.zxfootball.matches.MatchContract;
 import com.parsonswang.zxfootball.matches.MatchPresenter;
 
@@ -56,7 +59,10 @@ public class MatchPlayerStatFragment extends BaseLazyLoadFragment implements Mat
     private void initPlayerStatList(RecyclerView recyclerView, PlayerStatListAdapter playerStatListAdapter) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(playerStatListAdapter);
-
+        recyclerView.addItemDecoration(new CommonRecyclerViewDivider( getContext(),
+                LinearLayoutManager.VERTICAL,
+                UIUtils.dip2px(getContext(), 1F),
+                Color.parseColor("#232C30")));
     }
 
     @Nullable
@@ -91,7 +97,10 @@ public class MatchPlayerStatFragment extends BaseLazyLoadFragment implements Mat
         title.type = MatchPlayerStatInfo.PlayerStatInfo.TYPE_TITLE;
 
         homePlayerStatInfos.add(0, title);
+        mHomeStatListAdapter.addAll(homePlayerStatInfos);
+
         awayPlayerStatInfos.add(0, title);
+        mAwayStatListAdapter.addAll(awayPlayerStatInfos);
     }
 
     @Override
