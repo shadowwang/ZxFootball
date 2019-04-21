@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ZxFootball</string>
+    <string name="title_news">新闻</string>
     <string name="title_home">比赛</string>
     <string name="title_data">数据</string>
     <string name="title_market_values">身价</string>

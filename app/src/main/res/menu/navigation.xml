@@ -7,6 +7,10 @@
         android:title="@string/title_home"/>
 
     <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/ic_bottombar_item_news"
+        android:title="@string/title_news"/>
+    <item
         android:id="@+id/navigation_data"
         android:icon="@drawable/ic_bottombar_item_data"
         android:title="@string/title_data"/>
@@ -15,5 +19,6 @@
         android:id="@+id/navigation_price"
         android:icon="@drawable/ic_bottombar_item_price"
         android:title="@string/title_market_values"/>
+
 
 </menu>

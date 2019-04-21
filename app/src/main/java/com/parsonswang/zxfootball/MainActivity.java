@@ -13,9 +13,13 @@ import com.parsonswang.common.base.BaseActivity;
 import com.parsonswang.common.network.JsonCallback;
 import com.parsonswang.common.network.OkHttpUtil;
 import com.parsonswang.zxfootball.bean.MatchesBean;
+import com.parsonswang.zxfootball.common.utils.BottomNavagationHelper;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
+import com.parsonswang.zxfootball.news.NewsFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
+
+import java.sql.Time;
 
 import okhttp3.Call;
 import timber.log.Timber;
@@ -23,6 +27,7 @@ import timber.log.Timber;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG_NEWS = "news";
     private static final String TAG_MATCHFRAGMENT = "match";
     private static final String TAG_DATAFRAGMENT = "data";
     private static final String TAG_PRICEFRAGMENT = "price";
@@ -37,6 +42,10 @@ public class MainActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             final int itemId = item.getItemId();
             switch (itemId) {
+                case R.id.navigation_news:
+                    Timber.i("navigation_news click");
+                    switchFragment(itemId, TAG_NEWS);
+                    return true;
                 case R.id.navigation_match:
                     Timber.i("navigation_match click");
                     switchFragment(itemId, TAG_MATCHFRAGMENT);
@@ -101,14 +110,16 @@ public class MainActivity extends BaseActivity {
 
     private Fragment createFragment(int menuItemId) {
         switch (menuItemId) {
+            case R.id.navigation_news:
+                return new NewsFragment();
             case R.id.navigation_match:
-                Log.i(TAG, "navigation_match createFragment");
+                Timber.i(TAG, "navigation_match createFragment");
                 return new MatchesFragment();
             case R.id.navigation_data:
-                Log.i(TAG, "navigation_data createFragment");
+                Timber.i(TAG, "navigation_data createFragment");
                 return new DataFragment();
             case R.id.navigation_price:
-                Log.i(TAG, "navigation_price createFragment");
+                Timber.i(TAG, "navigation_price createFragment");
                 return new PriceFragment();
         }
         return null;
@@ -122,6 +133,7 @@ public class MainActivity extends BaseActivity {
         swipeLayoutHelper.getSwipeBackLayout().setEnable(false);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavagationHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
     }
