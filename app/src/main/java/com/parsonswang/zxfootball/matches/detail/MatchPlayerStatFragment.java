@@ -24,6 +24,8 @@ import com.parsonswang.zxfootball.matches.MatchPresenter;
 
 import java.util.ArrayList;
 
+import io.flutter.facade.Flutter;
+
 /**
  * 球员统计Fragment
  * Created by wangchun on 2018/2/6.
@@ -44,6 +46,7 @@ public class MatchPlayerStatFragment extends BaseLazyLoadFragment implements Mat
         Bundle bundle = new Bundle();
         bundle.putString(BUNDKE_KEY_MATCHID, matchId);
         matchPlayerInfoFragment.setArguments(bundle);
+
         return matchPlayerInfoFragment;
     }
 

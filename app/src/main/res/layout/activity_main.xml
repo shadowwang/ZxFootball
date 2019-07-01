@@ -7,12 +7,7 @@
     android:fitsSystemWindows="true"
     >
 
-    <!-- 内容-->
-    <FrameLayout
-        android:id="@+id/mFlContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+
 
 
     <!-- bottom bar-->
@@ -32,5 +27,13 @@
         android:layout_height="1dp"
         android:background="@color/colorCommonLine"
         android:layout_above="@id/navigation"
+        />
+
+    <!-- 内容-->
+    <FrameLayout
+        android:id="@+id/mFlContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/line"
         />
 </RelativeLayout>

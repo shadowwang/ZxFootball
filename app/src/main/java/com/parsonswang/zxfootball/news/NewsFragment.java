@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.parsonswang.zxfootball.R;
 
+import io.flutter.facade.Flutter;
+import io.flutter.facade.FlutterFragment;
+
 /**
  * Created by parsonswang on 2017/10/13.
  */
@@ -18,6 +21,6 @@ public class NewsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_price, container, false);
+        return Flutter.createView(getActivity(), getLifecycle(), "main_page");
     }
 }
