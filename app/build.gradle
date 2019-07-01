@@ -14,6 +14,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
 
         ndk {
             //根据需要 自行选择添加的对应cpu类型的.so库。
