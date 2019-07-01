@@ -49,4 +49,6 @@ dependencies {
     implementation 'com.diogobernardino:williamchart:2.5.0'
     testImplementation 'junit:junit:4.12'
     implementation project(path: ':common')
+
+    implementation project(':flutter')
 }

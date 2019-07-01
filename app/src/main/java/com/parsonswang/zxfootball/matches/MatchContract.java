@@ -58,8 +58,20 @@ public class MatchContract {
          void getMatchTimelineInfo(MatchStatBean matchStatBean);
     }
 
+    /**
+     * 比赛球员信息view
+     */
     public interface IMatchPlayerInfoView extends IBaseView {
         void getMatchPlayerInfo(ArrayList<MatchPlayerStatInfo.PlayerStatInfo> homePlayerStatInfos,
                                 ArrayList<MatchPlayerStatInfo.PlayerStatInfo> awayPlayerStatInfos);
     }
+
+    /**
+     * 比赛详情统计view
+     */
+    public interface IMatchDetailStatView extends IBaseView {
+        //展示球队数据
+        void showTeamData();
+    }
+
 }

@@ -23,6 +23,7 @@ public class MatchPresenter extends AbsPresenter implements MatchContract.IMatch
     private MatchContract.IMatchDetailView mIMatchDetailView;
     private MatchContract.IMatchStatView mIMatchStatView;
     private MatchContract.IMatchPlayerInfoView mIMatchPlayerInfoView;
+    private MatchContract.IMatchDetailStatView mIMatchDetailStatView;
 
     private MatchModel matchModel;
 
