@@ -1,27 +1,21 @@
 package com.parsonswang.zxfootball;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.MenuItem;
 
 import com.parsonswang.common.base.BaseActivity;
-import com.parsonswang.common.network.JsonCallback;
-import com.parsonswang.common.network.OkHttpUtil;
-import com.parsonswang.zxfootball.bean.MatchesBean;
 import com.parsonswang.zxfootball.common.utils.BottomNavagationHelper;
 import com.parsonswang.zxfootball.data.DataFragment;
 import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.news.NewsFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
 
-import java.sql.Time;
-
-import okhttp3.Call;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {

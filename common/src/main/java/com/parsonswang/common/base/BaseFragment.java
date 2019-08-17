@@ -1,7 +1,7 @@
 package com.parsonswang.common.base;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by parsonswang on 2018/2/6.

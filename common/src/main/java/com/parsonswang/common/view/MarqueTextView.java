@@ -1,14 +1,14 @@
 package com.parsonswang.common.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
 /**
  * Created by wangchun on 2018/2/14.
  */
 
-public class MarqueTextView extends android.support.v7.widget.AppCompatTextView {
+public class MarqueTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public MarqueTextView(Context context) {
         super(context);

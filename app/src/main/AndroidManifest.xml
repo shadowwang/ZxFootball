@@ -39,12 +39,12 @@
         <!-- 注意：若填写的渠道为纯数字字符串类型，请不要超过int表示的范围！ < -->
 
         <activity android:name=".matches.detail.MatchDetailActivity"/>
-    </application>
 
-    <!-- MID3.5(mid-sdk-3.5.jar) 以上版本请务必增加此配置-->
-    <provider
-        android:name="com.tencent.mid.api.MidProvider"
-        android:authorities="com.parsonswang.zxfootball.TENCENT.MID.V3"
-        android:exported="true" >
-    </provider>
+        <!-- MID3.5(mid-sdk-3.5.jar) 以上版本请务必增加此配置-->
+        <provider
+            android:name="com.tencent.mid.api.MidProvider"
+            android:authorities="com.parsonswang.zxfootball.TENCENT.MID.V3"
+            android:exported="true" >
+        </provider>
+    </application>
 </manifest>

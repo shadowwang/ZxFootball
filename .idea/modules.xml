@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ZxFootball.iml" filepath="$PROJECT_DIR$/ZxFootball.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../flutter_zxfootball/.android/Flutter/flutter.iml" filepath="$PROJECT_DIR$/../flutter_zxfootball/.android/Flutter/flutter.iml" />
     </modules>
   </component>
 </project>

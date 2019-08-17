@@ -1,16 +1,12 @@
 package com.parsonswang.zxfootball.common.view;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.Gravity;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -19,13 +15,11 @@ import com.parsonswang.common.utils.StringUtils;
 import com.parsonswang.common.utils.UIUtils;
 import com.parsonswang.zxfootball.bean.MatchTimelines;
 import com.parsonswang.zxfootball.bean.PlayerInfo;
-import com.parsonswang.zxfootball.common.Constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 import timber.log.Timber;
 
