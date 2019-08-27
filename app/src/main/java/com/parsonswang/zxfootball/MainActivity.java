@@ -89,7 +89,7 @@ public class MainActivity extends BaseActivity {
 
         //隐藏当前fragment
         if (mCurrFragment != null) {
-            transaction.hide(mCurrFragment);
+            //transaction.hide(mCurrFragment);
         }
 
         transaction.show(fragment);
@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity {
     private Fragment createFragment(int menuItemId) {
         switch (menuItemId) {
             case R.id.navigation_news:
+                Timber.i(TAG, "navigation_news createFragment");
                 return new NewsFragment();
             case R.id.navigation_match:
                 Timber.i(TAG, "navigation_match createFragment");
