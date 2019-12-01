@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.parsonswang.zxfootball.R;
-
 import io.flutter.facade.Flutter;
 import timber.log.Timber;
 
