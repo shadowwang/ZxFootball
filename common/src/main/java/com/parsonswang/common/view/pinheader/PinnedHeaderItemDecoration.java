@@ -6,6 +6,8 @@ import android.graphics.Region;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -98,7 +100,14 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
             c.save();
 
             mClipBounds.top = 0;
-            c.clipRect(mClipBounds, Region.Op.UNION);
+            //fix：修复Android P bug https://www.jianshu.com/p/4c133f189f71
+//            c.clipRect(mClipBounds, Region.Op.UNION);
+            if(Build.VERSION.SDK_INT >= 26){
+                c.clipRect(mClipBounds);
+            }else {
+                c.clipRect(mClipBounds, Region.Op.UNION);
+            }
+
             c.translate(0, mPinnedHeaderTop);
             mPinnedHeaderView.draw(c);
 
