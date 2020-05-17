@@ -11,6 +11,8 @@ import com.parsonswang.zxfootball.core.LogInit;
 import com.parsonswang.zxfootball.core.MtaInit;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.dart.DartExecutor;
 import timber.log.Timber;
 
 
@@ -21,6 +23,8 @@ import timber.log.Timber;
 public class ZxApplication extends Application {
 
     public static Application appInstance;
+
+    public FlutterEngine flutterEngine;
 
     @Override
     public void onCreate() {
@@ -39,6 +43,7 @@ public class ZxApplication extends Application {
 
         GlideBitmapPool.initialize(10 * 1024 * 1024) ;
 
+        initFlutterEngine();
         Timber.i("---onCreate---");
     }
 
@@ -48,4 +53,12 @@ public class ZxApplication extends Application {
         Timber.i("---attachBaseContext---");
         ApplicationContextHolder.setContext(base);
     }
+
+    private void initFlutterEngine() {
+        flutterEngine = new FlutterEngine(this);
+        flutterEngine.getDartExecutor().executeDartEntrypoint(
+                DartExecutor.DartEntrypoint.createDefault()
+        );
+    }
+
 }

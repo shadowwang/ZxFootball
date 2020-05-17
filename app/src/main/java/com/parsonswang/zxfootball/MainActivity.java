@@ -16,6 +16,7 @@ import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.news.NewsFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
 
+import io.flutter.embedding.android.FlutterFragment;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
@@ -106,7 +107,8 @@ public class MainActivity extends BaseActivity {
         switch (menuItemId) {
             case R.id.navigation_news:
                 Timber.i(TAG, "navigation_news createFragment");
-                return new NewsFragment();
+                FlutterFragment NewsFragment = FlutterFragment.createDefault();
+                return NewsFragment;
             case R.id.navigation_match:
                 Timber.i(TAG, "navigation_match createFragment");
                 return new MatchesFragment();
