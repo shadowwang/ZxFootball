@@ -16,7 +16,12 @@ import com.parsonswang.zxfootball.matches.MatchesFragment;
 import com.parsonswang.zxfootball.news.NewsFragment;
 import com.parsonswang.zxfootball.price.PriceFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.flutter.embedding.android.FlutterFragment;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
@@ -108,7 +113,7 @@ public class MainActivity extends BaseActivity {
             case R.id.navigation_news:
                 Timber.i(TAG, "navigation_news createFragment");
                 FlutterFragment NewsFragment = FlutterFragment.createDefault();
-                return NewsFragment;
+                return new NewsFragment();
             case R.id.navigation_match:
                 Timber.i(TAG, "navigation_match createFragment");
                 return new MatchesFragment();
@@ -133,5 +138,24 @@ public class MainActivity extends BaseActivity {
         BottomNavagationHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchFragment(R.id.navigation_match, TAG_MATCHFRAGMENT);
+
+        new MethodChannel(((ZxApplication)getApplicationContext()).flutterEngine.getDartExecutor(), "zxfootball.news.getnewstab")
+                .setMethodCallHandler(new MethodChannel.MethodCallHandler() {
+                    @Override
+                    public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
+                        Timber.i("---method---" + call.method);
+                        if (call.method.equals("getNewsTabs")) {
+                            List<String> tabs = new ArrayList<>();
+                            tabs.add("全部");
+                            tabs.add("转会");
+                            tabs.add("转回留言");
+                            tabs.add("统计");
+                            tabs.add("球员动态");
+                            tabs.add("球队动态");
+                            tabs.add("球队身价");
+                            result.success(tabs);
+                        }
+                    }
+                });
     }
 }
