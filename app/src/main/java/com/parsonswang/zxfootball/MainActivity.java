@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
 
         //隐藏当前fragment
         if (mCurrFragment != null) {
-            //transaction.hide(mCurrFragment);
+            transaction.hide(mCurrFragment);
         }
 
         transaction.show(fragment);

@@ -39,6 +39,7 @@ public class NewsFragment extends FlutterFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         Timber.i("---NewsFragment--- onCreateView");
         final View view = inflater.inflate(R.layout.fragment_price, container, false);
         FlutterView flutterView = new FlutterView(getContext());
