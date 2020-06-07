@@ -38,6 +38,7 @@
         <!-- 请将value改为app发布对应的渠道，不同的发布渠道使用不同的名字 < -->
         <meta-data android:name="InstallChannel" android:value="${MTA_CHANNEL}"/>
         <!-- 注意：若填写的渠道为纯数字字符串类型，请不要超过int表示的范围！ < -->
+        <meta-data android:name="flutterEmbedding" android:value="2" />
 
         <activity android:name=".matches.detail.MatchDetailActivity"/>
 
